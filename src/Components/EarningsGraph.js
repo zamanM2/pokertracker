@@ -23,8 +23,8 @@ ChartJS.register(
 export const options = {
   plugins: {
     title: {
-      display: true,
-      text: "Chart.js Bar Chart - Stacked",
+      display: false,
+      text: "",
     },
   },
   responsive: true,
@@ -61,7 +61,6 @@ const EarningsGraph = () => {
         .then((snapshot) => {
           const keys = Object.keys(snapshot.val());
           const _users = [];
-          const earnings = [];
           const earningsData = [{
             label: "Dataset 1",
             data: [],
@@ -73,7 +72,6 @@ const EarningsGraph = () => {
             _users.push(snapshot.val()[element].name);
             earningsData[0].data.push(snapshot.val()[element].earnings);
           }
-          console.log(earningsData)
           data.labels = _users;
           data.datasets = earningsData;
           setUsers(_users);
@@ -83,7 +81,7 @@ const EarningsGraph = () => {
     fetchUserData();
   }, []);
 
-  return <Bar options={options} data={data} />;
+  return <Bar options={options} data={data} type="bar" />;
 };
 
 export default EarningsGraph;
