@@ -23,6 +23,9 @@ function LandingPage() {
 
   return (
     <Container>
+      <Row className="text-center">
+        <h2>[A]rgoBros Poker Tracker</h2>
+      </Row>
       <Row>
         <Col>
           <EarningsGraph users={users} />

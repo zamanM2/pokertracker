@@ -60,9 +60,9 @@ const EarningsGraph = (props) => {
     const _users = [];
     const earningsData = [
       {
-        label: "Earnings",
+        label: "Total Earnings",
         data: [],
-        backgroundColor: "#0066b2",
+        backgroundColor: "#318CE7",
         stack: "Stack 0",
       },
     ];
