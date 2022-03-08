@@ -16,13 +16,15 @@ const AddNewGame = () => {
       const keys = Object.keys(snapshot.val());
       const _users = [];
       for (const element of keys) {
-        _users.push(snapshot.val()[element]);
+        _users.push({ ...snapshot.val()[element], id: element });
       }
       setUsersToAdd(_users);
     });
   }, []);
 
-  const addUserToGame = () => {};
+  const addUserToGame = (userId) => {
+    console.log(userId);
+  };
 
   return (
     <Container>
@@ -36,7 +38,10 @@ const AddNewGame = () => {
         {usersToAdd.map((element) => (
           <Row>
             <Col>
-              <Button onClick={addUserToGame} style={{ margin: "3px" }}>
+              <Button
+                onClick={() => addUserToGame(element.id)}
+                style={{ margin: "3px" }}
+              >
                 +
               </Button>
               <label>{element.name}</label>
@@ -47,8 +52,18 @@ const AddNewGame = () => {
       <Row>
         <h3>Players in Game</h3>
       </Row>
-      <Row>
-        <Col xs={2}>
+      <Row style={{ marginBottom: "10px" }}>
+        <Col>
+          <Button>Calculate Bank</Button>
+        </Col>
+      </Row>
+      <Row style={{ marginBottom: "10px" }}>
+        <Col>
+          <Button>Save Game Session</Button>
+        </Col>
+      </Row>
+      <Row style={{ marginBottom: "10px" }}>
+        <Col>
           <Button onClick={() => navigate(-1)}>Back to Home</Button>
         </Col>
       </Row>

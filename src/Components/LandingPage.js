@@ -17,7 +17,6 @@ function LandingPage() {
       for (const element of keys) {
         _users.push({ ...snapshot.val()[element], id: element });
       }
-      console.log(_users);
       setUsers(_users);
     });
   }, []);
