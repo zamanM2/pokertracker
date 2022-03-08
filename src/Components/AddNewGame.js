@@ -38,7 +38,7 @@ const AddNewGame = () => {
 
   return (
     <Container>
-      <Row>
+      <Row className="text-center">
         <h1>Add New Game Session</h1>
       </Row>
       <Row>
@@ -63,6 +63,17 @@ const AddNewGame = () => {
       </Row>
       <Row>
         <h3>Players in Game</h3>
+      </Row>
+      <Row>
+        <Col>
+          <h5>Name</h5>
+        </Col>
+        <Col>
+          <h5>Earnings</h5>
+        </Col>
+        <Col>
+          <h5>Buy-Backs</h5>
+        </Col>
       </Row>
       <Row>
         {users
@@ -99,7 +110,7 @@ const AddNewGame = () => {
       </Row>
       <Row style={{ marginBottom: "10px" }}>
         <Col>
-          <Button onClick={() => navigate(-1)}>Back to Home</Button>
+          <Button onClick={() => navigate(-1)}>Back</Button>
         </Col>
       </Row>
     </Container>
