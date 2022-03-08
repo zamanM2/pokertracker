@@ -10,13 +10,11 @@ const UserList = (props) => {
         <h2>Players</h2>
       </Row>
       <Row>
-        <Router>
-          <Row>
-            {props.users.map((element) => (
-              <Link to="/hello">{element.name}</Link>
-            ))}
-          </Row>
-        </Router>
+        <Row>
+          {props.users.map((element) => (
+            <Link to="/hello">{element.name}</Link>
+          ))}
+        </Row>
       </Row>
     </Container>
   );
