@@ -4,10 +4,11 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import { getUsers } from "../Firebase/PokerApi";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const AddNewGame = () => {
   const [usersToAdd, setUsersToAdd] = useState([]);
+  const [usersInGame, setUsersInGame] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -21,6 +22,8 @@ const AddNewGame = () => {
     });
   }, [usersToAdd]);
 
+  const addUserToGame = () => {};
+
   return (
     <Container>
       <Row>
@@ -33,7 +36,9 @@ const AddNewGame = () => {
         {usersToAdd.map((element) => (
           <Row>
             <Col>
-              <Button style={{ margin: "3px" }}>+</Button>
+              <Button onClick={addUserToGame} style={{ margin: "3px" }}>
+                +
+              </Button>
               <label>{element.name}</label>
             </Col>
           </Row>
