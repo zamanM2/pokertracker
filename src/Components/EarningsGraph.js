@@ -71,6 +71,7 @@ const EarningsGraph = (props) => {
     }
     data.labels = _users;
     data.datasets = earningsData;
+    updateState({});
   }, [props.users]);
   return <Bar options={options} data={data} type="bar" />;
 };
