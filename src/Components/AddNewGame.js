@@ -78,6 +78,12 @@ const AddNewGame = () => {
                 </Button>
                 <label>{element.name}</label>
               </Col>
+              <Col>
+                <Form.Control name="earnings" type="text" />
+              </Col>
+              <Col>
+                <Form.Control name="buy-backs" type="text" />
+              </Col>
             </Row>
           ))}
       </Row>
