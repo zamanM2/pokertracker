@@ -32,10 +32,10 @@ function LandingPage() {
         </Col>
       </Row>
       <Row>
-        <Col>
+        <Col xs={4}>
           <UserList users={users} />
         </Col>
-        <Col>
+        <Col xs={8}>
           <Games />
         </Col>
       </Row>
