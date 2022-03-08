@@ -33,10 +33,8 @@ const AddNewGame = () => {
         <h3>Players in Game</h3>
       </Row>
       <Row>
-        <Col xs={1}>
-          <Button onClick={() => navigate(-1)} className="blackBtn">
-            Back
-          </Button>
+        <Col xs={2}>
+          <Button onClick={() => navigate(-1)}>Back to Home</Button>
         </Col>
       </Row>
     </Container>
