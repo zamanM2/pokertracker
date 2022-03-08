@@ -56,28 +56,26 @@ const data = {
 const EarningsGraph = () => {
   const [users, setUsers] = useState([]);
   useEffect(() => {
-    getUsers()
-      .then((snapshot) => {
-        const keys = Object.keys(snapshot.val());
-        const _users = [];
-        const earningsData = [
-          {
-            label: "Earnings",
-            data: [],
-            backgroundColor: "rgb(255, 99, 132)",
-            stack: "Stack 0",
-          },
-        ];
+    getUsers().then((snapshot) => {
+      const keys = Object.keys(snapshot.val());
+      const _users = [];
+      const earningsData = [
+        {
+          label: "Earnings",
+          data: [],
+          backgroundColor: "rgb(255, 99, 132)",
+          stack: "Stack 0",
+        },
+      ];
 
-        for (const element of keys) {
-          _users.push(snapshot.val()[element].name);
-          earningsData[0].data.push(snapshot.val()[element].earnings);
-        }
-        data.labels = _users;
-        data.datasets = earningsData;
-        setUsers(_users);
-      })
-      .catch(() => {});
+      for (const element of keys) {
+        _users.push(snapshot.val()[element].name);
+        earningsData[0].data.push(snapshot.val()[element].earnings);
+      }
+      data.labels = _users;
+      data.datasets = earningsData;
+      setUsers(_users);
+    });
   }, []);
 
   return <Bar options={options} data={data} type="bar" />;

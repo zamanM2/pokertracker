@@ -5,27 +5,22 @@ import { getUsers } from "../Firebase/PokerApi";
 const UserList = () => {
   const [users, setUsers] = useState([]);
   useEffect(() => {
-    async function fetchUserData() {
-      await getUsers()
-        .then((snapshot) => {
-          const keys = Object.keys(snapshot.val());
-          console.log(keys);
-          const _users = [];
-          for (const element of keys) {
-            _users.push(snapshot.val()[element]);
-          }
-          setUsers(_users);
-        })
-        .catch(() => {});
-    }
-    fetchUserData();
+    getUsers().then((snapshot) => {
+      const keys = Object.keys(snapshot.val());
+      console.log(keys);
+      const _users = [];
+      for (const element of keys) {
+        _users.push(snapshot.val()[element]);
+      }
+      setUsers(_users);
+    });
   }, [users]);
 
   return (
     <div>
       <h2>Players</h2>
       {users.map((element) => (
-        <div to="/">{element.name}</div>
+        <div>{element.name}</div>
       ))}
     </div>
   );
