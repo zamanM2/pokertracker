@@ -4,6 +4,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import { FaPlus } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const Games = () => {
   return (
@@ -13,9 +14,11 @@ const Games = () => {
           <h2>Games</h2>
         </Col>
         <Col>
-          <Button>
-            <FaPlus />
-          </Button>
+          <Link to="add-new-game">
+            <Button>
+              <FaPlus />
+            </Button>
+          </Link>
         </Col>
       </Row>
     </Container>

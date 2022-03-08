@@ -1,7 +1,8 @@
 import React from "react";
 import "./App.css";
-import Container from "react-bootstrap/Container";
 import LandingPage from "./Components/LandingPage";
+import AddNewGame from "./Components/AddNewGame";
+
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -9,6 +10,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" exact element={<LandingPage />} />
+        <Route path="add-new-game" element={<AddNewGame />} />
       </Routes>
     </Router>
   );
