@@ -1,4 +1,4 @@
-import React, {useState,useEffect,} from 'react';
+import React, { useState, useEffect } from "react";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -10,7 +10,6 @@ import {
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
 import { getUsers } from "../Firebase/PokerApi";
-
 
 ChartJS.register(
   CategoryScale,
@@ -25,7 +24,7 @@ export const options = {
   plugins: {
     title: {
       display: true,
-      text: 'Chart.js Bar Chart - Stacked',
+      text: "Chart.js Bar Chart - Stacked",
     },
   },
   responsive: true,
@@ -42,43 +41,49 @@ export const options = {
   },
 };
 
-
 const data = {
-  labels : [],
+  labels: [],
   datasets: [
     {
-      label: 'Dataset 1',
-      data: [1,2,3],
-      backgroundColor: 'rgb(255, 99, 132)',
-      stack: 'Stack 0',
+      label: "Dataset 1",
+      data: [1, 2, 3],
+      backgroundColor: "rgb(255, 99, 132)",
+      stack: "Stack 0",
     },
-
   ],
 };
 
+const EarningsGraph = () => {
+  const [users, setUsers] = useState([]);
+  useEffect(() => {
+    async function fetchUserData() {
+      await getUsers()
+        .then((snapshot) => {
+          const keys = Object.keys(snapshot.val());
+          const _users = [];
+          const earnings = [];
+          const earningsData = [{
+            label: "Dataset 1",
+            data: [1, 2, 3],
+            backgroundColor: "rgb(255, 99, 132)",
+            stack: "Stack 0",
+          }];
 
+          for (const element of keys) {
+            _users.push(snapshot.val()[element].name);
+            earningsData[0].data.push(snapshot.val()[element].earnings);
+          }
 
-const EarningsGraph= ()=>{
-    const [users, setUsers] = useState([]);
-    useEffect(() => {
-      async function fetchUserData() {
-        await getUsers()
-          .then((snapshot) => {
-            const keys = Object.keys(snapshot.val());
-            const _users = [];
+          data.labels = _users;
+          data.datasets = earningsData;
+          setUsers(_users);
+        })
+        .catch(() => {});
+    }
+    fetchUserData();
+  }, []);
 
-            for (const element of keys) {
-              _users.push(snapshot.val()[element].name);
-            }
-            data.labels = _users;
-            setUsers(_users);
-          })
-          .catch(() => {});
-      }
-      fetchUserData();
-    }, []);
-    
-    return <Bar options={options} data={data} />;
-}
+  return <Bar options={options} data={data} />;
+};
 
 export default EarningsGraph;
