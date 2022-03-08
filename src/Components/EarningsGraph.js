@@ -9,7 +9,6 @@ import {
   Legend,
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
-import { getUsers } from "../Firebase/PokerApi";
 
 ChartJS.register(
   CategoryScale,
