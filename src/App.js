@@ -1,8 +1,8 @@
-import React from 'react';
-import './App.css';
-import EarningsGraph from './Components/EarningsGraph';
+import React from "react";
+import "./App.css";
+import EarningsGraph from "./Components/EarningsGraph";
 import Container from "react-bootstrap/Container";
-import UserList from './Components/UserList';
+import UserList from "./Components/UserList";
 
 function App() {
   return (
