@@ -4,8 +4,8 @@ import EarningsGraph from "./Components/EarningsGraph";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-
 import UserList from "./Components/UserList";
+import Games from "./Components/Games";
 
 function App() {
   return (
@@ -18,6 +18,9 @@ function App() {
       <Row>
         <Col>
           <UserList />
+        </Col>
+        <Col>
+          <Games />
         </Col>
       </Row>
     </Container>
