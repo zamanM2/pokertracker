@@ -62,7 +62,7 @@ const EarningsGraph = (props) => {
       {
         label: "Earnings",
         data: [],
-        backgroundColor: "rgb(255, 99, 132)",
+        backgroundColor: "#0066b2",
         stack: "Stack 0",
       },
     ];
