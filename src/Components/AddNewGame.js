@@ -4,7 +4,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import { getUsers } from "../Firebase/PokerApi";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const AddNewGame = () => {
   const [users, setUsers] = useState([]);
@@ -28,6 +28,14 @@ const AddNewGame = () => {
       </Row>
       <Row>
         <h3>Players to Add </h3>
+      </Row>
+      <Row>
+        {users.map((element) => (
+          <Col>
+            <Button>+</Button>
+            <label>{element.name}</label>
+          </Col>
+        ))}
       </Row>
       <Row>
         <h3>Players in Game</h3>
