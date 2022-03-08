@@ -21,7 +21,7 @@ const UserList=()=>{
             .catch(() => {});
         }
         fetchUserData();
-      }, []);
+      }, [users]);
 
     return(
         <div>
