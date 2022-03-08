@@ -8,7 +8,7 @@ import { FaPlus } from "react-icons/fa";
 const Games = () => {
   return (
     <Container>
-      <Row>
+      <Row className="float-start">
         <Col>
           <h2>Games</h2>
         </Col>
