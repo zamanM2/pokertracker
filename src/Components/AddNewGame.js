@@ -7,8 +7,7 @@ import { getUsers } from "../Firebase/PokerApi";
 import { useNavigate } from "react-router-dom";
 
 const AddNewGame = () => {
-  const [usersToAdd, setUsersToAdd] = useState([]);
-  const [usersInGame, setUsersInGame] = useState([]);
+  const [users, setUsers] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -16,14 +15,24 @@ const AddNewGame = () => {
       const keys = Object.keys(snapshot.val());
       const _users = [];
       for (const element of keys) {
-        _users.push({ ...snapshot.val()[element], id: element });
+        _users.push({ ...snapshot.val()[element], id: element, inGame: false });
       }
-      setUsersToAdd(_users);
+      setUsers(_users);
     });
   }, []);
 
   const addUserToGame = (userId) => {
-    console.log(userId);
+    for (const el of users) {
+      if (el.id === userId) el.inGame = true;
+    }
+    setUsers([...users]);
+  };
+
+  const removeUserFromGame = (userId) => {
+    for (const el of users) {
+      if (el.id === userId) el.inGame = false;
+    }
+    setUsers([...users]);
   };
 
   return (
@@ -35,22 +44,41 @@ const AddNewGame = () => {
         <h3>Players to Add </h3>
       </Row>
       <Row>
-        {usersToAdd.map((element) => (
-          <Row>
-            <Col>
-              <Button
-                onClick={() => addUserToGame(element.id)}
-                style={{ margin: "3px" }}
-              >
-                +
-              </Button>
-              <label>{element.name}</label>
-            </Col>
-          </Row>
-        ))}
+        {users
+          .filter((el) => el.inGame === false)
+          .map((element) => (
+            <Row key={element.id}>
+              <Col>
+                <Button
+                  onClick={() => addUserToGame(element.id)}
+                  style={{ margin: "3px" }}
+                >
+                  +
+                </Button>
+                <label>{element.name}</label>
+              </Col>
+            </Row>
+          ))}
       </Row>
       <Row>
         <h3>Players in Game</h3>
+      </Row>
+      <Row>
+        {users
+          .filter((el) => el.inGame === true)
+          .map((element) => (
+            <Row key={element.id}>
+              <Col>
+                <Button
+                  onClick={() => removeUserFromGame(element.id)}
+                  style={{ margin: "3px" }}
+                >
+                  X
+                </Button>
+                <label>{element.name}</label>
+              </Col>
+            </Row>
+          ))}
       </Row>
       <Row style={{ marginBottom: "10px" }}>
         <Col>
