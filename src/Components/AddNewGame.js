@@ -7,7 +7,7 @@ import { getUsers } from "../Firebase/PokerApi";
 import { Link, useNavigate } from "react-router-dom";
 
 const AddNewGame = () => {
-  const [users, setUsers] = useState([]);
+  const [usersToAdd, setUsersToAdd] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -17,9 +17,9 @@ const AddNewGame = () => {
       for (const element of keys) {
         _users.push(snapshot.val()[element]);
       }
-      setUsers(_users);
+      setUsersToAdd(_users);
     });
-  }, [users]);
+  }, [usersToAdd]);
 
   return (
     <Container>
@@ -30,11 +30,13 @@ const AddNewGame = () => {
         <h3>Players to Add </h3>
       </Row>
       <Row>
-        {users.map((element) => (
-          <Col>
-            <Button>+</Button>
-            <label>{element.name}</label>
-          </Col>
+        {usersToAdd.map((element) => (
+          <Row>
+            <Col>
+              <Button style={{ margin: "3px" }}>+</Button>
+              <label>{element.name}</label>
+            </Col>
+          </Row>
         ))}
       </Row>
       <Row>
