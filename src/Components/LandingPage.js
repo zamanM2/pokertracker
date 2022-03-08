@@ -15,11 +15,12 @@ function LandingPage() {
       const keys = Object.keys(snapshot.val());
       const _users = [];
       for (const element of keys) {
-        _users.push(snapshot.val()[element]);
+        _users.push({ ...snapshot.val()[element], id: element });
       }
+      console.log(_users);
       setUsers(_users);
     });
-  }, [users]);
+  }, []);
 
   return (
     <Container>

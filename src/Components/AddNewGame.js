@@ -20,7 +20,7 @@ const AddNewGame = () => {
       }
       setUsersToAdd(_users);
     });
-  }, [usersToAdd]);
+  }, []);
 
   const addUserToGame = () => {};
 
