@@ -12,7 +12,9 @@ const UserList = (props) => {
       <Row>
         <Row>
           {props.users.map((element) => (
-            <Link to="/hello">{element.name}</Link>
+            <Link key={element.id} to="/hello">
+              {element.name}
+            </Link>
           ))}
         </Row>
       </Row>
