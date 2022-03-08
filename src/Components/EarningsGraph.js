@@ -64,7 +64,7 @@ const EarningsGraph = () => {
           const earnings = [];
           const earningsData = [{
             label: "Dataset 1",
-            data: [1, 2, 3],
+            data: [],
             backgroundColor: "rgb(255, 99, 132)",
             stack: "Stack 0",
           }];
@@ -73,7 +73,7 @@ const EarningsGraph = () => {
             _users.push(snapshot.val()[element].name);
             earningsData[0].data.push(snapshot.val()[element].earnings);
           }
-
+          console.log(earningsData)
           data.labels = _users;
           data.datasets = earningsData;
           setUsers(_users);
