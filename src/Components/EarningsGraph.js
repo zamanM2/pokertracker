@@ -45,10 +45,9 @@ const data = {
   labels: [],
   datasets: [
     {
-      label: "Dataset 1",
-      data: [1, 2, 3],
-      backgroundColor: "rgb(255, 99, 132)",
-      stack: "Stack 0",
+      label: "Total Earnings",
+      data: [],
+      backgroundColor: "318CE7",
     },
   ],
 };
@@ -63,7 +62,6 @@ const EarningsGraph = (props) => {
         label: "Total Earnings",
         data: [],
         backgroundColor: "#318CE7",
-        stack: "Stack 0",
       },
     ];
 
