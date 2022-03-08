@@ -1,10 +1,24 @@
 import React from "react";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Button from "react-bootstrap/Button";
+import { FaPlus } from "react-icons/fa";
 
 const Games = () => {
   return (
-    <div>
-      <h2>Games</h2>
-    </div>
+    <Container>
+      <Row>
+        <Col>
+          <h2>Games</h2>
+        </Col>
+        <Col>
+          <Button>
+            <FaPlus />
+          </Button>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 
