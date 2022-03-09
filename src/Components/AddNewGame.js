@@ -11,6 +11,7 @@ const AddNewGame = () => {
   const [users, setUsers] = useState([]);
   const [bankInfo, setBankInfo] = useState({
     bankPlayer: "",
+    mathOffBy: 0,
   });
   const navigate = useNavigate();
 
@@ -58,12 +59,15 @@ const AddNewGame = () => {
     event.preventDefault();
     const usersInGame = users.filter((el) => el.inGame === true);
     let maxEarnings = 0;
+    let mathComputation = 0;
     for (const el of usersInGame) {
       if (parseFloat(el.inputEarnings) > maxEarnings) {
         setBankInfo({ ...bankInfo, bankPlayer: el.name });
         maxEarnings = parseFloat(el.inputEarnings);
       }
+      mathComputation += parseFloat(el.inputEarnings);
     }
+    setBankInfo({ ...bankInfo, mathOffBy: mathComputation });
   };
 
   return (
@@ -153,7 +157,9 @@ const AddNewGame = () => {
           <Button onClick={() => navigate(-1)}>Back</Button>
         </Col>
       </Row>
-      <Row>{bankInfo.bankPlayer}</Row>
+      <Row>Bank is: {bankInfo.bankPlayer}</Row>
+      <Row>Math is off by: {bankInfo.mathOffBy}</Row>
+      <Row>Bank will get: {bankInfo.mathOffBy}</Row>
     </Container>
   );
 };
