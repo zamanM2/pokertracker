@@ -7,6 +7,16 @@ import Form from "react-bootstrap/Form";
 import { getUsers } from "../Firebase/PokerApi";
 import { useNavigate } from "react-router-dom";
 
+function nameCompare(a, b) {
+  if (a.name > b.name) {
+    return 1;
+  }
+  if (a.name < b.name) {
+    return -1;
+  }
+  return 0;
+}
+
 const AddNewGame = () => {
   const [users, setUsers] = useState([]);
   const [bankInfo, setBankInfo] = useState({
@@ -28,7 +38,7 @@ const AddNewGame = () => {
           inputBuyBacks: "",
         });
       }
-      setUsers(_users);
+      setUsers(_users.sort(nameCompare));
     });
   }, []);
 
