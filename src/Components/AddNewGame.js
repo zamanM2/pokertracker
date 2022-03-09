@@ -58,16 +58,19 @@ const AddNewGame = () => {
   const calculateBank = (event) => {
     event.preventDefault();
     const usersInGame = users.filter((el) => el.inGame === true);
+    const tempBankInfo = {
+      bankPlayer: "",
+      mathOffBy: 0,
+    };
     let maxEarnings = 0;
-    let mathComputation = 0;
     for (const el of usersInGame) {
       if (parseFloat(el.inputEarnings) > maxEarnings) {
-        setBankInfo({ ...bankInfo, bankPlayer: el.name });
+        tempBankInfo.bankPlayer = el.name;
         maxEarnings = parseFloat(el.inputEarnings);
       }
-      mathComputation += parseFloat(el.inputEarnings);
+      tempBankInfo.mathOffBy += parseFloat(el.inputEarnings);
     }
-    setBankInfo({ ...bankInfo, mathOffBy: mathComputation });
+    setBankInfo(tempBankInfo);
   };
 
   return (
@@ -159,7 +162,6 @@ const AddNewGame = () => {
       </Row>
       <Row>Bank is: {bankInfo.bankPlayer}</Row>
       <Row>Math is off by: {bankInfo.mathOffBy}</Row>
-      <Row>Bank will get: {bankInfo.mathOffBy}</Row>
     </Container>
   );
 };
