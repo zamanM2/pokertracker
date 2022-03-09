@@ -5,7 +5,8 @@ import Games from "./Games";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { getUsers } from "../Firebase/PokerApi";
+import { getUsers, addNewUser } from "../Firebase/PokerApi";
+
 
 
 function earningsCompare(a, b) {
@@ -32,7 +33,23 @@ function LandingPage() {
       setUsers(_users.sort(earningsCompare));
     });
   }, []);
- 
+  
+    const handleAddNewUser= (event,newName)=>{
+      event.preventDefault()
+      addNewUser(newName).then((_id)=>{
+        setUsers([
+          ...users,
+          {
+            buyBacks: 0,
+            earnings: 0,
+            gamesPlayed: 0,
+            name: `${newName}`,
+            id: _id.key,
+          },
+        ]);
+      })
+    }
+
   return (
     <Container>
       <Row className="text-center">
@@ -45,7 +62,7 @@ function LandingPage() {
       </Row>
       <Row>
         <Col xs={4}>
-          <UserList users={users} />
+          <UserList users={users} onAddNewUser= {handleAddNewUser} />
         </Col>
         <Col xs={8}>
           <Games />

@@ -9,8 +9,9 @@ import { FaPlus } from "react-icons/fa";
 
 const UserList = (props) => {
   const [showNewPlayerModal, setNewPlayerModal] = useState(false);
-  const handleAddNewPlayer = (event, userName) => {
-    
+  
+  const handleAddNewPlayer = (event, newName) => {
+    props.onAddNewUser(event, newName)
   };
   const addNewPlayerModalInfo = {
     title: "Add New Player",
