@@ -4,7 +4,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import { getUsers } from "../Firebase/PokerApi";
+import { getUsers, saveGameSession } from "../Firebase/PokerApi";
 import { useNavigate } from "react-router-dom";
 
 function nameCompare(a, b) {
@@ -16,6 +16,13 @@ function nameCompare(a, b) {
   }
   return 0;
 }
+
+const getTodaysDate = () => {
+  let todaysDate = new Date();
+  const offset = todaysDate.getTimezoneOffset();
+  todaysDate = new Date(todaysDate.getTime() - offset * 60 * 1000);
+  return todaysDate.toISOString().split("T")[0]; //yyyy-mm-dd
+};
 
 const AddNewGame = () => {
   const [users, setUsers] = useState([]);
@@ -81,6 +88,15 @@ const AddNewGame = () => {
       tempBankInfo.mathOffBy += parseFloat(el.inputEarnings);
     }
     setBankInfo(tempBankInfo);
+  };
+
+  const handleSaveGameSession = () => {
+    const usersInGame = users.filter((el) => el.inGame === true);
+    const data = {};
+    usersInGame.forEach((el) => {
+      data[el.id] = { buyBacks: el.inputBuyBacks, earnings: el.inputEarnings };
+    });
+    saveGameSession(getTodaysDate(), data);
   };
 
   return (
@@ -162,7 +178,7 @@ const AddNewGame = () => {
       </Row>
       <Row style={{ marginBottom: "10px" }}>
         <Col>
-          <Button>Save Game Session</Button>
+          <Button onClick={handleSaveGameSession}>Save Game Session</Button>
         </Col>
       </Row>
       <Row style={{ marginBottom: "10px" }}>
