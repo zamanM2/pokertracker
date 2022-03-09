@@ -42,14 +42,17 @@ const AddNewGame = () => {
     setUsers([...users]);
   };
 
-  const handInputEarningsChange = (event, userId) => {
+  const handInputChange = (event, userId) => {
     for (let element of users) {
       if (element.id === userId) {
         element[event.target.name] = event.target.value;
-        // el.inputEarnings = event.target.value;
       }
     }
     setUsers([...users]);
+  };
+
+  const calculateBank = (event) => {
+    event.preventDefault();
   };
 
   return (
@@ -110,9 +113,7 @@ const AddNewGame = () => {
                   name="inputEarnings"
                   value={element.inputEarnings}
                   type="text"
-                  onChange={(event) =>
-                    handInputEarningsChange(event, element.id)
-                  }
+                  onChange={(event) => handInputChange(event, element.id)}
                 />
               </Col>
               <Col>
@@ -120,9 +121,7 @@ const AddNewGame = () => {
                   name="inputBuyBacks"
                   value={element.inputBuyBacks}
                   type="text"
-                  onChange={(event) =>
-                    handInputEarningsChange(event, element.id)
-                  }
+                  onChange={(event) => handInputChange(event, element.id)}
                 />
               </Col>
             </Row>
