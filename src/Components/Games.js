@@ -11,14 +11,14 @@ const Games = () => {
     <Container>
       <Row className="float-start">
         <Col>
-          <h2>Games</h2>
-        </Col>
-        <Col>
-          <Link to="add-new-game">
-            <Button>
-              <FaPlus />
-            </Button>
-          </Link>
+          <h2>
+            Games
+            <Link to="add-new-game">
+              <Button>
+                <FaPlus />
+              </Button>
+            </Link>
+          </h2>
         </Col>
       </Row>
     </Container>

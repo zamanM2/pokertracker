@@ -7,8 +7,6 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { getUsers, addNewUser } from "../Firebase/PokerApi";
 
-
-
 function earningsCompare(a, b) {
   if (a.earnings < b.earnings) {
     return 1;
@@ -21,7 +19,6 @@ function earningsCompare(a, b) {
 
 function LandingPage() {
   const [users, setUsers] = useState([]);
- 
 
   useEffect(() => {
     getUsers().then((snapshot) => {
@@ -33,22 +30,22 @@ function LandingPage() {
       setUsers(_users.sort(earningsCompare));
     });
   }, []);
-  
-    const handleAddNewUser= (event,newName)=>{
-      event.preventDefault()
-      addNewUser(newName).then((_id)=>{
-        setUsers([
-          ...users,
-          {
-            buyBacks: 0,
-            earnings: 0,
-            gamesPlayed: 0,
-            name: `${newName}`,
-            id: _id.key,
-          },
-        ]);
-      })
-    }
+
+  const handleAddNewUser = (event, newName) => {
+    event.preventDefault();
+    addNewUser(newName).then((_id) => {
+      setUsers([
+        ...users,
+        {
+          buyBacks: 0,
+          earnings: 0,
+          gamesPlayed: 0,
+          name: `${newName}`,
+          id: _id.key,
+        },
+      ]);
+    });
+  };
 
   return (
     <Container>
@@ -61,10 +58,10 @@ function LandingPage() {
         </Col>
       </Row>
       <Row>
-        <Col xs={4}>
-          <UserList users={users} onAddNewUser= {handleAddNewUser} />
+        <Col xs={6}>
+          <UserList users={users} onAddNewUser={handleAddNewUser} />
         </Col>
-        <Col xs={8}>
+        <Col xs={6}>
           <Games />
         </Col>
       </Row>
