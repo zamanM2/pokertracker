@@ -43,8 +43,11 @@ const AddNewGame = () => {
   };
 
   const handInputEarningsChange = (event, userId) => {
-    for (const el of users) {
-      if (el.id === userId) el.inputEarnings = event.target.value;
+    for (let element of users) {
+      if (element.id === userId) {
+        element[event.target.name] = event.target.value;
+        // el.inputEarnings = event.target.value;
+      }
     }
     setUsers([...users]);
   };
@@ -104,7 +107,7 @@ const AddNewGame = () => {
               </Col>
               <Col>
                 <Form.Control
-                  name="earnings"
+                  name="inputEarnings"
                   value={element.inputEarnings}
                   type="text"
                   onChange={(event) =>
@@ -114,9 +117,12 @@ const AddNewGame = () => {
               </Col>
               <Col>
                 <Form.Control
-                  name="buy-backs"
+                  name="inputBuyBacks"
                   value={element.inputBuyBacks}
                   type="text"
+                  onChange={(event) =>
+                    handInputEarningsChange(event, element.id)
+                  }
                 />
               </Col>
             </Row>
