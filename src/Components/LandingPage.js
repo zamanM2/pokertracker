@@ -7,6 +7,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { getUsers } from "../Firebase/PokerApi";
 
+
 function earningsCompare(a, b) {
   if (a.earnings < b.earnings) {
     return 1;
@@ -19,6 +20,7 @@ function earningsCompare(a, b) {
 
 function LandingPage() {
   const [users, setUsers] = useState([]);
+ 
 
   useEffect(() => {
     getUsers().then((snapshot) => {
@@ -30,7 +32,7 @@ function LandingPage() {
       setUsers(_users.sort(earningsCompare));
     });
   }, []);
-
+ 
   return (
     <Container>
       <Row className="text-center">

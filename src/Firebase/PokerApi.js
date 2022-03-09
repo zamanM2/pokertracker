@@ -5,6 +5,15 @@ export const getUsers = () => {
   return get(child(dbRef, `/users/`));
 };
 
+export const addNewUser = async (newName) => {
+  return push(child(dbRef, `/users/`), {
+    buyBacks: 0,
+    earnings: 0,
+    gamesPlayed: 0,
+    name: `${newName}`,
+  });
+};
+
 export const saveGameSession = (date, usersInGame) => {
   const sessionData = {};
   usersInGame.forEach((el) => {

@@ -1,13 +1,42 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
+import Button  from "react-bootstrap/Button";
+import AddNewPlayerModal from "./Modals/InputModal";
+import Col from "react-bootstrap/Col";
+import { FaPlus } from "react-icons/fa";
 
 const UserList = (props) => {
+  const [showNewPlayerModal, setNewPlayerModal] = useState(false);
+  const handleAddNewPlayer = (event, userName) => {
+    
+  };
+  const addNewPlayerModalInfo = {
+    title: "Add New Player",
+    body: "New Name:",
+    visibility: showNewPlayerModal,
+    okBtn: handleAddNewPlayer,
+    hideModal: () => {
+      setNewPlayerModal(false);
+    },
+    showModal: () => {
+      setNewPlayerModal(true);
+    },
+  };
+
   return (
     <Container>
+      <AddNewPlayerModal info={addNewPlayerModalInfo} />
       <Row>
-        <h2>Players</h2>
+        <Col>
+          <h2>Players</h2>
+        </Col>
+        <Col>
+          <Button onClick= {addNewPlayerModalInfo.showModal}>
+            <FaPlus />
+          </Button>
+        </Col>
       </Row>
       <Row>
         <Row>
