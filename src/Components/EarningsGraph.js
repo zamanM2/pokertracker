@@ -46,7 +46,7 @@ const data = {
     {
       label: "Total Earnings",
       data: [],
-      backgroundColor: "318CE7",
+      backgroundColor: [],
     },
   ],
 };
@@ -60,13 +60,18 @@ const EarningsGraph = (props) => {
       {
         label: "Total Earnings",
         data: [],
-        backgroundColor: "#318CE7",
+        backgroundColor: [],
       },
     ];
 
     for (const element of props.users) {
       _users.push(element.name);
       earningsData[0].data.push(element.earnings);
+      if (parseFloat(element.earnings) > 0) {
+        earningsData[0].backgroundColor.push("blue");
+      } else {
+        earningsData[0].backgroundColor.push("red");
+      }
     }
     data.labels = _users;
     data.datasets = earningsData;
