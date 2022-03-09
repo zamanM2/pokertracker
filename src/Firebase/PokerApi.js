@@ -14,25 +14,18 @@ export const saveGameSession = (date, usersInGame) => {
       name: el.name,
     };
   });
-  const updates = {};
-  updates[`/games/${date}`] = sessionData;
-  update(dbRef, updates);
+  const updateSession = {};
+  updateSession[`/games/${date}`] = sessionData;
+  update(dbRef, updateSession);
 
-  usersInGame.forEach((el) => {});
-
-  const updates2 = {
-    111: {
-      name: usersInGame[0].name,
-      gamesPlayed: usersInGame[0].gamesPlayed + 1,
-      earnings:
-        usersInGame[0].earnings + parseFloat(usersInGame[0].inputEarnings),
-      buyBacks:
-        usersInGame[0].buyBacks + parseInt(usersInGame[0].inputBuyBacks),
-    },
-  };
-  return update(child(dbRef, `/users/`), updates2);
-  // usersInGame.forEach((el) => {
-  //   const updates2 = { game };
-  //   return update(child(dbRef, `/users/111`), updates2);
-  // });
+  let updatesUsers = {};
+  usersInGame.forEach((el) => {
+    updatesUsers[el.id] = {
+      name: el.name,
+      gamesPlayed: el.gamesPlayed + 1,
+      earnings: el.earnings + parseFloat(el.inputEarnings),
+      buyBacks: el.buyBacks + parseInt(el.inputBuyBacks),
+    };
+    return update(child(dbRef, `/users/`), updatesUsers);
+  });
 };
