@@ -35,7 +35,7 @@ const AddNewGame = () => {
           id: element,
           inGame: false,
           inputEarnings: "",
-          inputBuyBacks: "",
+          inputBuyBacks: "0",
         });
       }
       setUsers(_users.sort(nameCompare));
