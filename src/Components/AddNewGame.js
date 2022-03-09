@@ -9,6 +9,9 @@ import { useNavigate } from "react-router-dom";
 
 const AddNewGame = () => {
   const [users, setUsers] = useState([]);
+  const [bankInfo, setBankInfo] = useState({
+    bankPlayer: "",
+  });
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -53,6 +56,14 @@ const AddNewGame = () => {
 
   const calculateBank = (event) => {
     event.preventDefault();
+    const usersInGame = users.filter((el) => el.inGame === true);
+    let maxEarnings = 0;
+    for (const el of usersInGame) {
+      if (parseFloat(el.inputEarnings) > maxEarnings) {
+        setBankInfo({ ...bankInfo, bankPlayer: el.name });
+        maxEarnings = parseFloat(el.inputEarnings);
+      }
+    }
   };
 
   return (
@@ -129,7 +140,7 @@ const AddNewGame = () => {
       </Row>
       <Row style={{ marginBottom: "10px", marginTop: "40px" }}>
         <Col>
-          <Button>Calculate Bank</Button>
+          <Button onClick={calculateBank}>Calculate Bank</Button>
         </Col>
       </Row>
       <Row style={{ marginBottom: "10px" }}>
@@ -142,6 +153,7 @@ const AddNewGame = () => {
           <Button onClick={() => navigate(-1)}>Back</Button>
         </Col>
       </Row>
+      <Row>{bankInfo.bankPlayer}</Row>
     </Container>
   );
 };
