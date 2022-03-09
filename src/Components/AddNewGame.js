@@ -16,7 +16,13 @@ const AddNewGame = () => {
       const keys = Object.keys(snapshot.val());
       const _users = [];
       for (const element of keys) {
-        _users.push({ ...snapshot.val()[element], id: element, inGame: false });
+        _users.push({
+          ...snapshot.val()[element],
+          id: element,
+          inGame: false,
+          inputEarnings: "",
+          inputBuyBacks: "",
+        });
       }
       setUsers(_users);
     });
@@ -32,6 +38,13 @@ const AddNewGame = () => {
   const removeUserFromGame = (userId) => {
     for (const el of users) {
       if (el.id === userId) el.inGame = false;
+    }
+    setUsers([...users]);
+  };
+
+  const handInputEarningsChange = (event, userId) => {
+    for (const el of users) {
+      if (el.id === userId) el.inputEarnings = event.target.value;
     }
     setUsers([...users]);
   };
@@ -90,15 +103,26 @@ const AddNewGame = () => {
                 <label>{element.name}</label>
               </Col>
               <Col>
-                <Form.Control name="earnings" type="text" />
+                <Form.Control
+                  name="earnings"
+                  value={element.inputEarnings}
+                  type="text"
+                  onChange={(event) =>
+                    handInputEarningsChange(event, element.id)
+                  }
+                />
               </Col>
               <Col>
-                <Form.Control name="buy-backs" type="text" />
+                <Form.Control
+                  name="buy-backs"
+                  value={element.inputBuyBacks}
+                  type="text"
+                />
               </Col>
             </Row>
           ))}
       </Row>
-      <Row style={{ marginBottom: "10px" }}>
+      <Row style={{ marginBottom: "10px", marginTop: "40px" }}>
         <Col>
           <Button>Calculate Bank</Button>
         </Col>
