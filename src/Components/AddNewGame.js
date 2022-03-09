@@ -92,11 +92,7 @@ const AddNewGame = () => {
 
   const handleSaveGameSession = () => {
     const usersInGame = users.filter((el) => el.inGame === true);
-    const data = {};
-    usersInGame.forEach((el) => {
-      data[el.id] = { buyBacks: el.inputBuyBacks, earnings: el.inputEarnings };
-    });
-    saveGameSession(getTodaysDate(), data);
+    saveGameSession(getTodaysDate(), usersInGame);
   };
 
   return (
