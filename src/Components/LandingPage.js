@@ -7,6 +7,16 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { getUsers } from "../Firebase/PokerApi";
 
+function earningsCompare(a, b) {
+  if (a.earnings < b.earnings) {
+    return 1;
+  }
+  if (a.earnings > b.earnings) {
+    return -1;
+  }
+  return 0;
+}
+
 function LandingPage() {
   const [users, setUsers] = useState([]);
 
@@ -17,7 +27,7 @@ function LandingPage() {
       for (const element of keys) {
         _users.push({ ...snapshot.val()[element], id: element });
       }
-      setUsers(_users);
+      setUsers(_users.sort(earningsCompare));
     });
   }, []);
 
