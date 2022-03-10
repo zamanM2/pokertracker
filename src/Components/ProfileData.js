@@ -8,15 +8,20 @@ import Button from "react-bootstrap/Button";
 
 const ProfileData = () => {
   const [userData, setUserData] = useState({});
+  const [picture, setPicture] = useState({});
   let { id } = useParams();
   const navigate = useNavigate();
 
   useEffect(() => {
-    // getUserData(data).then((snapshot) => {
-    //   setUserData(snapshot.val());
-    //   console.log(snapshot.val());
-    // });
+    getUserData(id).then((snapshot) => {
+      setUserData(snapshot.val());
+      // import(`../images/${snapshot.val().name}.jpeg`).then((image) => {
+      //   setPicture(image)
+      // });
+    });
   }, []);
+
+  useEffect(() => {}, [userData]);
 
   return (
     <Container>
