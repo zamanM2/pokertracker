@@ -127,14 +127,14 @@ const AddNewGame = () => {
         <h3>Players in Game</h3>
       </Row>
       <Row>
-        <Col>
-          <h5>Name</h5>
+        <Col xs={5}>
+          <h6>Name</h6>
         </Col>
         <Col>
-          <h5>Earnings</h5>
+          <h6>Earnings</h6>
         </Col>
         <Col>
-          <h5>Buy-Backs</h5>
+          <h6>Buy Backs</h6>
         </Col>
       </Row>
       <Row>
@@ -142,7 +142,7 @@ const AddNewGame = () => {
           .filter((el) => el.inGame === true)
           .map((element) => (
             <Row key={element.id}>
-              <Col>
+              <Col xs={5}>
                 <Button
                   onClick={() => removeUserFromGame(element.id)}
                   style={{ margin: "3px", backgroundColor: "black" }}
