@@ -18,7 +18,7 @@ function App() {
           <Route path="/secret-login" element={<Login />} />
           <Route path="/add-new-game" element={<AddNewGame />} />
           <Route path="/gamedata/:date" element={<GameData />} />
-          <Route path="/profile/:id" element={<ProfileData />} />
+          <Route path="/profile/:name/:id" element={<ProfileData />} />
         </Routes>
       </AuthProvider>
     </Router>
