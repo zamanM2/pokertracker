@@ -31,7 +31,10 @@ const ProfileData = () => {
       case "ALamin":
         return "";
       case "Anayet":
-        return "I have the best hand. Let me spend the next 5 minutes pretending i don't";
+        return (
+          'AAANND the oscar for best supporting "OMG I dont have the winning hand can you please tell me what you have" ' +
+          " goes to..."
+        );
       case "Fahim":
         return "Has anyone seen my calves???";
       case "Mahir":
@@ -43,7 +46,7 @@ const ProfileData = () => {
       case "Mo-Zaman":
         return "";
       case "Momo-ashy":
-        return "You can call me Dave Chappelle. I'm trash at dealing though";
+        return "You can call me Dave Chappelle. And I'm trash at dealing. Also is this my tip?";
       case "Ocean":
         return "#BlueLivesMatter";
       case "Rajeeb":
