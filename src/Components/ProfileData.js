@@ -38,7 +38,10 @@ const ProfileData = () => {
         <label>Buy Backs: {userData.buyBacks}</label>
         <label>Games Played: {userData.gamesPlayed}</label>
         <label>
-          Average profit per game: {userData.earnings / userData.gamesPlayed}
+          Average profit per game:
+          {userData.gamesPlayed > 0
+            ? userData.earnings / userData.gamesPlayed
+            : 0}
         </label>
       </Row>
       <Button onClick={() => navigate("/")}>Back</Button>
