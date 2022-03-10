@@ -13,6 +13,10 @@ export const getGameData = (date) => {
   return get(child(dbRef, `/games/${date}`));
 };
 
+export const getUserData = (userId) => {
+  return get(child(dbRef, `/users/${userId}`));
+};
+
 export const addNewUser = async (newName) => {
   return push(child(dbRef, `/users/`), {
     buyBacks: 0,
