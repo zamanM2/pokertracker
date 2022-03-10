@@ -23,7 +23,7 @@ const ProfileData = () => {
   const computeAvgProfit = () => {
     let avg = userData.earnings / userData.gamesPlayed;
     avg = avg.toString();
-    return avg.substr(0, 5);
+    return avg.substr(0, 7);
   };
 
   return (
