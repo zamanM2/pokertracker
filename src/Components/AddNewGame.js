@@ -178,7 +178,7 @@ const AddNewGame = () => {
       )}
       <Row style={{ marginBottom: "10px" }}>
         <Col>
-          <Button onClick={() => navigate(-1)}>Back</Button>
+          <Button onClick={() => navigate("/")}>Back</Button>
         </Col>
       </Row>
       <Row>Bank is: {bankInfo.bankPlayer}</Row>
