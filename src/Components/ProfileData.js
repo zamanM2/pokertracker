@@ -43,7 +43,7 @@ const ProfileData = () => {
       case "Ocean":
         return "";
       case "Rajeeb":
-        return "";
+        return "I'M chasing the flush on the river. i have 3 spades already.";
       case "Sakib":
         return "I'M ALLLLL IN";
       case "Tanvir":
