@@ -6,6 +6,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { getUsers, saveGameSession } from "../Firebase/PokerApi";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../Context/AuthContext";
 
 function nameCompare(a, b) {
   if (a.name > b.name) {
@@ -26,6 +27,8 @@ const getTodaysDate = () => {
 
 const AddNewGame = () => {
   const [users, setUsers] = useState([]);
+  const { currentUser } = useAuth();
+
   const [bankInfo, setBankInfo] = useState({
     bankPlayer: "",
     mathOffBy: 0,
@@ -172,11 +175,15 @@ const AddNewGame = () => {
           <Button onClick={calculateBank}>Calculate Bank</Button>
         </Col>
       </Row>
-      <Row style={{ marginBottom: "10px" }}>
-        <Col>
-          <Button onClick={handleSaveGameSession}>Save Game Session</Button>
-        </Col>
-      </Row>
+      {currentUser && (
+        <Row style={{ marginBottom: "10px" }}>
+          (
+          <Col>
+            <Button onClick={handleSaveGameSession}>Save Game Session</Button>
+          </Col>
+          )
+        </Row>
+      )}
       <Row style={{ marginBottom: "10px" }}>
         <Col>
           <Button onClick={() => navigate(-1)}>Back</Button>
