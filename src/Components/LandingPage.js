@@ -6,16 +6,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { getUsers, addNewUser } from "../Firebase/PokerApi";
-
-function earningsCompare(a, b) {
-  if (a.earnings < b.earnings) {
-    return 1;
-  }
-  if (a.earnings > b.earnings) {
-    return -1;
-  }
-  return 0;
-}
+import { earningsCompare } from "../utils/utils";
 
 function LandingPage() {
   const [users, setUsers] = useState([]);

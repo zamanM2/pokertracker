@@ -6,16 +6,7 @@ import Button from "react-bootstrap/Button";
 import { FaPlus } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { getGameSessions } from "../Firebase/PokerApi";
-
-function dateCompare(a, b) {
-  if (a < b) {
-    return 1;
-  }
-  if (a > b) {
-    return -1;
-  }
-  return 0;
-}
+import { dateCompare } from "../utils/utils";
 
 const Games = () => {
   const [gameSessions, setGameSessions] = useState([]);

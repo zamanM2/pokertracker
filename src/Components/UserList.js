@@ -7,16 +7,7 @@ import AddNewPlayerModal from "./Modals/InputModal";
 import Col from "react-bootstrap/Col";
 import { FaPlus } from "react-icons/fa";
 import { useAuth } from "../Context/AuthContext";
-
-function nameCompare(a, b) {
-  if (a.name > b.name) {
-    return 1;
-  }
-  if (a.name < b.name) {
-    return -1;
-  }
-  return 0;
-}
+import { nameCompare } from "../utils/utils";
 
 const UserList = (props) => {
   const [showNewPlayerModal, setNewPlayerModal] = useState(false);

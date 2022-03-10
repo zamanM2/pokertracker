@@ -7,6 +7,7 @@ import Form from "react-bootstrap/Form";
 import { getUsers, saveGameSession } from "../Firebase/PokerApi";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../Context/AuthContext";
+import { getTodaysDate } from "../utils/utils";
 
 function nameCompare(a, b) {
   if (a.name > b.name) {
@@ -17,13 +18,6 @@ function nameCompare(a, b) {
   }
   return 0;
 }
-
-const getTodaysDate = () => {
-  let todaysDate = new Date();
-  const offset = todaysDate.getTimezoneOffset();
-  todaysDate = new Date(todaysDate.getTime() - offset * 60 * 1000);
-  return todaysDate.toISOString().split("T")[0]; //yyyy-mm-dd
-};
 
 const AddNewGame = () => {
   const [users, setUsers] = useState([]);
