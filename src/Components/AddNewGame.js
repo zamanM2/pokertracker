@@ -104,7 +104,7 @@ const AddNewGame = () => {
         {users
           .filter((el) => el.inGame === false)
           .map((element) => (
-            <Col xs={2} key={element.id}>
+            <Col xs={6} style={{ marginBottom: "6px" }} key={element.id}>
               <Col>
                 <Button
                   onClick={() => addUserToGame(element.id)}
