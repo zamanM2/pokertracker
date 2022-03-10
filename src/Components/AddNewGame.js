@@ -149,7 +149,7 @@ const AddNewGame = () => {
                 <Form.Control
                   name="inputEarnings"
                   value={element.inputEarnings}
-                  type="text"
+                  type="number"
                   onChange={(event) => handInputChange(event, element.id)}
                 />
               </Col>
@@ -157,7 +157,7 @@ const AddNewGame = () => {
                 <Form.Control
                   name="inputBuyBacks"
                   value={element.inputBuyBacks}
-                  type="text"
+                  type="number"
                   onChange={(event) => handInputChange(event, element.id)}
                 />
               </Col>
