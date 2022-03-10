@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Container from "react-bootstrap/Container";
 import { getGameData } from "../Firebase/PokerApi";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 const GameData = () => {
   const [gameData, setGameData] = useState([]);
@@ -20,6 +20,9 @@ const GameData = () => {
 
   return (
     <Container>
+      <h2 style={{ marginBottom: "5px" }}>
+        Date: {date.substr(5).replace("-", "/") + "/" + date.substr(0, 4)}
+      </h2>
       <table className="table" style={{ textAlign: "center" }}>
         <thead className="thead-dark">
           <tr>
