@@ -6,9 +6,11 @@ import Button from "react-bootstrap/Button";
 import AddNewPlayerModal from "./Modals/InputModal";
 import Col from "react-bootstrap/Col";
 import { FaPlus } from "react-icons/fa";
+import { useAuth } from "../Context/AuthContext";
 
 const UserList = (props) => {
   const [showNewPlayerModal, setNewPlayerModal] = useState(false);
+  const { currentUser } = useAuth();
 
   const handleAddNewPlayer = (event, newName) => {
     props.onAddNewUser(event, newName);
@@ -33,9 +35,11 @@ const UserList = (props) => {
         <Col>
           <h2>
             Players
-            <Button onClick={addNewPlayerModalInfo.showModal}>
-              <FaPlus />
-            </Button>
+            {currentUser && (
+              <Button onClick={addNewPlayerModalInfo.showModal}>
+                <FaPlus />
+              </Button>
+            )}
           </h2>
         </Col>
       </Row>

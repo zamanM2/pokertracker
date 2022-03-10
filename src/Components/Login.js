@@ -2,32 +2,37 @@ import React from "react";
 import { useAuth } from "../Context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
+import Container from "react-bootstrap/Container";
 
 const Login = () => {
-  const { login } = useAuth();
+  const { login, logout } = useAuth();
   const navigate = useNavigate();
 
   const handleLogin = () => {
-    login().then(() => {
-      navigate("/");
-    });
+    login();
+    navigate("/");
+  };
+
+  const handleSignOut = () => {
+    logout();
+    navigate("/");
   };
 
   return (
-    <div className="navbar">
-      <button
-        style={{
-          position: "fixed",
-          top: "50%",
-          left: "50%",
-          backgroundColor: "#ADD8E6",
-        }}
-        onClick={handleLogin}
-      >
+    <Container>
+      <button onClick={handleLogin}>
         <FcGoogle />
       </button>
-    </div>
+      <button onClick={handleSignOut}>LOGOUT</button>
+    </Container>
   );
 };
 
 export default Login;
+
+const myStyle = {
+  position: "fixed",
+  top: "25%",
+  left: "25%",
+  backgroundColor: "#ADD8E6",
+};
