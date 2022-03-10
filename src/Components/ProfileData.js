@@ -20,6 +20,12 @@ const ProfileData = () => {
 
   useEffect(() => {}, [userData]);
 
+  const computeAvgProfit = () => {
+    let avg = userData.earnings / userData.gamesPlayed;
+    avg = avg.toString();
+    return avg.substr(0, 5);
+  };
+
   return (
     <Container>
       <Row style={{ textAlign: "center" }}>
@@ -52,13 +58,9 @@ const ProfileData = () => {
         </label>
         <label>
           <label style={{ fontWeight: "bold" }}>
-            Average profit per game: &nbsp;
+            Avg. profit per game: &nbsp;
           </label>
-          <label>
-            {userData.gamesPlayed > 0
-              ? userData.earnings / userData.gamesPlayed
-              : 0}
-          </label>
+          <label>{userData.gamesPlayed > 0 ? computeAvgProfit() : 0}</label>
         </label>
       </Row>
       <Button onClick={() => navigate("/")}>Back</Button>
