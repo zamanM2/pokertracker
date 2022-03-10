@@ -26,6 +26,34 @@ const ProfileData = () => {
     return avg.substr(0, 7);
   };
 
+  const getDescription = () => {
+    switch (name) {
+      case "Anayet":
+        return "";
+      case "Fahim":
+        return "Where are my calves???";
+      case "Mahir":
+        return "";
+      case "Mirza":
+        return "";
+      case "Mo-Zaman":
+        return "";
+      case "Momo-ashy":
+        return "";
+      case "Ocean":
+        return "";
+      case "Oceam":
+        return "";
+      case "Rajeeb":
+        return "";
+      case "Sakib":
+        return "I'M ALLLLL IN";
+      case "Tanvir":
+        return "";
+      default:
+    }
+  };
+
   return (
     <Container>
       <Row style={{ textAlign: "center" }}>
@@ -43,6 +71,10 @@ const ProfileData = () => {
         <label>
           <label style={{ fontWeight: "bold" }}>Name:&nbsp;</label>
           <label>{userData.name}</label>
+        </label>
+        <label>
+          <label style={{ fontWeight: "bold" }}>Description:&nbsp;</label>
+          <label>{getDescription()}</label>
         </label>
         <label>
           <label style={{ fontWeight: "bold" }}>Total Earnings:&nbsp; </label>
