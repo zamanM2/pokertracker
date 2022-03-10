@@ -26,6 +26,8 @@ const ProfileData = () => {
         <Row
           style={{
             display: "block",
+            height: "90%",
+            width: "90%",
             marginLeft: "auto",
             marginRight: "auto",
           }}
