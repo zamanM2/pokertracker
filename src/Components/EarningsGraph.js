@@ -65,6 +65,7 @@ const EarningsGraph = (props) => {
     ];
 
     for (const element of props.users) {
+      if (parseFloat(element.earnings) === 0) continue;
       _users.push(element.name);
       earningsData[0].data.push(element.earnings);
       if (parseFloat(element.earnings) > 0) {
