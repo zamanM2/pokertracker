@@ -7,6 +7,16 @@ import { FaPlus } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { getGameSessions } from "../Firebase/PokerApi";
 
+function dateCompare(a, b) {
+  if (a < b) {
+    return 1;
+  }
+  if (a > b) {
+    return -1;
+  }
+  return 0;
+}
+
 const Games = () => {
   const [gameSessions, setGameSessions] = useState([]);
 
@@ -32,7 +42,7 @@ const Games = () => {
         </Col>
       </Row>
       <Row>
-        {gameSessions.map((date) => (
+        {[...gameSessions].sort(dateCompare).map((date) => (
           <Link key={date} to="/">
             {date.substr(5).replace("-", "/") + "/" + date.substr(0, 4)}
           </Link>
