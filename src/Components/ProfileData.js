@@ -41,9 +41,9 @@ const ProfileData = () => {
       case "Momo-ashy":
         return "";
       case "Ocean":
-        return "";
+        return "#BlueLivesMatter";
       case "Rajeeb":
-        return "I'm chasing the flush on the river. i have 3 spades already.";
+        return "I'm chasing the flush on the river. I have 3 spades already.";
       case "Sakib":
         return "I'M ALLLLL IN";
       case "Tanvir":
