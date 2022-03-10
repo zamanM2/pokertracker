@@ -164,29 +164,37 @@ const AddNewGame = () => {
             </Row>
           ))}
       </Row>
-      <Row style={{ marginBottom: "10px", marginTop: "40px" }}>
+      <Row style={{ marginTop: "40px" }}>
         <Col>
-          <Button onClick={calculateBank}>Calculate Bank</Button>
+          <Row style={{ marginBottom: "10px" }}>
+            <Col>
+              <Button onClick={calculateBank}>Calculate Bank</Button>
+            </Col>
+          </Row>
+          {currentUser && (
+            <Row style={{ marginBottom: "10px" }}>
+              <Col>
+                <Button onClick={handleSaveGameSession}>
+                  Save Game Session
+                </Button>
+              </Col>
+            </Row>
+          )}
+          <Row style={{ marginBottom: "10px" }}>
+            <Col>
+              <Button onClick={() => navigate("/")}>Back</Button>
+            </Col>
+          </Row>
         </Col>
-      </Row>
-      {currentUser && (
-        <Row style={{ marginBottom: "10px" }}>
-          <Col>
-            <Button onClick={handleSaveGameSession}>Save Game Session</Button>
-          </Col>
-        </Row>
-      )}
-      <Row style={{ marginBottom: "10px" }}>
         <Col>
-          <Button onClick={() => navigate("/")}>Back</Button>
+          <Row>Bank is: {bankInfo.bankPlayer}</Row>
+          <Row>Math is off by: {bankInfo.mathOffBy}</Row>
+          <Row>
+            {bankInfo.mathOffBy <= 0
+              ? `Bank getting extra: ${Math.abs(bankInfo.mathOffBy)}`
+              : `Bank is short: ${Math.abs(bankInfo.mathOffBy)}`}
+          </Row>
         </Col>
-      </Row>
-      <Row>Bank is: {bankInfo.bankPlayer}</Row>
-      <Row>Math is off by: {bankInfo.mathOffBy}</Row>
-      <Row>
-        {bankInfo.mathOffBy <= 0
-          ? `Bank is getting an extra ${Math.abs(bankInfo.mathOffBy)}`
-          : `Bank is short: ${Math.abs(bankInfo.mathOffBy)}`}
       </Row>
     </Container>
   );
