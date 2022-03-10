@@ -8,6 +8,16 @@ import Col from "react-bootstrap/Col";
 import { FaPlus } from "react-icons/fa";
 import { useAuth } from "../Context/AuthContext";
 
+function nameCompare(a, b) {
+  if (a.name > b.name) {
+    return 1;
+  }
+  if (a.name < b.name) {
+    return -1;
+  }
+  return 0;
+}
+
 const UserList = (props) => {
   const [showNewPlayerModal, setNewPlayerModal] = useState(false);
   const { currentUser } = useAuth();
@@ -45,7 +55,7 @@ const UserList = (props) => {
       </Row>
       <Row>
         <Row>
-          {props.users.map((element) => (
+          {[...props.users].sort(nameCompare).map((element) => (
             <Link key={element.id} to="/hello">
               {element.name}
             </Link>
