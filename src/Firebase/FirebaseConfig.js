@@ -3,13 +3,12 @@ import { getDatabase, ref } from "firebase/database";
 import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDVJgDiBv030iFgFwONBkk1Y2y-n9sATcU",
-  authDomain: "poker-tracker-d1394.firebaseapp.com",
-  databaseURL: "https://poker-tracker-d1394-default-rtdb.firebaseio.com",
-  projectId: "poker-tracker-d1394",
-  storageBucket: "poker-tracker-d1394.appspot.com",
-  messagingSenderId: "723679960897",
-  appId: "1:723679960897:web:41902d770d8ccdb0af4bc0",
+  apiKey: "AIzaSyCDK-ohTi9ehmtL-8_ObhQBrqxQB8K8v3g",
+  authDomain: "argo-poker.firebaseapp.com",
+  projectId: "argo-poker",
+  storageBucket: "argo-poker.appspot.com",
+  messagingSenderId: "438544242576",
+  appId: "1:438544242576:web:a23eac0726d7bf2d26c515",
 };
 
 const app = initializeApp(firebaseConfig);
