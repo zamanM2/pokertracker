@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import EarningsGraph from "./EarningsGraph";
 import UserList from "./UserList";
-import Games from "./Games";
+import GamesList from "./GamesList";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -53,7 +53,7 @@ function LandingPage() {
           <UserList users={users} onAddNewUser={handleAddNewUser} />
         </Col>
         <Col xs={6}>
-          <Games />
+          <GamesList />
         </Col>
       </Row>
     </Container>

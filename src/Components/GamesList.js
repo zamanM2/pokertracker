@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import { getGameSessions } from "../Firebase/PokerApi";
 import { dateCompare } from "../utils/utils";
 
-const Games = () => {
+const GamesList = () => {
   const [gameSessions, setGameSessions] = useState([]);
 
   useEffect(() => {
@@ -43,4 +43,4 @@ const Games = () => {
   );
 };
 
-export default Games;
+export default GamesList;
