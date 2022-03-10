@@ -42,8 +42,6 @@ const ProfileData = () => {
         return "";
       case "Ocean":
         return "";
-      case "Oceam":
-        return "";
       case "Rajeeb":
         return "";
       case "Sakib":
