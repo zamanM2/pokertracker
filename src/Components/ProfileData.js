@@ -47,7 +47,7 @@ const ProfileData = () => {
       case "Sakib":
         return "I'M ALLLLL IN";
       case "Tanvir":
-        return "";
+        return "GIMME THE MONNNEYY";
       default:
     }
   };
