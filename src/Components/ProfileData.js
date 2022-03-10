@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 import { getUserData } from "../Firebase/PokerApi";
 import { useParams, useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
@@ -22,26 +23,40 @@ const ProfileData = () => {
   return (
     <Container>
       <Row style={{ textAlign: "center" }}>
-        <img
+        <Row
           style={{
-            height: "60%",
-            width: "60%",
             display: "block",
             marginLeft: "auto",
             marginRight: "auto",
           }}
-          src={images(`./${name}.jpeg`)}
-          alt="Photo"
-        />
-        <label>Name: {userData.name}</label>
-        <label>Total Earnings: {userData.earnings}</label>
-        <label>Buy Backs: {userData.buyBacks}</label>
-        <label>Games Played: {userData.gamesPlayed}</label>
+        >
+          <img src={images(`./${name}.jpeg`)} alt="Photo" />
+        </Row>
         <label>
-          {"Average profit per game: "}
-          {userData.gamesPlayed > 0
-            ? userData.earnings / userData.gamesPlayed
-            : 0}
+          <label style={{ fontWeight: "bold" }}>Name:&nbsp;</label>
+          <label>{userData.name}</label>
+        </label>
+        <label>
+          <label style={{ fontWeight: "bold" }}>Total Earnings:&nbsp; </label>
+          <label>${userData.earnings}</label>
+        </label>
+        <label>
+          <label style={{ fontWeight: "bold" }}>Buy Backs:&nbsp; </label>
+          <label>{userData.buyBacks}</label>
+        </label>
+        <label>
+          <label style={{ fontWeight: "bold" }}>Games Played:&nbsp; </label>
+          <label>{userData.gamesPlayed}</label>
+        </label>
+        <label>
+          <label style={{ fontWeight: "bold" }}>
+            Average profit per game: &nbsp;
+          </label>
+          <label>
+            {userData.gamesPlayed > 0
+              ? userData.earnings / userData.gamesPlayed
+              : 0}
+          </label>
         </label>
       </Row>
       <Button onClick={() => navigate("/")}>Back</Button>
