@@ -15,8 +15,8 @@ function App() {
       <AuthProvider>
         <Routes>
           <Route path="/" exact element={<LandingPage />} />
-          <Route path="add-new-game" element={<AddNewGame />} />
-          <Route path="secret-login" element={<Login />} />
+          <Route path="/secret-login" element={<Login />} />
+          <Route path="/add-new-game" element={<AddNewGame />} />
           <Route path="/gamedata/:date" element={<GameData />} />
           <Route path="/profile/:id" element={<ProfileData />} />
         </Routes>

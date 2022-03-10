@@ -9,6 +9,10 @@ export const getGameSessions = () => {
   return get(child(dbRef, `/games/`));
 };
 
+export const getGameData = (date) => {
+  return get(child(dbRef, `/games/${date}`));
+};
+
 export const addNewUser = async (newName) => {
   return push(child(dbRef, `/users/`), {
     buyBacks: 0,
