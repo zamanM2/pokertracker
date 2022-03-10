@@ -177,11 +177,9 @@ const AddNewGame = () => {
       </Row>
       {currentUser && (
         <Row style={{ marginBottom: "10px" }}>
-          (
           <Col>
             <Button onClick={handleSaveGameSession}>Save Game Session</Button>
           </Col>
-          )
         </Row>
       )}
       <Row style={{ marginBottom: "10px" }}>
