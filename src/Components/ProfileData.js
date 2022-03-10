@@ -21,9 +21,15 @@ const ProfileData = () => {
 
   return (
     <Container>
-      <Row>
+      <Row style={{ textAlign: "center" }}>
         <img
-          style={{ height: "60%", width: "60%" }}
+          style={{
+            height: "60%",
+            width: "60%",
+            display: "block",
+            marginLeft: "auto",
+            marginRight: "auto",
+          }}
           src={images(`./${name}.jpeg`)}
           alt="Photo"
         />
