@@ -1,12 +1,14 @@
 - To Do List
-    -User List
-    -Sessions List
     -Line Graph
     -Buy In Graph
-    -Add User
-    -Create Sessions
-    -Calculator
     -Top Performer/ Worst Performer
-    -Login
+    -User Profile
 
--Completed   
+
+-Completed
+    -Login
+    -Calculator
+    -Add User
+    -Sessions List
+    -User List
+    -Create Sessions
