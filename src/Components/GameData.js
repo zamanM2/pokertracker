@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import Container from "react-bootstrap/Container";
 import { getGameData } from "../Firebase/PokerApi";
-import { Link, useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
+import Button from "react-bootstrap/Button";
 
 const GameData = () => {
   const [gameData, setGameData] = useState([]);
   let { date } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     getGameData(date).then((snapshot) => {
@@ -43,6 +45,7 @@ const GameData = () => {
           })}
         </tbody>
       </table>
+      <Button onClick={() => navigate("/")}>Back</Button>
     </Container>
   );
 };

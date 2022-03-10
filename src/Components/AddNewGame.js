@@ -22,7 +22,6 @@ function nameCompare(a, b) {
 const AddNewGame = () => {
   const [users, setUsers] = useState([]);
   const { currentUser } = useAuth();
-
   const [bankInfo, setBankInfo] = useState({
     bankPlayer: "",
     mathOffBy: 0,
