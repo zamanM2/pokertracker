@@ -57,7 +57,7 @@ function LandingPage() {
           <EarningsGraph users={users} />
         </Col>
       </Row>
-      <Row>
+      <Row style={{ marginTop: "10px" }}>
         <Col xs={6}>
           <UserList users={users} onAddNewUser={handleAddNewUser} />
         </Col>

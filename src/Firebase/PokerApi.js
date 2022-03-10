@@ -5,6 +5,10 @@ export const getUsers = () => {
   return get(child(dbRef, `/users/`));
 };
 
+export const getGameSessions = () => {
+  return get(child(dbRef, `/games/`));
+};
+
 export const addNewUser = async (newName) => {
   return push(child(dbRef, `/users/`), {
     buyBacks: 0,
