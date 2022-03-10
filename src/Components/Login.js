@@ -17,7 +17,7 @@ const Login = () => {
     <div className="navbar">
       <button
         style={{
-          position: "fixed" /* or absolute */,
+          position: "fixed",
           top: "50%",
           left: "50%",
           backgroundColor: "#ADD8E6",
