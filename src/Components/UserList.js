@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Container from "react-bootstrap/Container";
+import Dropdown from "react-bootstrap/Dropdown";
+import "bootstrap/dist/css/bootstrap.css";
 import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
 import AddNewPlayerModal from "./Modals/InputModal";
@@ -44,18 +46,22 @@ const UserList = (props) => {
           </h2>
         </Col>
       </Row>
-      <Row>
+      <Dropdown>
         <Row>
-          {[...props.users].sort(nameCompare).map((element) => (
-            <Link
-              key={element.id}
-              to={`/profile/${element.name}/${element.id}`}
-            >
-              {element.name}
-            </Link>
-          ))}
+          <Dropdown.Toggle variant="success" id="dropdown-basic">
+            <Row>
+              {[...props.users].sort(nameCompare).map((element) => (
+                <Link
+                  key={element.id}
+                  to={`/profile/${element.name}/${element.id}`}
+                >
+                  {element.name}
+                </Link>
+              ))}
+            </Row>
+          </Dropdown.Toggle>
         </Row>
-      </Row>
+      </Dropdown>
     </Container>
   );
 };
