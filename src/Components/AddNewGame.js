@@ -89,6 +89,10 @@ const AddNewGame = () => {
 
   const handleSaveGameSession = () => {
     const usersInGame = users.filter((el) => el.inGame === true);
+    if (usersInGame.length === 0) return;
+    for (const user of usersInGame) {
+      if (user.inputEarnings === "") return;
+    }
     saveGameSession(getTodaysDate(), usersInGame);
   };
 
