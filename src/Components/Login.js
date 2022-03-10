@@ -15,7 +15,15 @@ const Login = () => {
 
   return (
     <div className="navbar">
-      <button className="googleButton" onClick={handleLogin}>
+      <button
+        style={{
+          position: "fixed" /* or absolute */,
+          top: "50%",
+          left: "50%",
+          backgroundColor: "#ADD8E6",
+        }}
+        onClick={handleLogin}
+      >
         <FcGoogle />
       </button>
     </div>
