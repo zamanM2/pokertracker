@@ -28,22 +28,31 @@ const ProfileData = () => {
 
   const getDescription = () => {
     switch (name) {
-      case "Anayet":
+      case "ALamin":
         return "";
+      case "Anayet":
+        return (
+          'AAANND the oscar for best supporting "OMG I dont have the winning hand can you please tell me what you have" ' +
+          " goes to..."
+        );
       case "Fahim":
-        return "Where are my calves???";
+        return "Has anyone seen my calves???";
       case "Mahir":
+        return "JuSt oNe mOre dRiNk. PLeAsE. I'm GoOd.";
+      case "Mew":
         return "";
       case "Mirza":
-        return "";
+        return "Nah, this extra chicken and rice is for my parents. It's not mine.";
       case "Mo-Zaman":
         return "";
       case "Momo-ashy":
-        return "";
+        return "You can call me Dave Chappelle. And I'm trash at dealing. Also is this my tip?";
       case "Ocean":
-        return "";
+        return "#BlueLivesMatter";
       case "Rajeeb":
-        return "I'm chasing the flush on the river. i have 3 spades already.";
+        return "I'm chasing the flush on the river. I have 3 spades already.";
+      case "Rawan":
+        return "";
       case "Sakib":
         return "I'M ALLLLL IN";
       case "Tanvir":
