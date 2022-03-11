@@ -115,7 +115,7 @@ const AddNewGame = () => {
                 >
                   +
                 </Button>
-                <label>{element.name}</label>
+                <label style={{ fontSize: "15px" }}>{element.name}</label>
               </Col>
             </Col>
           ))}
@@ -146,7 +146,7 @@ const AddNewGame = () => {
                 >
                   X
                 </Button>
-                <label>{element.name}</label>
+                <label style={{ fontSize: "15px" }}>{element.name}</label>
               </Col>
               <Col>
                 <Form.Control
