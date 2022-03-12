@@ -74,19 +74,22 @@ const AddNewGame = () => {
   const calculateBank = (event) => {
     event.preventDefault();
     const usersInGame = users.filter((el) => el.inGame === true);
-    const tempBankInfo = {
+    for (const user of usersInGame) {
+      if (user.inputEarnings === "") return;
+    }
+    const newBankInfo = {
       bankPlayer: "",
       mathOffBy: 0,
     };
     let maxEarnings = 0;
-    for (const el of usersInGame) {
-      if (parseFloat(el.inputEarnings) > maxEarnings) {
-        tempBankInfo.bankPlayer = el.name;
-        maxEarnings = parseFloat(el.inputEarnings);
+    for (const user of usersInGame) {
+      if (parseFloat(user.inputEarnings) > maxEarnings) {
+        newBankInfo.bankPlayer = user.name;
+        maxEarnings = parseFloat(user.inputEarnings);
       }
-      tempBankInfo.mathOffBy += parseFloat(el.inputEarnings);
+      newBankInfo.mathOffBy += parseFloat(user.inputEarnings);
     }
-    setBankInfo(tempBankInfo);
+    setBankInfo(newBankInfo);
   };
 
   const handleSaveGameSession = async () => {
