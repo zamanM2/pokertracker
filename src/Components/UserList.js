@@ -51,6 +51,7 @@ const UserList = (props) => {
           <Row>
             {[...props.users].sort(nameCompare).map((element) => (
               <Link
+                style={{ marginBottom: "3px" }}
                 key={element.id}
                 to={`/profile/${element.name}/${element.id}`}
               >

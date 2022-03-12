@@ -34,7 +34,11 @@ const GamesList = () => {
       </Row>
       <Row>
         {[...gameSessions].sort(dateCompare).map((date) => (
-          <Link key={date} to={`/gamedata/${date}`}>
+          <Link
+            style={{ marginBottom: "3px" }}
+            key={date}
+            to={`/gamedata/${date}`}
+          >
             {date.substr(5).replace("-", "/") + "/" + date.substr(0, 4)}
           </Link>
         ))}
