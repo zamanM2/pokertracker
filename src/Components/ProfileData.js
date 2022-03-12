@@ -29,7 +29,7 @@ const ProfileData = () => {
   const getDescription = () => {
     switch (name) {
       case "ALamin":
-        return "My head is so shiny. I'm also a new baby daddy.";
+        return "Apple is the GOAT guys. Steve Jobs turns me on. Also check out my shiny head.";
       case "Anayet":
         return (
           'AAANND the oscar for best supporting "OMG I dont have the winning hand can you please tell me what you have" ' +
@@ -40,7 +40,7 @@ const ProfileData = () => {
       case "Mahir":
         return "JuSt oNe mOre dRiNk. PLeAsE. I'm GoOd.";
       case "Mew":
-        return "I gotta head out early guys. Peace.";
+        return "I gotta head out early guys. Peace. Peace. Peace";
       case "Mirza":
         return "Nah, this extra chicken and rice is for my parents. It's not mine.";
       case "Mo-Zaman":
