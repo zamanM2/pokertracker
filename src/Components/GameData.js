@@ -3,6 +3,7 @@ import Container from "react-bootstrap/Container";
 import { getGameData } from "../Firebase/PokerApi";
 import { useParams, useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
+import { IoMdArrowBack } from "react-icons/io";
 
 const GameData = () => {
   const [gameData, setGameData] = useState([]);
@@ -45,7 +46,10 @@ const GameData = () => {
           })}
         </tbody>
       </table>
-      <Button onClick={() => navigate("/")}>Back</Button>
+      <Button onClick={() => navigate("/")}>
+        {" "}
+        <IoMdArrowBack />
+      </Button>
     </Container>
   );
 };

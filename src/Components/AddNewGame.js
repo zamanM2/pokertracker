@@ -10,6 +10,7 @@ import { useAuth } from "../Context/AuthContext";
 import { getTodaysDate } from "../utils/utils";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { IoMdArrowBack } from "react-icons/io";
 
 function nameCompare(a, b) {
   if (a.name > b.name) {
@@ -189,7 +190,9 @@ const AddNewGame = () => {
           )}
           <Row style={{ marginBottom: "10px" }}>
             <Col>
-              <Button onClick={() => navigate("/")}>Back</Button>
+              <Button onClick={() => navigate("/")}>
+                <IoMdArrowBack />
+              </Button>
             </Col>
           </Row>
         </Col>

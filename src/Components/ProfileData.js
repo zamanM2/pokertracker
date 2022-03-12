@@ -4,6 +4,7 @@ import Row from "react-bootstrap/Row";
 import { getUserData } from "../Firebase/PokerApi";
 import { useParams, useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
+import { IoMdArrowBack } from "react-icons/io";
 
 const ProfileData = () => {
   const [userData, setUserData] = useState({});
@@ -104,7 +105,9 @@ const ProfileData = () => {
           <label>{userData.gamesPlayed > 0 ? computeAvgProfit() : 0}</label>
         </label>
       </Row>
-      <Button onClick={() => navigate("/")}>Back</Button>
+      <Button onClick={() => navigate("/")}>
+        <IoMdArrowBack />
+      </Button>
     </Container>
   );
 };
