@@ -29,10 +29,3 @@ const Login = () => {
 };
 
 export default Login;
-
-const myStyle = {
-  position: "fixed",
-  top: "25%",
-  left: "25%",
-  backgroundColor: "#ADD8E6",
-};
