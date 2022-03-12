@@ -57,7 +57,7 @@ const ProfileData = () => {
           "way, way back"
         );
       case "Sakib":
-        return "I'M ALLLLL IN";
+        return "I'M ALLLLL INNNNN";
       case "Tanvir":
         return "GIMME THE MONNNEYY";
       default:
