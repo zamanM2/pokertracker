@@ -44,7 +44,7 @@ const ProfileData = () => {
       case "Mirza":
         return "Nah, this extra chicken and rice is for my parents. It's not mine.";
       case "Mo-Zaman":
-        return "";
+        return "Yo guys i've been cutting for 3 years. idk why i can't lose any weight... Sooo, ya'll wanna go to Awesome sauce after poker?";
       case "Momo-ashy":
         return "You can call me Dave Chappelle. And I'm trash at dealing. Also is this my tip?";
       case "Ocean":
