@@ -40,7 +40,7 @@ const ProfileData = () => {
       case "Mew":
         return "I gotta head out early guys. Peace. Peace. Peace. Peace.";
       case "Mirza":
-        return "Nah, this extra chicken and rice is for my parents. It's not mine.";
+        return "Nah, this extra chicken and rice is for my parents. It's not mine... Now let me tell you how I lost 100k in the stock market. It wasn't my fault.";
       case "Mo-Zaman":
         return "Yo guys i've been cutting for 3 years. idk why i can't lose any weight... Sooo, ya'll wanna go to Awesome Sauce after poker?";
       case "Momo-ashy":
