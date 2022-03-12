@@ -4,6 +4,7 @@ import { getGameData } from "../Firebase/PokerApi";
 import { useParams, useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import { IoMdArrowBack } from "react-icons/io";
+import { formatDate } from "../utils/utils";
 
 const GameData = () => {
   const [gameData, setGameData] = useState([]);
@@ -23,9 +24,7 @@ const GameData = () => {
 
   return (
     <Container>
-      <h2 style={{ marginBottom: "5px" }}>
-        Date: {date.substr(5).replace("-", "/") + "/" + date.substr(0, 4)}
-      </h2>
+      <h2 style={{ marginBottom: "5px" }}>Date: {formatDate(date)}</h2>
       <table className="table" style={{ textAlign: "center" }}>
         <thead className="thead-dark">
           <tr>

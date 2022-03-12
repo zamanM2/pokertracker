@@ -34,3 +34,7 @@ export const getTodaysDate = () => {
   todaysDate = new Date(todaysDate.getTime() - offset * 60 * 1000);
   return todaysDate.toISOString().split("T")[0]; //yyyy-mm-dd
 };
+
+export const formatDate = (date) => {
+  return date.substr(5).replace("-", "/") + "/" + date.substr(0, 4); //mm-dd-yyyy
+};
