@@ -18,8 +18,6 @@ const ProfileData = () => {
     });
   }, []);
 
-  useEffect(() => {}, [userData]);
-
   const computeAvgProfit = () => {
     let avg = userData.earnings / userData.gamesPlayed;
     avg = avg.toString();
