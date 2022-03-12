@@ -29,7 +29,7 @@ const ProfileData = () => {
   const getDescription = () => {
     switch (name) {
       case "ALamin":
-        return "";
+        return "My head is so shiny. I'm also a new baby daddy.";
       case "Anayet":
         return (
           'AAANND the oscar for best supporting "OMG I dont have the winning hand can you please tell me what you have" ' +
@@ -40,7 +40,7 @@ const ProfileData = () => {
       case "Mahir":
         return "JuSt oNe mOre dRiNk. PLeAsE. I'm GoOd.";
       case "Mew":
-        return "";
+        return "I gotta head out early guys. Peace.";
       case "Mirza":
         return "Nah, this extra chicken and rice is for my parents. It's not mine.";
       case "Mo-Zaman":
@@ -52,7 +52,10 @@ const ProfileData = () => {
       case "Rajeeb":
         return "I'm chasing the flush on the river. I have 3 spades already.";
       case "Rawan":
-        return "";
+        return (
+          "Yo you gotta take care of me bro. Don't let me be a bad boy. Also Anayet thanks for picking me as a Groomsman. I know we go " +
+          "way, way back"
+        );
       case "Sakib":
         return "I'M ALLLLL IN";
       case "Tanvir":
