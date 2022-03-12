@@ -48,18 +48,16 @@ const UserList = (props) => {
       </Row>
       <Dropdown>
         <Row>
-          <Dropdown.Toggle variant="success" id="dropdown-basic">
-            <Row>
-              {[...props.users].sort(nameCompare).map((element) => (
-                <Link
-                  key={element.id}
-                  to={`/profile/${element.name}/${element.id}`}
-                >
-                  {element.name}
-                </Link>
-              ))}
-            </Row>
-          </Dropdown.Toggle>
+          <Row>
+            {[...props.users].sort(nameCompare).map((element) => (
+              <Link
+                key={element.id}
+                to={`/profile/${element.name}/${element.id}`}
+              >
+                {element.name}
+              </Link>
+            ))}
+          </Row>
         </Row>
       </Dropdown>
     </Container>
