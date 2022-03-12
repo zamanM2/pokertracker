@@ -8,6 +8,8 @@ import { getUsers, saveGameSession } from "../Firebase/PokerApi";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../Context/AuthContext";
 import { getTodaysDate } from "../utils/utils";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function nameCompare(a, b) {
   if (a.name > b.name) {
@@ -86,17 +88,19 @@ const AddNewGame = () => {
     setBankInfo(tempBankInfo);
   };
 
-  const handleSaveGameSession = () => {
+  const handleSaveGameSession = async () => {
     const usersInGame = users.filter((el) => el.inGame === true);
     if (usersInGame.length === 0) return;
     for (const user of usersInGame) {
       if (user.inputEarnings === "") return;
     }
-    saveGameSession(getTodaysDate(), usersInGame);
+    await saveGameSession(getTodaysDate(), usersInGame);
+    toast.success("Session Saved");
   };
 
   return (
     <Container>
+      <ToastContainer autoClose={3000} hideProgressBar />
       <Row className="text-center">
         <h1>Add New Game Session</h1>
       </Row>

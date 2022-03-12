@@ -26,7 +26,7 @@ export const addNewUser = async (newName) => {
   });
 };
 
-export const saveGameSession = (date, usersInGame) => {
+export const saveGameSession = async (date, usersInGame) => {
   const sessionData = {};
   usersInGame.forEach((el) => {
     sessionData[el.id] = {
