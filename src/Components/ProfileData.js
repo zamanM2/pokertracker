@@ -88,7 +88,7 @@ const ProfileData = () => {
         </label>
         <label>
           <label style={{ fontWeight: "bold" }}>Total Earnings:&nbsp; </label>
-          <label>${userData.earnings}</label>
+          <label>{userData.earnings}</label>
         </label>
         <label>
           <label style={{ fontWeight: "bold" }}>Buy Backs:&nbsp; </label>
