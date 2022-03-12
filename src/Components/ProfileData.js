@@ -40,7 +40,7 @@ const ProfileData = () => {
       case "Mahir":
         return "JuSt oNe mOre dRiNk. PLeAsE. I'm GoOd.";
       case "Mew":
-        return "I gotta head out early guys. Peace. Peace. Peace";
+        return "I gotta head out early guys. Peace. Peace. Peace. Peace.";
       case "Mirza":
         return "Nah, this extra chicken and rice is for my parents. It's not mine.";
       case "Mo-Zaman":
