@@ -47,7 +47,6 @@ const GameData = () => {
         </tbody>
       </table>
       <Button onClick={() => navigate("/")}>
-        {" "}
         <IoMdArrowBack />
       </Button>
     </Container>
