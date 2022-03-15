@@ -44,7 +44,7 @@ const ProfileData = () => {
       case "Mo-Zaman":
         return "Yo guys i've been cutting for 3 years. idk why i can't lose any weight... Sooo, ya'll wanna go to Awesome Sauce after poker?";
       case "Momo-ashy":
-        return "You can call me Dave Chappelle. And I'm trash at dealing. Also is this my tip?";
+        return "You can call me Dave Chappelle. And I'm trash at dealing. Also is this my tip? #Ashy ";
       case "Ocean":
         return "#BlueLivesMatter";
       case "Rajeeb":
