@@ -37,7 +37,7 @@
   }
 }
 
-/* .bg {
+.bg {
   background-image: url("./images/poker.jpeg");
   bottom: 0;
   left: -50%;
@@ -47,7 +47,11 @@
   top: 0;
   z-index: -1;
   background-repeat: no-repeat;
-} */
+   -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
 
 .title{
 animation: pulse 2s infinite;
@@ -64,4 +68,12 @@ animation: pulse 2s infinite;
 
 .earningContainer{
   background-color: white;
+}
+
+.playerContainer{
+background-color: white;
+}
+
+.gameContainer{
+background-color: white;
 }
