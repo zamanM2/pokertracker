@@ -1,6 +1,6 @@
 import { dbRef, storage } from "./FirebaseConfig";
 import { child, get, push, update } from "firebase/database";
-import { ref, getDownloadURL } from "firebase/storage";
+import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
 
 export const getUsers = () => {
   return get(child(dbRef, `/users/`));
@@ -55,4 +55,31 @@ export const saveGameSession = async (date, usersInGame) => {
 export const getGameImage = async (date) => {
   const gameRef = ref(storage, `gameImages/${date}.jpg`);
   return getDownloadURL(gameRef);
+};
+
+export const uploadGameImage = async (date, file) => {
+  const storageRef = ref(storage, `gameImages/${date}.jpg`);
+  const uploadTask = uploadBytesResumable(storageRef, file);
+
+  uploadTask.on(
+    "state_changed",
+    (snapshot) => {
+      const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+      console.log("Upload is " + progress + "% done");
+      switch (snapshot.state) {
+        case "paused":
+          console.log("Upload is paused");
+          break;
+        case "running":
+          console.log("Upload is running");
+          break;
+      }
+    },
+    (error) => {},
+    () => {
+      getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+        console.log(downloadURL);
+      });
+    }
+  );
 };
