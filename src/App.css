@@ -61,3 +61,7 @@ animation: pulse 2s infinite;
     color: #FF4136;
   }
 }
+
+.earningContainer{
+  background-color: white;
+}
