@@ -38,7 +38,9 @@ const GameData = () => {
             return (
               <tr key={player.name}>
                 <td>{player.name}</td>
-                <td>{player.earnings}</td>
+                <td style={{ color: player.earnings > 0 ? "green" : "red" }}>
+                  {player.earnings}
+                </td>
                 <td>{player.buyBacks}</td>
               </tr>
             );
