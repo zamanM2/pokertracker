@@ -1,8 +1,8 @@
 - To Do List
     - Line Graph for each user
+    - Buy Back Graph
     - Chat for each game session
     - Crown next to top earner in user list
-    - Buy Back Graph
     - Top Performer/ Worst Performer
     - Active/Inactive status for players
 
