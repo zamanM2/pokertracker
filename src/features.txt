@@ -1,14 +1,18 @@
 - To Do List
-    -Line Graph
-    -Buy In Graph
-    -Top Performer/ Worst Performer
-    -User Profile
+    - Upload photo
+    - Line Graph for each user
+    - Chat for each game session
+    - Crown next to top earner in user list
+    - Buy Back Graph
+    - Top Performer/ Worst Performer
 
 
 -Completed
-    -Login
-    -Calculator
-    -Add User
-    -Sessions List
-    -User List
-    -Create Sessions
+    - Login
+    - Calculator
+    - Add User
+    - Sessions List
+    - User List
+    - Create Sessions
+    - User Profile
+
