@@ -16,7 +16,7 @@ import { formatDate, earningsCompare } from "../utils/utils";
 const GameData = () => {
   const [gameData, setGameData] = useState([]);
   const [gameImage, setGameImage] = useState("");
-  const [imageToUpload, setImageToUpload] = useState({});
+  const [imageToUpload, setImageToUpload] = useState("");
   let { date } = useParams();
   const navigate = useNavigate();
 
@@ -45,6 +45,7 @@ const GameData = () => {
   };
 
   const handleUpload = () => {
+    if (imageToUpload === "") return;
     uploadGameImage(date, imageToUpload, setGameImage);
   };
 
