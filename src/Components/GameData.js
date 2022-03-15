@@ -74,7 +74,7 @@ const GameData = () => {
         </tbody>
       </table>
       <img
-        style={{ width: "100%", height: "100%", marginBottom: "10px" }}
+        style={{ width: "100%", height: "100%", marginBottom: "8px" }}
         src={gameImage}
         alt="Game Picture"
       />
@@ -83,13 +83,18 @@ const GameData = () => {
           <Form.Control type="file" onChange={handleChange} />
         </Col>
         <Col>
-          <Button onClick={handleUpload}>Upload</Button>
+          <Button
+            onClick={handleUpload}
+            style={{ backgroundColor: "#A8A8A8", borderColor: "#A8A8A8" }}
+          >
+            Upload
+          </Button>
         </Col>
       </Row>
       <Row>
         <Col>
           <Button
-            style={{ marginBottom: "10px" }}
+            style={{ marginTop: "8px", marginBottom: "10px" }}
             onClick={() => navigate("/")}
           >
             <IoMdArrowBack />
