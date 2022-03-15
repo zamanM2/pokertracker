@@ -19,10 +19,10 @@ export function nameCompare(a, b) {
 }
 
 export function earningsCompare(a, b) {
-  if (a.earnings < b.earnings) {
+  if (parseFloat(a.earnings) < parseFloat(b.earnings)) {
     return 1;
   }
-  if (a.earnings > b.earnings) {
+  if (parseFloat(a.earnings) > parseFloat(b.earnings)) {
     return -1;
   }
   return 0;

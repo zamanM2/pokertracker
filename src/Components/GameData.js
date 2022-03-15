@@ -4,7 +4,7 @@ import { getGameData } from "../Firebase/PokerApi";
 import { useParams, useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import { IoMdArrowBack } from "react-icons/io";
-import { formatDate } from "../utils/utils";
+import { formatDate, earningsCompare } from "../utils/utils";
 
 const GameData = () => {
   const [gameData, setGameData] = useState([]);
@@ -34,7 +34,7 @@ const GameData = () => {
           </tr>
         </thead>
         <tbody>
-          {gameData.map((player) => {
+          {gameData.sort(earningsCompare).map((player) => {
             return (
               <tr key={player.name}>
                 <td>{player.name}</td>
