@@ -4,6 +4,7 @@
     - Crown next to top earner in user list
     - Buy Back Graph
     - Top Performer/ Worst Performer
+    - Active/Inactive status for players
 
 
 -Completed
