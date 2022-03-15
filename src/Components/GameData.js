@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Container from "react-bootstrap/Container";
-import { getGameData } from "../Firebase/PokerApi";
+import { getGameData, getGameImage } from "../Firebase/PokerApi";
 import { useParams, useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import { IoMdArrowBack } from "react-icons/io";
@@ -8,6 +8,7 @@ import { formatDate, earningsCompare } from "../utils/utils";
 
 const GameData = () => {
   const [gameData, setGameData] = useState([]);
+  const [gameImage, setGameImage] = useState("");
   let { date } = useParams();
   const navigate = useNavigate();
 
@@ -20,6 +21,13 @@ const GameData = () => {
       }
       setGameData(_gameData);
     });
+  }, []);
+
+  useEffect(() => {
+    async function getImage() {
+      setGameImage(await getGameImage(date));
+    }
+    getImage();
   }, []);
 
   return (
@@ -47,6 +55,11 @@ const GameData = () => {
           })}
         </tbody>
       </table>
+      <img
+        style={{ width: "100%", height: "100%", marginBottom: "10px" }}
+        src={gameImage}
+        alt="Girl in a jacket"
+      />
       <Button onClick={() => navigate("/")}>
         <IoMdArrowBack />
       </Button>

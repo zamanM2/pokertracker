@@ -1,5 +1,6 @@
-import { dbRef } from "./FirebaseConfig";
+import { dbRef, storage } from "./FirebaseConfig";
 import { child, get, push, update } from "firebase/database";
+import { ref, getDownloadURL } from "firebase/storage";
 
 export const getUsers = () => {
   return get(child(dbRef, `/users/`));
@@ -49,4 +50,9 @@ export const saveGameSession = async (date, usersInGame) => {
     };
     return update(child(dbRef, `/users/`), updatesUsers);
   });
+};
+
+export const getGameImage = async (date) => {
+  const gameRef = ref(storage, `gameImages/${date}.jpg`);
+  return getDownloadURL(gameRef);
 };
