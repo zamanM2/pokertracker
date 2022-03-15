@@ -85,7 +85,7 @@ const GameData = () => {
         <Col>
           <Button
             onClick={handleUpload}
-            style={{ backgroundColor: "#A8A8A8", borderColor: "#A8A8A8" }}
+            style={{ backgroundColor: "#A0A0A0", borderColor: "#A8A8A8" }}
           >
             Upload
           </Button>
