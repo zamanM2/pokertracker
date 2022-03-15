@@ -57,7 +57,7 @@ export const getGameImage = async (date) => {
   return getDownloadURL(gameRef);
 };
 
-export const uploadGameImage = async (date, file) => {
+export const uploadGameImage = async (date, file, setImage) => {
   const storageRef = ref(storage, `gameImages/${date}.jpg`);
   const uploadTask = uploadBytesResumable(storageRef, file);
 
@@ -78,7 +78,7 @@ export const uploadGameImage = async (date, file) => {
     (error) => {},
     () => {
       getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-        console.log(downloadURL);
+        setImage(downloadURL);
       });
     }
   );

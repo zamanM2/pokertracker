@@ -45,9 +45,7 @@ const GameData = () => {
   };
 
   const handleUpload = () => {
-    uploadGameImage(date, imageToUpload).then(async () => {
-      setGameImage(await getGameImage(date));
-    });
+    uploadGameImage(date, imageToUpload, setGameImage);
   };
 
   return (
