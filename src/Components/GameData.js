@@ -60,7 +60,7 @@ const GameData = () => {
         src={gameImage}
         alt="Girl in a jacket"
       />
-      <Button onClick={() => navigate("/")}>
+      <Button style={{ marginBottom: "10px" }} onClick={() => navigate("/")}>
         <IoMdArrowBack />
       </Button>
     </Container>
