@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
-import { getUserData } from "../Firebase/PokerApi";
+import { getUserData, getGameHistory } from "../Firebase/PokerApi";
 import { useParams, useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import { IoMdArrowBack } from "react-icons/io";
+import UserLineGraphs from "../Components/UserLineGraph";
 
 const ProfileData = () => {
   const [userData, setUserData] = useState({});
@@ -103,6 +104,7 @@ const ProfileData = () => {
           <label>{userData.gamesPlayed > 0 ? computeAvgProfit() : 0}</label>
         </label>
       </Row>
+      <UserLineGraphs />
       <Button onClick={() => navigate("/")}>
         <IoMdArrowBack />
       </Button>

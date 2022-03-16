@@ -52,6 +52,10 @@ export const saveGameSession = async (date, usersInGame) => {
   });
 };
 
+export const getGameHistory = async ()=>{
+return get(child(dbRef, `/games/`));
+}
+
 export const getGameImage = async (date) => {
   const gameRef = ref(storage, `gameImages/${date}.jpg`);
   return getDownloadURL(gameRef);
