@@ -6,6 +6,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import { IoMdArrowBack } from "react-icons/io";
 import UserLineGraphs from "../Components/UserLineGraph";
+import UserGameHistory from "../Components/UserGameHistory";
 
 const ProfileData = () => {
   const [userData, setUserData] = useState({});
@@ -65,6 +66,9 @@ const ProfileData = () => {
 
   return (
     <Container>
+      <Button style={{ marginTop: "5px" }} onClick={() => navigate("/")}>
+        <IoMdArrowBack />
+      </Button>
       <Row style={{ textAlign: "center" }}>
         <Row
           style={{
@@ -105,9 +109,7 @@ const ProfileData = () => {
         </label>
       </Row>
       <UserLineGraphs />
-      <Button onClick={() => navigate("/")}>
-        <IoMdArrowBack />
-      </Button>
+      <UserGameHistory />
     </Container>
   );
 };

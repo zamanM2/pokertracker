@@ -8,6 +8,16 @@ export function dateCompare(a, b) {
   return 0;
 }
 
+export function gameDateCompare(a, b) {
+  if (a.date < b.date) {
+    return 1;
+  }
+  if (a.date > b.date) {
+    return -1;
+  }
+  return 0;
+}
+
 export function nameCompare(a, b) {
   if (a.name > b.name) {
     return 1;

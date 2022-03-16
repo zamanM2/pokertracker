@@ -41,7 +41,7 @@ function LandingPage() {
   return (
     <Container>
       <Row className="text-center">
-        <h2 className="title">[A]rgoBros Poker Tracker</h2>
+        <h2>[A]rgoBros Poker Tracker</h2>
       </Row>
       <Row className="earningContainer ">
         <Col>
