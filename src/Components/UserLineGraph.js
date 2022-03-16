@@ -51,23 +51,40 @@ const data = {
 
 const UserLineGraph = (props) => {
   const [, updateState] = useState();
+  let { id } = useParams();
 
   useEffect(() => {
-    async function populateChartData() {
-      await getGameHistory().then((snapshot) => {
-        const dates = Object.keys(snapshot.val());
-        data.labels = [];
-        const earningsData = [
-          {
-            label: "Earnings",
-            data: [], //y-axis
-            borderColor: "#4169E1",
-            backgroundColor: "#4169E1",
-          },
-        ];
-      });
-    }
-    populateChartData()
+    getGameHistory().then((snapshot) => {
+      data.labels = [];
+      const earningsData = [
+        {
+          label: "Earnings",
+          data: [], //y-axis
+          borderColor: "#4169E1",
+          backgroundColor: "#4169E1",
+        },
+      ];
+      const gamesData = snapshot.val();
+      const _gameHistory = [];
+      const dates = Object.keys(gamesData);
+      for (const date of dates) {
+        const userIds = Object.keys(gamesData[date]);
+        for (const userId of userIds) {
+          if (userId === id) {
+            _gameHistory.push({
+              earnings: gamesData[date][userId].earnings,
+              buyBacks: gamesData[date][userId].buyBacks,
+              date: date,
+            });
+          }
+        }
+      }
+      for(const game of _gameHistory ) {
+          data.labels.push(game.date)
+          earningsData[0].data.push(game.earnings)
+      }
+      data.datasets = earningsData;
+    });
     updateState({});
   }, []);
 
