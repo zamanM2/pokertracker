@@ -67,12 +67,14 @@ const UserLineGraph = (props) => {
       const gamesData = snapshot.val();
       const _gameHistory = [];
       const dates = Object.keys(gamesData);
+      let totalEarnings= 0;
       for (const date of dates) {
         const userIds = Object.keys(gamesData[date]);
         for (const userId of userIds) {
           if (userId === id) {
+              totalEarnings += parseFloat(gamesData[date][userId].earnings);
             _gameHistory.push({
-              earnings: gamesData[date][userId].earnings,
+              earnings: totalEarnings,
               buyBacks: gamesData[date][userId].buyBacks,
               date: date,
             });
