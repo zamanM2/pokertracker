@@ -30,10 +30,6 @@ const options = {
     legend: {
       position: "top",
     },
-    title: {
-      display: true,
-      text: "Earnings",
-    },
   },
 };
 
@@ -58,7 +54,7 @@ const UserLineGraph = (props) => {
       data.labels = [];
       const earningsData = [
         {
-          label: "Earnings",
+          label: "Total Earnings over Time",
           data: [], //y-axis
           borderColor: "#4169E1",
           backgroundColor: "#4169E1",
@@ -67,12 +63,12 @@ const UserLineGraph = (props) => {
       const gamesData = snapshot.val();
       const _gameHistory = [];
       const dates = Object.keys(gamesData);
-      let totalEarnings= 0;
+      let totalEarnings = 0;
       for (const date of dates) {
         const userIds = Object.keys(gamesData[date]);
         for (const userId of userIds) {
           if (userId === id) {
-              totalEarnings += parseFloat(gamesData[date][userId].earnings);
+            totalEarnings += parseFloat(gamesData[date][userId].earnings);
             _gameHistory.push({
               earnings: totalEarnings,
               buyBacks: gamesData[date][userId].buyBacks,
@@ -81,9 +77,9 @@ const UserLineGraph = (props) => {
           }
         }
       }
-      for(const game of _gameHistory ) {
-          data.labels.push(game.date)
-          earningsData[0].data.push(game.earnings)
+      for (const game of _gameHistory) {
+        data.labels.push(game.date);
+        earningsData[0].data.push(game.earnings);
       }
       data.datasets = earningsData;
     });

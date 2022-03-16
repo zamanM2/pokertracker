@@ -108,8 +108,12 @@ const ProfileData = () => {
           <label>{userData.gamesPlayed > 0 ? computeAvgProfit() : 0}</label>
         </label>
       </Row>
-      <UserLineGraphs />
-      <UserGameHistory />
+      <Row style={{ marginTop: "5px" }}>
+        <UserLineGraphs />
+      </Row>
+      <Row style={{ marginTop: "5px" }}>
+        <UserGameHistory />
+      </Row>
     </Container>
   );
 };
