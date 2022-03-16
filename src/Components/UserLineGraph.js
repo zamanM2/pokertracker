@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { getUserData, getGameHistory } from "../Firebase/PokerApi";
+import { formatDate, gameDateCompare } from "../utils/utils";
+
 import {
   CategoryScale,
   Chart as ChartJS,
@@ -72,7 +74,7 @@ const UserLineGraph = (props) => {
             _gameHistory.push({
               earnings: totalEarnings,
               buyBacks: gamesData[date][userId].buyBacks,
-              date: date,
+              date: formatDate(date),
             });
           }
         }
