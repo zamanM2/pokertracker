@@ -96,7 +96,7 @@ const GameData = () => {
         <Col>
           <Button
             style={{ marginTop: "8px", marginBottom: "10px" }}
-            onClick={() => navigate("/")}
+            onClick={() => navigate(-1)}
           >
             <IoMdArrowBack />
           </Button>
