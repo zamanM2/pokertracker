@@ -6,7 +6,7 @@ import Button from "react-bootstrap/Button";
 import { FaPlus } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { getGameSessions } from "../Firebase/PokerApi";
-import { dateCompare } from "../utils/utils";
+import { dateCompare, formatDate } from "../utils/utils";
 
 const GamesList = () => {
   const [gameSessions, setGameSessions] = useState([]);
@@ -39,7 +39,7 @@ const GamesList = () => {
             key={date}
             to={`/gamedata/${date}`}
           >
-            {date.substr(5).replace("-", "/") + "/" + date.substr(0, 4)}
+            {formatDate(date)}
           </Link>
         ))}
       </Row>

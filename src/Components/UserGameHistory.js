@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { getGameHistory } from "../Firebase/PokerApi";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { formatDate, gameDateCompare } from "../utils/utils";
 
 const UserGameHistory = () => {
@@ -41,8 +41,12 @@ const UserGameHistory = () => {
         <tbody>
           {gameHistory.map((player) => {
             return (
-              <tr>
-                <td>{formatDate(player.date)}</td>
+              <tr key={player.date}>
+                <td>
+                  <Link to={`/gamedata/${player.date}`}>
+                    {formatDate(player.date)}
+                  </Link>
+                </td>
                 <td style={{ color: player.earnings > 0 ? "green" : "red" }}>
                   {player.earnings}
                 </td>
