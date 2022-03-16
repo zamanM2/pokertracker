@@ -49,10 +49,10 @@ function LandingPage() {
         </Col>
       </Row>
       <Row style={{ marginTop: "10px" }}>
-        <Col className="playerContainer" xs={3}>
+        <Col className="playerContainer" xs={6}>
           <UserList users={users} onAddNewUser={handleAddNewUser} />
         </Col>
-        <Col className="gameContainer" xs={3}>
+        <Col className="gameContainer" xs={6}>
           <GamesList />
         </Col>
       </Row>

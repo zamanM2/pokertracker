@@ -37,7 +37,7 @@
   }
 }
 
-.bg {
+/* .bg {
   background-image: url("./images/poker.jpeg");
   bottom: 0;
   left: -50%;
@@ -51,7 +51,7 @@
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-}
+} */
 
 .title{
 animation: pulse 2s infinite;
