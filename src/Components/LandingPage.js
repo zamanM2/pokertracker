@@ -43,7 +43,7 @@ function LandingPage() {
       <Row className="text-center">
         <h2>[A]rgoBros Poker Tracker</h2>
       </Row>
-      <Row style={{ height: "250px" }}>
+      <Row style={{ height: "210px" }}>
         <EarningsGraph users={users} />
       </Row>
       <Row style={{ marginTop: "10px" }}>
