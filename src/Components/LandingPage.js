@@ -43,10 +43,8 @@ function LandingPage() {
       <Row className="text-center">
         <h2>[A]rgoBros Poker Tracker</h2>
       </Row>
-      <Row className="earningContainer ">
-        <Col>
-          <EarningsGraph users={users} />
-        </Col>
+      <Row style={{ height: "250px" }}>
+        <EarningsGraph users={users} />
       </Row>
       <Row style={{ marginTop: "10px" }}>
         <Col className="playerContainer" xs={6}>
