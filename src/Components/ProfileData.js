@@ -87,7 +87,6 @@ const ProfileData = () => {
           onClick={() => navigate("/secret-login")}
         />
       )}
-
       <Row style={{ textAlign: "center" }}>
         <Row
           style={{
