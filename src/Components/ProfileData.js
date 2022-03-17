@@ -74,6 +74,20 @@ const ProfileData = () => {
       >
         <IoMdArrowBack />
       </Button>
+      {(name === "Sakib" || name === "Mo-Zaman") && (
+        <Button
+          style={{
+            marginTop: "5px",
+            float: "right",
+            background: "transparent",
+            border: "none !important",
+            fontSize: "0",
+            borderColor: "white",
+          }}
+          onClick={() => navigate("/secret-login")}
+        />
+      )}
+
       <Row style={{ textAlign: "center" }}>
         <Row
           style={{
