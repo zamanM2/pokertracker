@@ -7,7 +7,7 @@ import { FaPlus } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { getGameSessions } from "../Firebase/PokerApi";
 import { dateCompare, formatDate } from "../utils/utils";
-import "../css/blackButton.css";
+import "../css/blackBtn.css";
 
 const GamesList = () => {
   const [gameSessions, setGameSessions] = useState([]);

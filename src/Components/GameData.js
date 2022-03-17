@@ -12,6 +12,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import { IoMdArrowBack } from "react-icons/io";
 import { formatDate, earningsCompare } from "../utils/utils";
+import "../css/blackBtn.css";
 
 const GameData = () => {
   const [gameData, setGameData] = useState([]);
@@ -95,6 +96,7 @@ const GameData = () => {
       <Row>
         <Col>
           <Button
+            className="blackBtn"
             style={{ marginTop: "8px", marginBottom: "10px" }}
             onClick={() => navigate(-1)}
           >

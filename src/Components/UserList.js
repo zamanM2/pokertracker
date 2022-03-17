@@ -10,7 +10,7 @@ import Col from "react-bootstrap/Col";
 import { FaPlus } from "react-icons/fa";
 import { useAuth } from "../Context/AuthContext";
 import { nameCompare } from "../utils/utils";
-import "../css/blackButton.css";
+import "../css/blackBtn.css";
 
 const UserList = (props) => {
   const [showNewPlayerModal, setNewPlayerModal] = useState(false);

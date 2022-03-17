@@ -11,6 +11,7 @@ import { getTodaysDate } from "../utils/utils";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { IoMdArrowBack } from "react-icons/io";
+import "../css/blackBtn.css";
 
 function nameCompare(a, b) {
   if (a.name > b.name) {
@@ -119,7 +120,11 @@ const AddNewGame = () => {
               <Col>
                 <Button
                   onClick={() => addUserToGame(element.id)}
-                  style={{ margin: "3px", backgroundColor: "grey" }}
+                  style={{
+                    margin: "3px",
+                    backgroundColor: "grey",
+                    borderColor: "grey",
+                  }}
                 >
                   +
                 </Button>
@@ -150,7 +155,11 @@ const AddNewGame = () => {
               <Col xs={5}>
                 <Button
                   onClick={() => removeUserFromGame(element.id)}
-                  style={{ margin: "3px", backgroundColor: "black" }}
+                  style={{
+                    margin: "3px",
+                    backgroundColor: "#36454f",
+                    borderColor: "#36454f",
+                  }}
                 >
                   X
                 </Button>
@@ -177,23 +186,25 @@ const AddNewGame = () => {
       </Row>
       <Row style={{ marginTop: "40px" }}>
         <Col>
-          <Row style={{ marginBottom: "10px" }}>
+          <Row style={{ marginBottom: "5px" }}>
             <Col>
-              <Button onClick={calculateBank}>Calculate Bank</Button>
+              <Button className="blackBtn" onClick={calculateBank}>
+                Calculate Bank
+              </Button>
             </Col>
           </Row>
           {currentUser && (
-            <Row style={{ marginBottom: "10px" }}>
+            <Row style={{ marginBottom: "5px" }}>
               <Col>
-                <Button onClick={handleSaveGameSession}>
+                <Button className="blackBtn" onClick={handleSaveGameSession}>
                   Save Game Session
                 </Button>
               </Col>
             </Row>
           )}
-          <Row style={{ marginBottom: "10px" }}>
+          <Row style={{ marginBottom: "5px" }}>
             <Col>
-              <Button onClick={() => navigate("/")}>
+              <Button className="blackBtn" onClick={() => navigate("/")}>
                 <IoMdArrowBack />
               </Button>
             </Col>

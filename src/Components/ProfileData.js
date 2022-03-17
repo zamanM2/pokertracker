@@ -7,6 +7,7 @@ import Button from "react-bootstrap/Button";
 import { IoMdArrowBack } from "react-icons/io";
 import UserLineGraphs from "../Components/UserLineGraph";
 import UserGameHistory from "../Components/UserGameHistory";
+import "../css/blackBtn.css";
 
 const ProfileData = () => {
   const [userData, setUserData] = useState({});
@@ -59,14 +60,18 @@ const ProfileData = () => {
       case "Sakib":
         return "I'M ALLLLL INNNNN";
       case "Tanvir":
-        return "GIMME THE MONNNEYY";
+        return "GIMME THE MONNNEYY... Hey I know you guys are talking about something really important but let me interrupt you real quick and tell you about my Range Rover.";
       default:
     }
   };
 
   return (
     <Container>
-      <Button style={{ marginTop: "5px" }} onClick={() => navigate("/")}>
+      <Button
+        className="blackBtn"
+        style={{ marginTop: "5px" }}
+        onClick={() => navigate("/")}
+      >
         <IoMdArrowBack />
       </Button>
       <Row style={{ textAlign: "center" }}>
