@@ -1,5 +1,4 @@
 - To Do List
-    - Line Graph for each user
     - Buy Back Graph
     - Chat for each game session
     - Crown next to top earner in user list
@@ -16,5 +15,7 @@
     - Create Sessions
     - User Profile
     - Upload photo
+    - Line Graph for each user
+
 
 
