@@ -7,6 +7,7 @@ import { FaPlus } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { getGameSessions } from "../Firebase/PokerApi";
 import { dateCompare, formatDate } from "../utils/utils";
+import "../css/blackButton.css";
 
 const GamesList = () => {
   const [gameSessions, setGameSessions] = useState([]);
@@ -25,7 +26,7 @@ const GamesList = () => {
           <h2>
             Games
             <Link to="add-new-game">
-              <Button>
+              <Button className="blackBtn">
                 <FaPlus />
               </Button>
             </Link>
@@ -35,7 +36,7 @@ const GamesList = () => {
       <Row>
         {[...gameSessions].sort(dateCompare).map((date) => (
           <Link
-            style={{ marginBottom: "3px" }}
+            style={{ marginBottom: "3px", color: "black" }}
             key={date}
             to={`/gamedata/${date}`}
           >

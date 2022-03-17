@@ -10,6 +10,7 @@ import Col from "react-bootstrap/Col";
 import { FaPlus } from "react-icons/fa";
 import { useAuth } from "../Context/AuthContext";
 import { nameCompare } from "../utils/utils";
+import "../css/blackButton.css";
 
 const UserList = (props) => {
   const [showNewPlayerModal, setNewPlayerModal] = useState(false);
@@ -39,7 +40,10 @@ const UserList = (props) => {
           <h2>
             Players
             {currentUser && (
-              <Button onClick={addNewPlayerModalInfo.showModal}>
+              <Button
+                className="blackBtn"
+                onClick={addNewPlayerModalInfo.showModal}
+              >
                 <FaPlus />
               </Button>
             )}
@@ -51,7 +55,7 @@ const UserList = (props) => {
           <Row>
             {[...props.users].sort(nameCompare).map((element) => (
               <Link
-                style={{ marginBottom: "3px" }}
+                style={{ marginBottom: "3px", color: "black" }}
                 key={element.id}
                 to={`/profile/${element.name}/${element.id}`}
               >

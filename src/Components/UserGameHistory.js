@@ -43,7 +43,10 @@ const UserGameHistory = () => {
             return (
               <tr key={player.date}>
                 <td>
-                  <Link to={`/gamedata/${player.date}`}>
+                  <Link
+                    to={`/gamedata/${player.date}`}
+                    style={{ color: "black" }}
+                  >
                     {formatDate(player.date)}
                   </Link>
                 </td>
