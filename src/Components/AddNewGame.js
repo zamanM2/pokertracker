@@ -134,7 +134,14 @@ const AddNewGame = () => {
           ))}
       </Row>
       <Row>
-        <h3>Players in Game</h3>
+        <h3>
+          Players in Game (
+          {users.reduce((accumulator, currentValue) => {
+            if (currentValue.inGame === true) return (accumulator += 1);
+            else return accumulator;
+          }, 0)}
+          )
+        </h3>
       </Row>
       <Row>
         <Col xs={5}>
