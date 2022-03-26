@@ -90,7 +90,11 @@ const GameData = () => {
                 <td style={{ color: player.earnings > 0 ? "green" : "red" }}>
                   {player.earnings}
                 </td>
-                <td>{player.buyBacks}</td>
+                <td
+                  style={{ color: player.buyBacks > 0 ? "#ff8c00" : "black" }}
+                >
+                  {player.buyBacks}
+                </td>
               </tr>
             );
           })}
