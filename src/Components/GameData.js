@@ -57,7 +57,7 @@ const GameData = () => {
           <Button
             className="blackBtn"
             style={{ marginTop: "8px", marginBottom: "10px" }}
-            onClick={() => navigate(-1)}
+            onClick={() => navigate("/")}
           >
             <IoMdArrowBack />
           </Button>
