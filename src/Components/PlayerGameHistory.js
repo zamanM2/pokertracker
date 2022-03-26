@@ -3,7 +3,7 @@ import { getGameHistory } from "../Firebase/PokerApi";
 import { useParams, Link } from "react-router-dom";
 import { formatDate, gameDateCompare } from "../utils/utils";
 
-const UserGameHistory = () => {
+const PlayerGameHistory = () => {
   const [gameHistory, setGameHistory] = useState([]);
   let { id } = useParams();
 
@@ -63,4 +63,4 @@ const UserGameHistory = () => {
   );
 };
 
-export default UserGameHistory;
+export default PlayerGameHistory;

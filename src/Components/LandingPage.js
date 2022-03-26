@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import EarningsGraph from "./EarningsGraph";
-import UserList from "./UserList";
+import PlayerList from "./PlayerList";
 import GamesList from "./GamesList";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -48,7 +48,7 @@ function LandingPage() {
       </Row>
       <Row style={{ marginTop: "10px" }}>
         <Col className="playerContainer" xs={6}>
-          <UserList users={users} onAddNewUser={handleAddNewUser} />
+          <PlayerList users={users} onAddNewUser={handleAddNewUser} />
         </Col>
         <Col className="gameContainer" xs={6}>
           <GamesList />

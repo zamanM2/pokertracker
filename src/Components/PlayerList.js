@@ -12,7 +12,7 @@ import { useAuth } from "../Context/AuthContext";
 import { nameCompare } from "../utils/utils";
 import "../css/blackBtn.css";
 
-const UserList = (props) => {
+const PlayerList = (props) => {
   const [showNewPlayerModal, setNewPlayerModal] = useState(false);
   const { currentUser } = useAuth();
 
@@ -69,4 +69,4 @@ const UserList = (props) => {
   );
 };
 
-export default UserList;
+export default PlayerList;

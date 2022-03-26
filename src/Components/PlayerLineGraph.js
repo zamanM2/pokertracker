@@ -47,7 +47,7 @@ const data = {
   ],
 };
 
-const UserLineGraph = (props) => {
+const PlayerLineGraph = (props) => {
   const [, updateState] = useState();
   let { id } = useParams();
 
@@ -95,4 +95,4 @@ const UserLineGraph = (props) => {
   );
 };
 
-export default UserLineGraph;
+export default PlayerLineGraph;

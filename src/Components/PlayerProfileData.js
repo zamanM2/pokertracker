@@ -5,11 +5,11 @@ import { getUserData, getGameHistory } from "../Firebase/PokerApi";
 import { useParams, useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import { IoMdArrowBack } from "react-icons/io";
-import UserLineGraphs from "../Components/UserLineGraph";
-import UserGameHistory from "../Components/UserGameHistory";
+import UserLineGraphs from "./PlayerLineGraph";
+import PlayerGameHistory from "./PlayerGameHistory";
 import "../css/blackBtn.css";
 
-const ProfileData = () => {
+const PlayerProfileData = () => {
   const [userData, setUserData] = useState({});
   let { id, name } = useParams();
   const navigate = useNavigate();
@@ -130,10 +130,10 @@ const ProfileData = () => {
         <UserLineGraphs />
       </Row>
       <Row style={{ marginTop: "5px" }}>
-        <UserGameHistory />
+        <PlayerGameHistory />
       </Row>
     </Container>
   );
 };
 
-export default ProfileData;
+export default PlayerProfileData;
