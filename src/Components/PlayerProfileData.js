@@ -27,6 +27,14 @@ const PlayerProfileData = () => {
     return avg.substr(0, 7);
   };
 
+  const getPlayerImage = () => {
+    try {
+      return images(`./${name}.jpeg`);
+    } catch (e) {
+      return null;
+    }
+  };
+
   const getDescription = () => {
     switch (name) {
       case "ALamin":
@@ -97,7 +105,7 @@ const PlayerProfileData = () => {
             marginRight: "auto",
           }}
         >
-          <img src={images(`./${name}.jpeg`)} alt="Photo" />
+          <img src={getPlayerImage()} alt="Photo" />
         </Row>
         <label>
           <label style={{ fontWeight: "bold" }}>Name:&nbsp;</label>
