@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { getUserData, getGameHistory } from "../Firebase/PokerApi";
-import { formatDate, gameDateCompare } from "../utils/utils";
+import { getGameHistory } from "../Firebase/PokerApi";
+import { formatDate } from "../utils/utils";
 
 import {
   CategoryScale,
@@ -13,7 +13,7 @@ import {
   Tooltip,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 
 ChartJS.register(
@@ -31,6 +31,11 @@ const options = {
   plugins: {
     legend: {
       position: "top",
+    },
+  },
+  scales: {
+    y: {
+      beginAtZero: true,
     },
   },
 };
