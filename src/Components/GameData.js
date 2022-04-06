@@ -52,7 +52,28 @@ const GameData = () => {
 
   return (
     <Container>
-      <h2 style={{ marginBottom: "5px" }}>Date: {formatDate(date)}</h2>
+      <Row>
+        <Col xs={1}>
+          <Button
+            className="blackBtn"
+            style={{ marginTop: "8px", marginBottom: "10px" }}
+            onClick={() => navigate("/")}
+          >
+            <IoMdArrowBack />
+          </Button>
+        </Col>
+        <Col xs={11}>
+          <h2
+            style={{
+              marginBottom: "5px",
+              marginTop: "7px",
+              marginLeft: "20px",
+            }}
+          >
+            Date: {formatDate(date)}
+          </h2>
+        </Col>
+      </Row>
       <table className="table" style={{ textAlign: "center" }}>
         <thead className="thead-dark">
           <tr>
@@ -69,7 +90,11 @@ const GameData = () => {
                 <td style={{ color: player.earnings > 0 ? "green" : "red" }}>
                   {player.earnings}
                 </td>
-                <td>{player.buyBacks}</td>
+                <td
+                  style={{ color: player.buyBacks > 0 ? "#ff8c00" : "black" }}
+                >
+                  {player.buyBacks}
+                </td>
               </tr>
             );
           })}
@@ -80,7 +105,7 @@ const GameData = () => {
         src={gameImage}
         alt="Game Picture"
       />
-      <Row>
+      <Row style={{ marginBottom: "15px" }}>
         <Col xs={7}>
           <Form.Control type="file" onChange={handleChange} />
         </Col>
@@ -90,17 +115,6 @@ const GameData = () => {
             style={{ backgroundColor: "#A0A0A0", borderColor: "#A8A8A8" }}
           >
             Upload
-          </Button>
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-          <Button
-            className="blackBtn"
-            style={{ marginTop: "8px", marginBottom: "10px" }}
-            onClick={() => navigate(-1)}
-          >
-            <IoMdArrowBack />
           </Button>
         </Col>
       </Row>

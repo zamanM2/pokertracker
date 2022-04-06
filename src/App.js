@@ -3,7 +3,7 @@ import "./App.css";
 import LandingPage from "./Components/LandingPage";
 import AddNewGame from "./Components/AddNewGame";
 import GameData from "./Components/GameData";
-import ProfileData from "./Components/ProfileData";
+import PlayerProfileData from "./Components/PlayerProfileData";
 import Login from "./Components/Login";
 import AuthProvider from "./Context/AuthContext";
 
@@ -18,7 +18,7 @@ function App() {
           <Route path="/secret-login" element={<Login />} />
           <Route path="/add-new-game" element={<AddNewGame />} />
           <Route path="/gamedata/:date" element={<GameData />} />
-          <Route path="/profile/:name/:id" element={<ProfileData />} />
+          <Route path="/profile/:name/:id" element={<PlayerProfileData />} />
         </Routes>
       </AuthProvider>
     </Router>
