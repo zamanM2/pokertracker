@@ -119,7 +119,6 @@ const AddNewGame = () => {
             <Col xs={6} style={{ marginBottom: "6px" }} key={element.id}>
               <Col>
                 <Button
-                className= "playerAddButton"
                   onClick={() => addUserToGame(element.id)}
                   style={{
                     margin: "3px",
