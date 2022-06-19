@@ -13,6 +13,7 @@ import {
   Tooltip,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
+import ChartDataLabels from "chartjs-plugin-datalabels";
 import { useParams } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 
@@ -23,7 +24,8 @@ ChartJS.register(
   LineElement,
   Title,
   Tooltip,
-  Legend
+  Legend,
+  ChartDataLabels
 );
 
 const options = {
@@ -31,6 +33,12 @@ const options = {
   plugins: {
     legend: {
       position: "top",
+    },
+    datalabels: {
+      display: true,
+      color: "black",
+      align: "end",
+      font: { size: 8 },
     },
   },
   scales: {
