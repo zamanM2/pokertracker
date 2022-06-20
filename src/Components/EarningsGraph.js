@@ -29,7 +29,7 @@ export const options = {
       align: "end",
       anchor: "end",
       offset: -3,
-      font: { size: 7.5 },
+      font: { size: 8 },
     },
   },
   responsive: true,
@@ -74,7 +74,7 @@ const EarningsGraph = (props) => {
     for (const element of props.users) {
       if (parseFloat(element.earnings) === 0) continue;
       _users.push(element.name);
-      earningsData[0].data.push(element.earnings);
+      earningsData[0].data.push(Math.floor(element.earnings));
       if (parseFloat(element.earnings) > 0) {
         earningsData[0].backgroundColor.push("blue");
       } else {
