@@ -29,7 +29,7 @@ export const options = {
       align: "end",
       anchor: "end",
       offset: -3,
-      font: { size: 8 },
+      font: { size: 8, weight: 500 },
     },
   },
   responsive: true,
