@@ -37,6 +37,8 @@ const PlayerProfileData = () => {
 
   const getDescription = () => {
     switch (name) {
+      case "Adnan":
+        return "These seats are more popular than Tao downtown.";
       case "ALamin":
         return "Apple is the GOAT guys. Steve Jobs turns me on. Also check out my shiny head.";
       case "Anayet":
