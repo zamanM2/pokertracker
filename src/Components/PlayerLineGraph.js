@@ -92,7 +92,7 @@ const PlayerLineGraph = (props) => {
       }
       for (const game of _gameHistory) {
         data.labels.push(game.date);
-        earningsData[0].data.push(game.earnings);
+        earningsData[0].data.push(Math.floor(game.earnings));
       }
       data.datasets = earningsData;
     });
