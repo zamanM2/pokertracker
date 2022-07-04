@@ -2,12 +2,13 @@ import React, { useState, useEffect } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import { getUserData, getGameHistory } from "../Firebase/PokerApi";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import { IoMdArrowBack } from "react-icons/io";
 import UserLineGraphs from "./PlayerLineGraph";
 import PlayerGameHistory from "./PlayerGameHistory";
 import "../css/blackBtn.css";
+
 
 const PlayerProfileData = () => {
   const [gameHistory, setGameHistory] = useState([]);

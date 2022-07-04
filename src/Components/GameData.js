@@ -8,7 +8,7 @@ import {
   getGameImage,
   uploadGameImage,
 } from "../Firebase/PokerApi";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import { IoMdArrowBack } from "react-icons/io";
 import { formatDate, earningsCompare } from "../utils/utils";
@@ -26,7 +26,7 @@ const GameData = () => {
       const keys = Object.keys(snapshot.val());
       const _gameData = [];
       for (const key of keys) {
-        _gameData.push({ ...snapshot.val()[key] });
+        _gameData.push({ ...snapshot.val()[key], id: key });
       }
       setGameData(_gameData);
     });
@@ -86,7 +86,14 @@ const GameData = () => {
           {gameData.sort(earningsCompare).map((player) => {
             return (
               <tr key={player.name}>
-                <td>{player.name}</td>
+                <td>
+                  <Link
+                    to={`/profile/${player.name}/${player.id}`}
+                    style={{ color: "black" }}
+                  >
+                    {player.name}
+                  </Link>
+                </td>
                 <td style={{ color: player.earnings > 0 ? "green" : "red" }}>
                   {player.earnings}
                 </td>

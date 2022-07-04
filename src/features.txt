@@ -1,11 +1,10 @@
 - To Do List
-    - +/- stat
     - Dealer of the Night
-    - Buy Back Graph
     - Chat for each game session
     - Crown next to top earner in user list
     - Top Performer/ Worst Performer
     - Active/Inactive status for players
+    - Buy Back Graph
 
 
 -Completed
@@ -18,6 +17,7 @@
     - User Profile
     - Upload photo
     - Line Graph for each user
+    - +/- stat
 
 
 
