@@ -10,6 +10,7 @@ import PlayerGameHistory from "./PlayerGameHistory";
 import "../css/blackBtn.css";
 
 const PlayerProfileData = () => {
+  const [gameHistory, setGameHistory] = useState([]);
   const [userData, setUserData] = useState({});
   let { id, name } = useParams();
   const navigate = useNavigate();
@@ -34,6 +35,40 @@ const PlayerProfileData = () => {
       return null;
     }
   };
+
+  const getPositiveNegativeRatio = () => {
+    let positiveGames = 0;
+    let negativeGames = 0;
+    for (let i = 0; i < gameHistory.length; i++) {
+      if (gameHistory[i].earnings > 0) {
+        positiveGames++;
+      } else if (gameHistory[i].earnings < 0) {
+        negativeGames++;
+      }
+    }
+    return `${positiveGames} : ${negativeGames}`;
+  };
+
+  useEffect(() => {
+    getGameHistory().then((snapshot) => {
+      const gamesData = snapshot.val();
+      const _gameHistory = [];
+      const dates = Object.keys(gamesData);
+      for (const date of dates) {
+        const userIds = Object.keys(gamesData[date]);
+        for (const userId of userIds) {
+          if (userId === id) {
+            _gameHistory.push({
+              earnings: gamesData[date][userId].earnings,
+              buyBacks: gamesData[date][userId].buyBacks,
+              date: date,
+            });
+          }
+        }
+      }
+      setGameHistory(_gameHistory);
+    });
+  }, []);
 
   const getDescription = () => {
     switch (name) {
@@ -128,6 +163,13 @@ const PlayerProfileData = () => {
         <label>
           <label style={{ fontWeight: "bold" }}>Games Played:&nbsp; </label>
           <label>{userData.gamesPlayed}</label>
+        </label>
+        <label>
+          <label style={{ fontWeight: "bold" }}>
+            {" "}
+            Positive - Negative :&nbsp;{" "}
+          </label>
+          <label>{getPositiveNegativeRatio()}</label>
         </label>
         <label>
           <label style={{ fontWeight: "bold" }}>

@@ -1,4 +1,6 @@
 - To Do List
+    - +/- stat
+    - Dealer of the Night
     - Buy Back Graph
     - Chat for each game session
     - Crown next to top earner in user list
