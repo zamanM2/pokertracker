@@ -63,6 +63,13 @@ const AddNewGame = () => {
     setUsers([...users]);
   };
 
+  const dealerForNight = (userId) => {
+    for (const el of users) {
+      if (el.id === userId) el.inGame = false;
+    }
+    setUsers([...users]);
+  };
+
   const handInputChange = (event, userId) => {
     for (let element of users) {
       if (element.id === userId) {
@@ -111,6 +118,7 @@ const AddNewGame = () => {
       </Row>
       <Row>
         <h3>Players to Add </h3>
+        <h4> Dealer Of the Night</h4>
       </Row>
       <Row>
         {users
@@ -191,6 +199,16 @@ const AddNewGame = () => {
             </Row>
           ))}
       </Row>
+       <Row>
+        <h4>
+          Dealer (
+          {users.reduce((accumulator, currentValue) => {
+            if (currentValue.inGame === true) return (accumulator += 1);
+            else return accumulator;
+          }, 0)}
+          )
+        </h4>
+        </Row>
       <Row style={{ marginTop: "40px" }}>
         <Col>
           <Row style={{ marginBottom: "5px" }}>
