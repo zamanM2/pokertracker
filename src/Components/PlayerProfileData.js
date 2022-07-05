@@ -2,17 +2,16 @@ import React, { useState, useEffect } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import { getUserData, getGameHistory } from "../Firebase/PokerApi";
-import { useParams, useNavigate, } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import { IoMdArrowBack } from "react-icons/io";
 import UserLineGraphs from "./PlayerLineGraph";
 import PlayerGameHistory from "./PlayerGameHistory";
 import "../css/blackBtn.css";
 
-
 const PlayerProfileData = () => {
-  const [gameHistory, setGameHistory] = useState([]);
   const [userData, setUserData] = useState({});
+  const [gameHistory, setGameHistory] = useState([]);
   let { id, name } = useParams();
   const navigate = useNavigate();
   const images = require.context("../images", true);
@@ -22,33 +21,6 @@ const PlayerProfileData = () => {
       setUserData(snapshot.val());
     });
   }, []);
-
-  const computeAvgProfit = () => {
-    let avg = userData.earnings / userData.gamesPlayed;
-    avg = avg.toString();
-    return avg.substr(0, 6);
-  };
-
-  const getPlayerImage = () => {
-    try {
-      return images(`./${name}.jpeg`);
-    } catch (e) {
-      return null;
-    }
-  };
-
-  const getPositiveNegativeRatio = () => {
-    let positiveGames = 0;
-    let negativeGames = 0;
-    for (let i = 0; i < gameHistory.length; i++) {
-      if (gameHistory[i].earnings > 0) {
-        positiveGames++;
-      } else if (gameHistory[i].earnings < 0) {
-        negativeGames++;
-      }
-    }
-    return `${positiveGames} : ${negativeGames}`;
-  };
 
   useEffect(() => {
     getGameHistory().then((snapshot) => {
@@ -70,6 +42,33 @@ const PlayerProfileData = () => {
       setGameHistory(_gameHistory);
     });
   }, []);
+
+  const getPositiveNegativeRatio = () => {
+    let positiveGames = 0;
+    let negativeGames = 0;
+    for (let i = 0; i < gameHistory.length; i++) {
+      if (gameHistory[i].earnings > 0) {
+        positiveGames++;
+      } else if (gameHistory[i].earnings < 0) {
+        negativeGames++;
+      }
+    }
+    return `${positiveGames} : ${negativeGames}`;
+  };
+
+  const computeAvgProfit = () => {
+    let avg = userData.earnings / userData.gamesPlayed;
+    avg = avg.toString();
+    return avg.substr(0, 6);
+  };
+
+  const getPlayerImage = () => {
+    try {
+      return images(`./${name}.jpeg`);
+    } catch (e) {
+      return null;
+    }
+  };
 
   const getDescription = () => {
     switch (name) {
