@@ -13,11 +13,13 @@ import Button from "react-bootstrap/Button";
 import { IoMdArrowBack } from "react-icons/io";
 import { formatDate, earningsCompare } from "../utils/utils";
 import "../css/blackBtn.css";
+import { deleteApp } from "firebase/app";
 
 const GameData = () => {
   const [gameData, setGameData] = useState([]);
   const [gameImage, setGameImage] = useState("");
   const [imageToUpload, setImageToUpload] = useState("");
+  const [dealer, setDealer] = useState("");
   let { date } = useParams();
   const navigate = useNavigate();
 
@@ -26,7 +28,11 @@ const GameData = () => {
       const keys = Object.keys(snapshot.val());
       const _gameData = [];
       for (const key of keys) {
-        _gameData.push({ ...snapshot.val()[key], id: key });
+        if (key == "dealer") {
+          setDealer(snapshot.val()[key]);
+        } else {
+          _gameData.push({ ...snapshot.val()[key], id: key });
+        }
       }
       setGameData(_gameData);
     });
@@ -107,6 +113,15 @@ const GameData = () => {
           })}
         </tbody>
       </table>
+      <h4
+        style={{
+          marginBottom: "5px",
+          marginTop: "7px",
+          marginLeft: "20px",
+        }}
+      >
+        Dealer: {dealer} 
+      </h4>
       <img
         style={{ width: "100%", height: "100%", marginBottom: "8px" }}
         src={gameImage}

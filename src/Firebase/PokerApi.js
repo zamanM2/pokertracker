@@ -27,16 +27,17 @@ export const addNewUser = async (newName) => {
   });
 };
 
-export const saveGameSession = async (date, usersInGame) => {
+export const saveGameSession = async (date, usersInGame, dealer) => {
   const sessionData = {};
   usersInGame.forEach((el) => {
     sessionData[el.id] = {
       buyBacks: el.inputBuyBacks,
       earnings: el.inputEarnings,
       name: el.name,
-      dealer: el.name,
     };
   });
+
+  sessionData['dealer'] = dealer;
   const updateSession = {};
   updateSession[`/games/${date}`] = sessionData;
   update(dbRef, updateSession);
@@ -48,15 +49,14 @@ export const saveGameSession = async (date, usersInGame) => {
       gamesPlayed: el.gamesPlayed + 1,
       earnings: el.earnings + parseFloat(el.inputEarnings),
       buyBacks: el.buyBacks + parseInt(el.inputBuyBacks),
-      dealer: el.name,
     };
     return update(child(dbRef, `/users/`), updatesUsers);
   });
 };
 
-export const getGameHistory = async ()=>{
-return get(child(dbRef, `/games/`));
-}
+export const getGameHistory = async () => {
+  return get(child(dbRef, `/games/`));
+};
 
 export const getGameImage = async (date) => {
   const gameRef = ref(storage, `gameImages/${date}.jpg`);

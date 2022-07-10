@@ -25,6 +25,7 @@ function nameCompare(a, b) {
 
 const AddNewGame = () => {
   const [users, setUsers] = useState([]);
+  const [dealer, setDealer] = useState([]);
   const { currentUser } = useAuth();
   const [bankInfo, setBankInfo] = useState({
     bankPlayer: "",
@@ -63,13 +64,6 @@ const AddNewGame = () => {
     setUsers([...users]);
   };
 
-  const dealerForNight = (userId) => {
-    for (const el of users) {
-      if (el.id === userId) el.inGame = false;
-    }
-    setUsers([...users]);
-  };
-
   const handInputChange = (event, userId) => {
     for (let element of users) {
       if (element.id === userId) {
@@ -78,6 +72,12 @@ const AddNewGame = () => {
     }
     setUsers([...users]);
   };
+
+  const handleDealerChange = (event) =>{
+   setDealer(
+     event.target.value,
+   );
+  } 
 
   const calculateBank = (event) => {
     event.preventDefault();
@@ -106,7 +106,7 @@ const AddNewGame = () => {
     for (const user of usersInGame) {
       if (user.inputEarnings === "") return;
     }
-    await saveGameSession(getTodaysDate(), usersInGame);
+    await saveGameSession(getTodaysDate(), usersInGame, dealer);
     toast.success("Session Saved");
   };
 
@@ -118,7 +118,6 @@ const AddNewGame = () => {
       </Row>
       <Row>
         <h3>Players to Add </h3>
-        <h4> Dealer Of the Night</h4>
       </Row>
       <Row>
         {users
@@ -199,16 +198,14 @@ const AddNewGame = () => {
             </Row>
           ))}
       </Row>
-       <Row>
-        <h4>
-          Dealer (
-          {users.reduce((accumulator, currentValue) => {
-            if (currentValue.inGame === true) return (accumulator += 1);
-            else return accumulator;
-          }, 0)}
-          )
-        </h4>
-        </Row>
+      <Col>
+        <h4> Dealer </h4>
+        <Form.Control
+          name="dealer"
+          type="string"
+          onChange={(event) => handleDealerChange(event)}
+        />
+      </Col>
       <Row style={{ marginTop: "40px" }}>
         <Col>
           <Row style={{ marginBottom: "5px" }}>
