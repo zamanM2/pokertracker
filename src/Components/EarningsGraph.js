@@ -58,6 +58,7 @@ const data = {
   ],
 };
 
+
 const EarningsGraph = (props) => {
   const [, updateState] = useState({});
 
