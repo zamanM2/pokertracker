@@ -113,15 +113,17 @@ const GameData = () => {
           })}
         </tbody>
       </table>
-      <h4
-        style={{
-          marginBottom: "5px",
-          marginTop: "7px",
-          marginLeft: "20px",
-        }}
-      >
-        Dealer: {dealer} 
-      </h4>
+      {dealer !== "" && (
+        <h4
+          style={{
+            marginBottom: "5px",
+            marginTop: "7px",
+            marginLeft: "20px",
+          }}
+        >
+          Dealer: {dealer}
+        </h4>
+      )}
       <img
         style={{ width: "100%", height: "100%", marginBottom: "8px" }}
         src={gameImage}
