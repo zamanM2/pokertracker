@@ -27,6 +27,10 @@ export const addNewUser = async (newName) => {
   });
 };
 
+export const endSeason = () => {
+  return get(child(dbRef, `/metadata/currentSeason`));
+};
+
 export const saveGameSession = async (date, usersInGame, dealer) => {
   const sessionData = {};
   usersInGame.forEach((el) => {
@@ -37,7 +41,7 @@ export const saveGameSession = async (date, usersInGame, dealer) => {
     };
   });
 
-  sessionData['dealer'] = dealer;
+  sessionData["dealer"] = dealer;
   const updateSession = {};
   updateSession[`/games/${date}`] = sessionData;
   update(dbRef, updateSession);

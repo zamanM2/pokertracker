@@ -4,7 +4,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import { getUsers, saveGameSession } from "../Firebase/PokerApi";
+import { getUsers, saveGameSession, endSeason } from "../Firebase/PokerApi";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../Context/AuthContext";
 import { getTodaysDate } from "../utils/utils";
@@ -73,11 +73,9 @@ const AddNewGame = () => {
     setUsers([...users]);
   };
 
-  const handleDealerChange = (event) =>{
-   setDealer(
-     event.target.value,
-   );
-  } 
+  const handleDealerChange = (event) => {
+    setDealer(event.target.value);
+  };
 
   const calculateBank = (event) => {
     event.preventDefault();
@@ -108,6 +106,13 @@ const AddNewGame = () => {
     }
     await saveGameSession(getTodaysDate(), usersInGame, dealer);
     toast.success("Session Saved");
+  };
+
+  const endSeasonSession = async () => {
+    endSeason().then((snapshot) => {
+      console.log(snapshot.val());
+    });
+    console.log();
   };
 
   return (
@@ -228,6 +233,13 @@ const AddNewGame = () => {
             <Col>
               <Button className="blackBtn" onClick={() => navigate("/")}>
                 <IoMdArrowBack />
+              </Button>
+            </Col>
+          </Row>
+          <Row style={{ marginBottom: "5px" }}>
+            <Col>
+              <Button className="blackBtn" onClick={endSeasonSession}>
+                End Season
               </Button>
             </Col>
           </Row>
