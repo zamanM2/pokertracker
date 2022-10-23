@@ -109,7 +109,9 @@ const AddNewGame = () => {
   };
 
   const endSeasonSession = async () => {
-    await endSeason();
+    await endSeason().then(() => {
+      toast.success("Season Ended!");
+    });
   };
 
   return (
