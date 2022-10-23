@@ -7,7 +7,7 @@ export const getUsers = () => {
 };
 
 export const getGameSessions = () => {
-  return get(child(dbRef, `/games/`));
+  return get(child(dbRef, `/seasons/`));
 };
 
 export const getGameData = (date) => {

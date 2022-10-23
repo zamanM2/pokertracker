@@ -14,7 +14,14 @@ const GamesList = () => {
 
   useEffect(() => {
     getGameSessions().then((snapshot) => {
+      console.log(snapshot.val());
       const keys = Object.keys(snapshot.val());
+      console.log(snapshot.val()[keys[0]]);
+      console.log(snapshot.val()[keys[1]]);
+      console.log(Object.keys(snapshot.val()[keys[0]]));
+      // for(i=0;i<keys.length;i++){
+
+      // }
       setGameSessions(keys);
     });
   }, []);
