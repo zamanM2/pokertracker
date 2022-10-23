@@ -1,7 +1,7 @@
 - To Do List
 
     -SEASONS UPDATE
-        -Restructure DB for season games
+       
         -Start season
         -End season
         -Season Graph
@@ -14,7 +14,6 @@
     - Chat for each game session
     - Crown next to top earner in user list
     - Top Performer/ Worst Performer
-    - Active/Inactive status for players
     - Buy Back Graph
 
 
@@ -30,6 +29,8 @@
     - Line Graph for each user
     - +/- stat
     - Dealer of the Night
+    - Filter inactive players
+    - Restructure DB for season games
 
 
 -Point System
