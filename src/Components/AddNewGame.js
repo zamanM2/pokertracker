@@ -233,13 +233,15 @@ const AddNewGame = () => {
               </Button>
             </Col>
           </Row>
-          <Row style={{ marginBottom: "5px" }}>
-            <Col>
-              <Button className="blackBtn" onClick={endSeasonSession}>
-                End Season
-              </Button>
-            </Col>
-          </Row>
+          {currentUser && (
+            <Row style={{ marginBottom: "5px" }}>
+              <Col>
+                <Button className="blackBtn" onClick={endSeasonSession}>
+                  End Season
+                </Button>
+              </Col>
+            </Row>
+          )}
         </Col>
         <Col>
           <Row>Bank is: {bankInfo.bankPlayer}</Row>
