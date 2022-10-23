@@ -109,10 +109,7 @@ const AddNewGame = () => {
   };
 
   const endSeasonSession = async () => {
-    endSeason().then((snapshot) => {
-      console.log(snapshot.val());
-    });
-    console.log();
+    await endSeason();
   };
 
   return (
