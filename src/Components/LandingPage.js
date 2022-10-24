@@ -44,7 +44,7 @@ function LandingPage() {
         <h2>[A]rgoBros Poker Tracker</h2>
       </Row>
       <Row style={{ height: "250px" }}>
-        <EarningsGraph users={users.filter((user) => user.isActive == true)} />
+        <EarningsGraph users={users.filter((user) => user.isActive === true)} />
       </Row>
       <Row style={{ marginTop: "10px" }}>
         <Col className="playerContainer" xs={6}>

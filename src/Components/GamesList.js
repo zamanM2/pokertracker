@@ -19,7 +19,6 @@ const GamesList = () => {
       for (let i = 0; i < keys.length; i++) {
         tempArray = tempArray.concat(Object.keys(snapshot.val()[keys[i]]));
       }
-      console.log(tempArray);
       setGameSessions(tempArray);
     });
   }, []);
