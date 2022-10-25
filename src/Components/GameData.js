@@ -21,10 +21,11 @@ const GameData = () => {
   const [imageToUpload, setImageToUpload] = useState("");
   const [dealer, setDealer] = useState("");
   let { date } = useParams();
+  let { season } = useParams();
   const navigate = useNavigate();
 
   useEffect(() => {
-    getGameData(date).then((snapshot) => {
+    getGameData(season, date).then((snapshot) => {
       const keys = Object.keys(snapshot.val());
       const _gameData = [];
       for (const key of keys) {
