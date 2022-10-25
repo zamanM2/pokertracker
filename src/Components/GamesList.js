@@ -11,18 +11,6 @@ import "../css/blackBtn.css";
 
 const GamesList = () => {
   const [gameSessions, setGameSessions] = useState([]);
-  const [gameSessions2, setGameSessions2] = useState([]);
-
-  useEffect(() => {
-    getGameSessions().then((snapshot) => {
-      const keys = Object.keys(snapshot.val());
-      let tempArray = [];
-      for (let i = 0; i < keys.length; i++) {
-        tempArray = tempArray.concat(Object.keys(snapshot.val()[keys[i]]));
-      }
-      setGameSessions(tempArray);
-    });
-  }, []);
 
   useEffect(() => {
     getGameSessions().then((snapshot) => {
@@ -30,10 +18,11 @@ const GamesList = () => {
       let tempArray = [];
       for (let i = 0; i < keys.length; i++) {
         let dates = Object.keys(snapshot.val()[keys[i]]);
-        // for (let j = 0; j < dates.length; j++) {
-        //   tempArray.push({ date: dates[j], season: seasons[i] });
-        // }
+        for (let j = 0; j < dates.length; j++) {
+          tempArray.push({ date: dates[j], season: keys[i] });
+        }
       }
+      setGameSessions(tempArray);
     });
   }, []);
 
@@ -52,13 +41,13 @@ const GamesList = () => {
         </Col>
       </Row>
       <Row>
-        {[...gameSessions].sort(dateCompare).map((date) => (
+        {[...gameSessions].map((game) => (
           <Link
             style={{ marginBottom: "3px", color: "black" }}
-            key={date}
-            to={`/gamedata/${date}`}
+            key={game.date}
+            to={`/gamedata/${game.date}`}
           >
-            {formatDate(date)}
+            {formatDate(game.date)}
           </Link>
         ))}
       </Row>
