@@ -1,8 +1,8 @@
 export function dateCompare(a, b) {
-  if (a < b) {
+  if (a.date < b.date) {
     return 1;
   }
-  if (a > b) {
+  if (a.date > b.date) {
     return -1;
   }
   return 0;

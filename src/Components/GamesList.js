@@ -23,7 +23,7 @@ const GamesList = () => {
           _gameSessions.push({ date: dates[j], season: seasons[i] });
         }
       }
-      setGameSessions(_gameSessions);
+      setGameSessions(_gameSessions.sort(dateCompare));
     });
   }, []);
 
