@@ -58,7 +58,6 @@ const data = {
   ],
 };
 
-
 const EarningsGraph = (props) => {
   const [, updateState] = useState({});
 
@@ -72,20 +71,34 @@ const EarningsGraph = (props) => {
       },
     ];
 
-    for (const element of props.users) {
-      if (parseFloat(element.earnings) === 0) continue;
-      _users.push(element.name);
-      earningsData[0].data.push(Math.floor(element.earnings));
-      if (parseFloat(element.earnings) > 0) {
-        earningsData[0].backgroundColor.push("blue");
-      } else {
-        earningsData[0].backgroundColor.push("red");
+    if (props.isSeasonSelected === true)
+      for (const element of props.users) {
+        if (parseFloat(element.seasonEarnings) === 0) continue;
+        _users.push(element.name);
+        earningsData[0].data.push(Math.floor(element.seasonEarnings));
+        if (parseFloat(element.seasonEarnings) > 0) {
+          earningsData[0].backgroundColor.push("blue");
+        } else {
+          earningsData[0].backgroundColor.push("red");
+        }
+      }
+    else {
+      for (const element of props.users) {
+        if (parseFloat(element.earnings) === 0) continue;
+        _users.push(element.name);
+        earningsData[0].data.push(Math.floor(element.earnings));
+        if (parseFloat(element.earnings) > 0) {
+          earningsData[0].backgroundColor.push("blue");
+        } else {
+          earningsData[0].backgroundColor.push("red");
+        }
       }
     }
+
     data.labels = _users;
     data.datasets = earningsData;
     updateState({});
-  }, [props.users]);
+  }, [props.users, props.isSeasonSelected]);
   return <Bar options={options} data={data} type="bar" />;
 };
 

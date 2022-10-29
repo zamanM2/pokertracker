@@ -63,7 +63,6 @@ function LandingPage() {
                 name="radio"
                 value={radio.value}
                 checked={isSeasonSelected === radio.value}
-                onChange={(e) => setIsSeasonSelected(e.currentTarget.value)}
                 onClick={() => {
                   setIsSeasonSelected(radio.value);
                 }}
@@ -75,13 +74,10 @@ function LandingPage() {
         </Col>
       </Row>
       <Row style={{ height: "250px" }}>
-        {isSeasonSelected ? (
-          <SeasonGraph users={users.filter((user) => user.isActive === true)} />
-        ) : (
-          <EarningsGraph
-            users={users.filter((user) => user.isActive === true)}
-          />
-        )}
+        <EarningsGraph
+          isSeasonSelected={isSeasonSelected}
+          users={users.filter((user) => user.isActive === true)}
+        />
       </Row>
       <Row style={{ marginTop: "10px" }}>
         <Col className="playerContainer" xs={6}>
