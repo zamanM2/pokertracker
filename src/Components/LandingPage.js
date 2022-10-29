@@ -13,10 +13,9 @@ import { earningsCompare } from "../utils/utils";
 function LandingPage() {
   const [users, setUsers] = useState([]);
   const [isSeasonSelected, setIsSeasonSelected] = useState(true);
-  const [radioValue, setRadioValue] = useState("1");
   const radios = [
-    { name: "Season", value: "1" },
-    { name: "Overall", value: "2" },
+    { name: "Season", value: "true" },
+    { name: "Overall", value: "false" },
   ];
 
   useEffect(() => {
@@ -62,8 +61,8 @@ function LandingPage() {
                 variant={idx % 2 ? "outline-success" : "outline-danger"}
                 name="radio"
                 value={radio.value}
-                checked={radioValue === radio.value}
-                onChange={(e) => setRadioValue(e.currentTarget.value)}
+                checked={isSeasonSelected === radio.value}
+                onChange={(e) => setIsSeasonSelected(e.currentTarget.value)}
               >
                 {radio.name}
               </ToggleButton>
