@@ -185,7 +185,7 @@ const PlayerProfileData = () => {
         <UserLineGraphs />
       </Row>
       <Row style={{ marginTop: "5px" }}>
-        <PlayerGameHistory gameHistory={gameHistory} />
+        <PlayerGameHistory />
       </Row>
     </Container>
   );
