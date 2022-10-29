@@ -15,12 +15,12 @@ const GamesList = () => {
   useEffect(() => {
     //populate state with an array of objects {date, season}
     getGameSessions().then((snapshot) => {
-      const keys = Object.keys(snapshot.val()); //seasons
+      const seasons = Object.keys(snapshot.val()); //seasons
       let _gameSessions = [];
-      for (let i = 0; i < keys.length; i++) {
-        let dates = Object.keys(snapshot.val()[keys[i]]);
+      for (let i = 0; i < seasons.length; i++) {
+        let dates = Object.keys(snapshot.val()[seasons[i]]);
         for (let j = 0; j < dates.length; j++) {
-          _gameSessions.push({ date: dates[j], season: keys[i] });
+          _gameSessions.push({ date: dates[j], season: seasons[i] });
         }
       }
       setGameSessions(_gameSessions);

@@ -65,7 +65,7 @@ export const saveGameSession = async (date, usersInGame, dealer) => {
 };
 
 export const getGameHistory = async () => {
-  return get(child(dbRef, `/games/`));
+  return get(child(dbRef, `/seasons/`));
 };
 
 export const getGameImage = async (date) => {
