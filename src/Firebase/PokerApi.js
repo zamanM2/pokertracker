@@ -56,7 +56,6 @@ export const saveGameSession = async (date, usersInGame, dealer) => {
       buyBacks: el.inputBuyBacks,
       earnings: el.inputEarnings,
       name: el.name,
-      seasonEarnings: el.seasonEarnings,
     };
   });
 
