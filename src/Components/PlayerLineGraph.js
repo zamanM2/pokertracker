@@ -73,23 +73,27 @@ const PlayerLineGraph = (props) => {
           backgroundColor: "#4169E1",
         },
       ];
-      const gamesData = snapshot.val();
+      const seasons = Object.keys(snapshot.val());
       const _gameHistory = [];
-      const dates = Object.keys(gamesData);
-      let totalEarnings = 0;
-      for (const date of dates) {
-        const userIds = Object.keys(gamesData[date]);
-        for (const userId of userIds) {
-          if (userId === id) {
-            totalEarnings += parseFloat(gamesData[date][userId].earnings);
-            _gameHistory.push({
-              earnings: totalEarnings,
-              buyBacks: gamesData[date][userId].buyBacks,
-              date: formatDate(date),
-            });
+      for (let i = 0; i < seasons.length; i++) {
+        const gamesData = snapshot.val()[seasons[i]];
+        const dates = Object.keys(gamesData);
+        let totalEarnings = 0;
+        for (const date of dates) {
+          const userIds = Object.keys(gamesData[date]);
+          for (const userId of userIds) {
+            if (userId === id) {
+              totalEarnings += parseFloat(gamesData[date][userId].earnings);
+              _gameHistory.push({
+                earnings: totalEarnings,
+                buyBacks: gamesData[date][userId].buyBacks,
+                date: formatDate(date),
+              });
+            }
           }
         }
       }
+
       for (const game of _gameHistory) {
         data.labels.push(game.date);
         earningsData[0].data.push(Math.floor(game.earnings));
