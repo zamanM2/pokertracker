@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import EarningsGraph from "./EarningsGraph";
+import SeasonGraph from "./SeasonGraph";
 import PlayerList from "./PlayerList";
 import GamesList from "./GamesList";
 import Container from "react-bootstrap/Container";
@@ -63,6 +64,9 @@ function LandingPage() {
                 value={radio.value}
                 checked={isSeasonSelected === radio.value}
                 onChange={(e) => setIsSeasonSelected(e.currentTarget.value)}
+                onClick={() => {
+                  setIsSeasonSelected(radio.value);
+                }}
               >
                 {radio.name}
               </ToggleButton>
@@ -71,10 +75,13 @@ function LandingPage() {
         </Col>
       </Row>
       <Row style={{ height: "250px" }}>
-        <EarningsGraph
-          users={users.filter((user) => user.isActive === true)}
-          isSeasonSelected={isSeasonSelected}
-        />
+        {isSeasonSelected ? (
+          <SeasonGraph users={users.filter((user) => user.isActive === true)} />
+        ) : (
+          <EarningsGraph
+            users={users.filter((user) => user.isActive === true)}
+          />
+        )}
       </Row>
       <Row style={{ marginTop: "10px" }}>
         <Col className="playerContainer" xs={6}>
