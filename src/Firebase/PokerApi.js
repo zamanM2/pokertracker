@@ -60,9 +60,10 @@ export const saveGameSession = async (date, usersInGame, dealer) => {
       gamesPlayed: el.gamesPlayed + 1,
       earnings: el.earnings + parseFloat(el.inputEarnings),
       buyBacks: el.buyBacks + parseInt(el.inputBuyBacks),
+      isActive: true,
     };
-    return update(child(dbRef, `/users/`), updatesUsers);
   });
+  return update(child(dbRef, `/users/`), updatesUsers);
 };
 
 export const getGameHistory = async () => {
