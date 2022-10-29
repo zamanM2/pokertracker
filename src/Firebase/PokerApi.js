@@ -44,6 +44,7 @@ export const saveGameSession = async (date, usersInGame, dealer) => {
       buyBacks: el.inputBuyBacks,
       earnings: el.inputEarnings,
       name: el.name,
+      seasonEarnings: el.seasonEarnings,
     };
   });
 
@@ -61,6 +62,7 @@ export const saveGameSession = async (date, usersInGame, dealer) => {
       earnings: el.earnings + parseFloat(el.inputEarnings),
       buyBacks: el.buyBacks + parseInt(el.inputBuyBacks),
       isActive: true,
+      seasonEarnings: el.seasonEarnings + parseFloat(el.inputEarnings),
     };
   });
   return update(child(dbRef, `/users/`), updatesUsers);
