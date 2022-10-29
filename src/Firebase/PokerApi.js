@@ -49,7 +49,8 @@ export const saveGameSession = async (date, usersInGame, dealer) => {
 
   sessionData["dealer"] = dealer;
   const updateSession = {};
-  updateSession[`/games/${date}`] = sessionData;
+  const season = await get(child(dbRef, `/metadata/currentSeason`));
+  updateSession[`/seasons/${"season-" + season.val()}/${date}`] = sessionData;
   update(dbRef, updateSession);
 
   let updatesUsers = {};
