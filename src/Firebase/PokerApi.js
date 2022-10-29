@@ -27,7 +27,7 @@ export const addNewUser = async (newName) => {
   });
 };
 
-export const endSeason = async () => {
+export const endSeason = async (users) => {
   get(child(dbRef, `/metadata/currentSeason`)).then((snapshot) => {
     const currentSeason = snapshot.val();
     const newSeason = currentSeason + 1;
@@ -35,6 +35,18 @@ export const endSeason = async () => {
     updateSeason[`/metadata/currentSeason`] = newSeason;
     update(dbRef, updateSeason);
   });
+  const resetSeasonData = {};
+  users.forEach((el) => {
+    resetSeasonData[el.id] = {
+      seasonEarnings: 0,
+      buyBacks: el.buyBacks,
+      earnings: el.earnings,
+      name: el.name,
+      isActive: el.isActive,
+      gamesPlayed: el.gamesPlayed,
+    };
+  });
+  return update(child(dbRef, `/users/`), resetSeasonData);
 };
 
 export const saveGameSession = async (date, usersInGame, dealer) => {
