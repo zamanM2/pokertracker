@@ -3,24 +3,27 @@ import { getGameHistory } from "../Firebase/PokerApi";
 import { useParams, Link } from "react-router-dom";
 import { formatDate, gameDateCompare } from "../utils/utils";
 
-const PlayerGameHistory = () => {
+const PlayerGameHistory = (props) => {
   const [gameHistory, setGameHistory] = useState([]);
   let { id } = useParams();
 
   useEffect(() => {
     getGameHistory().then((snapshot) => {
-      const gamesData = snapshot.val();
       const _gameHistory = [];
-      const dates = Object.keys(gamesData);
-      for (const date of dates) {
-        const userIds = Object.keys(gamesData[date]);
-        for (const userId of userIds) {
-          if (userId === id) {
-            _gameHistory.push({
-              earnings: gamesData[date][userId].earnings,
-              buyBacks: gamesData[date][userId].buyBacks,
-              date: date,
-            });
+      const seasons = Object.keys(snapshot.val());
+      for (let i = 0; i < seasons.length; i++) {
+        const gamesData = snapshot.val()[seasons[i]]; //all games in a season
+        const dates = Object.keys(gamesData);
+        for (const date of dates) {
+          const userIds = Object.keys(gamesData[date]);
+          for (const userId of userIds) {
+            if (userId === id) {
+              _gameHistory.push({
+                earnings: gamesData[date][userId].earnings,
+                buyBacks: gamesData[date][userId].buyBacks,
+                date: date,
+              });
+            }
           }
         }
       }
