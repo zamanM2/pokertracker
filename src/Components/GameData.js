@@ -11,9 +11,8 @@ import {
 import { useParams, useNavigate, Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import { IoMdArrowBack } from "react-icons/io";
-import { formatDate, earningsCompare } from "../utils/utils";
+import { formatDate, overallEarningsCompare } from "../utils/utils";
 import "../css/blackBtn.css";
-import { deleteApp } from "firebase/app";
 
 const GameData = () => {
   const [gameData, setGameData] = useState([]);
@@ -90,7 +89,7 @@ const GameData = () => {
           </tr>
         </thead>
         <tbody>
-          {gameData.sort(earningsCompare).map((player) => {
+          {gameData.sort(overallEarningsCompare).map((player) => {
             return (
               <tr key={player.name}>
                 <td>

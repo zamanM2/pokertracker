@@ -10,6 +10,7 @@ import {
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
 import ChartDataLabels from "chartjs-plugin-datalabels";
+import { overallEarningsCompare, seasonEarningsCompare } from "../utils/utils";
 
 ChartJS.register(
   CategoryScale,
@@ -72,7 +73,7 @@ const EarningsGraph = (props) => {
     ];
 
     if (props.isSeasonSelected === true)
-      for (const element of props.users) {
+      for (const element of props.users.sort(seasonEarningsCompare)) {
         if (parseFloat(element.seasonEarnings) === 0) continue;
         _users.push(element.name);
         earningsData[0].data.push(Math.floor(element.seasonEarnings));
@@ -83,7 +84,7 @@ const EarningsGraph = (props) => {
         }
       }
     else {
-      for (const element of props.users) {
+      for (const element of props.users.sort(overallEarningsCompare)) {
         if (parseFloat(element.earnings) === 0) continue;
         _users.push(element.name);
         earningsData[0].data.push(Math.floor(element.earnings));

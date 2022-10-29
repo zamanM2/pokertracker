@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import EarningsGraph from "./EarningsGraph";
-import SeasonGraph from "./SeasonGraph";
 import PlayerList from "./PlayerList";
 import GamesList from "./GamesList";
 import Container from "react-bootstrap/Container";
@@ -9,7 +8,6 @@ import Col from "react-bootstrap/Col";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import ToggleButton from "react-bootstrap/ToggleButton";
 import { getUsers, addNewUser } from "../Firebase/PokerApi";
-import { earningsCompare } from "../utils/utils";
 
 function LandingPage() {
   const [users, setUsers] = useState([]);
@@ -26,7 +24,7 @@ function LandingPage() {
       for (const element of keys) {
         _users.push({ ...snapshot.val()[element], id: element });
       }
-      setUsers(_users.sort(earningsCompare));
+      setUsers(_users);
     });
   }, []);
 
