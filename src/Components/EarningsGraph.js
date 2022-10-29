@@ -72,27 +72,21 @@ const EarningsGraph = (props) => {
       },
     ];
 
-    if (props.isSeasonSelected === true)
-      for (const element of props.users.sort(seasonEarningsCompare)) {
-        if (parseFloat(element.seasonEarnings) === 0) continue;
-        _users.push(element.name);
-        earningsData[0].data.push(Math.floor(element.seasonEarnings));
-        if (parseFloat(element.seasonEarnings) > 0) {
-          earningsData[0].backgroundColor.push("blue");
-        } else {
-          earningsData[0].backgroundColor.push("red");
-        }
-      }
-    else {
-      for (const element of props.users.sort(overallEarningsCompare)) {
-        if (parseFloat(element.earnings) === 0) continue;
-        _users.push(element.name);
-        earningsData[0].data.push(Math.floor(element.earnings));
-        if (parseFloat(element.earnings) > 0) {
-          earningsData[0].backgroundColor.push("blue");
-        } else {
-          earningsData[0].backgroundColor.push("red");
-        }
+    let seasonsOrOverall = props.isSeasonSelected
+      ? "seasonEarnings"
+      : "earnings";
+
+    if (props.isSeasonSelected) props.users.sort(seasonEarningsCompare);
+    else props.users.sort(overallEarningsCompare);
+
+    for (const element of props.users) {
+      if (parseFloat(element[seasonsOrOverall]) === 0) continue;
+      _users.push(element.name);
+      earningsData[0].data.push(Math.floor(element[seasonsOrOverall]));
+      if (parseFloat(element[seasonsOrOverall]) > 0) {
+        earningsData[0].backgroundColor.push("blue");
+      } else {
+        earningsData[0].backgroundColor.push("red");
       }
     }
 
