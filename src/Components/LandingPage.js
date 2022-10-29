@@ -14,8 +14,8 @@ function LandingPage() {
   const [users, setUsers] = useState([]);
   const [isSeasonSelected, setIsSeasonSelected] = useState(true);
   const radios = [
-    { name: "Season", value: "true" },
-    { name: "Overall", value: "false" },
+    { name: "Season", value: true },
+    { name: "Overall", value: false },
   ];
 
   useEffect(() => {
