@@ -57,7 +57,7 @@ function LandingPage() {
                 key={idx}
                 id={`radio-${idx}`}
                 type="radio"
-                variant={idx % 2 ? "outline-success" : "outline-danger"}
+                variant={idx % 2 ? "outline-dark" : "outline-dark"}
                 name="radio"
                 value={radio.value}
                 checked={isSeasonSelected === radio.value}
