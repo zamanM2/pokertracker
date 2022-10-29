@@ -5,11 +5,19 @@ import GamesList from "./GamesList";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import ButtonGroup from "react-bootstrap/ButtonGroup";
+import ToggleButton from "react-bootstrap/ToggleButton";
 import { getUsers, addNewUser } from "../Firebase/PokerApi";
 import { earningsCompare } from "../utils/utils";
 
 function LandingPage() {
   const [users, setUsers] = useState([]);
+  const [isSeasonSelected, setIsSeasonSelected] = useState(true);
+  const [radioValue, setRadioValue] = useState("1");
+  const radios = [
+    { name: "Season", value: "1" },
+    { name: "Overall", value: "2" },
+  ];
 
   useEffect(() => {
     getUsers().then((snapshot) => {
@@ -42,6 +50,26 @@ function LandingPage() {
     <Container>
       <Row className="text-center">
         <h2>[A]rgoBros Poker Tracker</h2>
+      </Row>
+      <Row className="text-center">
+        <Col>
+          <ButtonGroup>
+            {radios.map((radio, idx) => (
+              <ToggleButton
+                key={idx}
+                id={`radio-${idx}`}
+                type="radio"
+                variant={idx % 2 ? "outline-success" : "outline-danger"}
+                name="radio"
+                value={radio.value}
+                checked={radioValue === radio.value}
+                onChange={(e) => setRadioValue(e.currentTarget.value)}
+              >
+                {radio.name}
+              </ToggleButton>
+            ))}
+          </ButtonGroup>
+        </Col>
       </Row>
       <Row style={{ height: "250px" }}>
         <EarningsGraph users={users.filter((user) => user.isActive === true)} />
