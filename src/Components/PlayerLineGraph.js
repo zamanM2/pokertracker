@@ -75,10 +75,10 @@ const PlayerLineGraph = (props) => {
       ];
       const seasons = Object.keys(snapshot.val());
       const _gameHistory = [];
+      let totalEarnings = 0;
       for (let i = 0; i < seasons.length; i++) {
         const gamesData = snapshot.val()[seasons[i]];
         const dates = Object.keys(gamesData);
-        let totalEarnings = 0;
         for (const date of dates) {
           const userIds = Object.keys(gamesData[date]);
           for (const userId of userIds) {
