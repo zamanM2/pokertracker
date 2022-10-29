@@ -16,14 +16,14 @@ const GamesList = () => {
     //populate state with an array of objects {date, season}
     getGameSessions().then((snapshot) => {
       const keys = Object.keys(snapshot.val()); //seasons
-      let tempArray = [];
+      let _gameSessions = [];
       for (let i = 0; i < keys.length; i++) {
         let dates = Object.keys(snapshot.val()[keys[i]]);
         for (let j = 0; j < dates.length; j++) {
-          tempArray.push({ date: dates[j], season: keys[i] });
+          _gameSessions.push({ date: dates[j], season: keys[i] });
         }
       }
-      setGameSessions(tempArray);
+      setGameSessions(_gameSessions);
     });
   }, []);
 
