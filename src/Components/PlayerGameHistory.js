@@ -22,6 +22,7 @@ const PlayerGameHistory = () => {
                 earnings: gamesData[date][userId].earnings,
                 buyBacks: gamesData[date][userId].buyBacks,
                 date: date,
+                season: `${"season-" + i}`,
               });
             }
           }
@@ -47,7 +48,7 @@ const PlayerGameHistory = () => {
               <tr key={player.date}>
                 <td>
                   <Link
-                    to={`/gamedata/${player.date}`}
+                    to={`/${player.season}/${player.date}`}
                     style={{ color: "black" }}
                   >
                     {formatDate(player.date)}
