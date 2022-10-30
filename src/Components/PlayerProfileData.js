@@ -114,7 +114,7 @@ const PlayerProfileData = () => {
   };
 
   return (
-    <Container>
+    <Container className="parentContainer">
       <Button
         className="blackBtn"
         style={{ marginTop: "5px" }}

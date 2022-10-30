@@ -57,7 +57,7 @@ const GameData = () => {
   };
 
   return (
-    <Container>
+    <Container className="parentContainer">
       <Row>
         <Col xs={1}>
           <Button

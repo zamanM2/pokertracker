@@ -115,7 +115,7 @@ const AddNewGame = () => {
   };
 
   return (
-    <Container>
+    <Container className="parentContainer">
       <ToastContainer autoClose={3000} hideProgressBar />
       <Row className="text-center">
         <h1>Add New Game Session</h1>
