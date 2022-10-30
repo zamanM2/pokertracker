@@ -63,3 +63,7 @@ html{
 .accordionBody{
   background-color: #FFDBA5;
 }
+
+.accordion-item .accordion-button {
+  background-color: #FFC264;
+}

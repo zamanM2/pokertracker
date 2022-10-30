@@ -31,7 +31,7 @@ const GamesList = () => {
   }, []);
 
   return (
-    <Container style={{ paddingRight: "5px" }}>
+    <Container style={{ paddingRight: "5px", backgroundColor: "#FFDBA5" }}>
       <Row>
         <Col>
           <h2>
@@ -45,10 +45,10 @@ const GamesList = () => {
         </Col>
       </Row>
       <Row>
-        <Accordion className="accordionBody">
+        <Accordion>
           {[...numberOfSeasons].map((season) => (
             <Accordion.Item eventKey={season}>
-              <Accordion.Header className="accordionBody">{`Season ${season}`}</Accordion.Header>
+              <Accordion.Header>{`Season ${season}`}</Accordion.Header>
               <Accordion.Body className="accordionBody">
                 {[...gameSessions]
                   .filter((game) => game.season === season)
