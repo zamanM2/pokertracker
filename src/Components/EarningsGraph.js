@@ -24,6 +24,9 @@ ChartJS.register(
 
 export const options = {
   plugins: {
+    legend: {
+      display: false,
+    },
     datalabels: {
       display: true,
       color: "black",
@@ -52,7 +55,6 @@ const data = {
   labels: [],
   datasets: [
     {
-      label: "Total Earnings",
       data: [],
       backgroundColor: [],
     },
@@ -66,7 +68,6 @@ const EarningsGraph = (props) => {
     const _users = [];
     const earningsData = [
       {
-        label: "Total Earnings",
         data: [],
         backgroundColor: [],
       },
