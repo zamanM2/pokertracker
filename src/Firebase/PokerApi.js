@@ -1,6 +1,6 @@
 import { dbRef, storage } from "./FirebaseConfig";
 import { child, get, push, update } from "firebase/database";
-import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
+import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 
 export const getUsers = () => {
   return get(child(dbRef, `/users/`));
@@ -25,6 +25,10 @@ export const addNewUser = async (newName) => {
     gamesPlayed: 0,
     name: `${newName}`,
   });
+};
+
+export const getLatestSeasonNumber = async () => {
+  return get(child(dbRef, `/metadata/currentSeason`));
 };
 
 export const endSeason = async (users) => {

@@ -7,13 +7,18 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import ToggleButton from "react-bootstrap/ToggleButton";
-import { getUsers, addNewUser } from "../Firebase/PokerApi";
+import {
+  getUsers,
+  addNewUser,
+  getLatestSeasonNumber,
+} from "../Firebase/PokerApi";
 
 function LandingPage() {
   const [users, setUsers] = useState([]);
   const [isSeasonSelected, setIsSeasonSelected] = useState(true);
+  const [latestSeason, setLatestSeason] = useState(0);
   const radios = [
-    { name: "Season", value: true },
+    { name: `Season ${latestSeason}`, value: true },
     { name: "Overall", value: false },
   ];
 
@@ -25,6 +30,10 @@ function LandingPage() {
         _users.push({ ...snapshot.val()[element], id: element });
       }
       setUsers(_users);
+    });
+
+    getLatestSeasonNumber().then((snapshot) => {
+      setLatestSeason(snapshot.val());
     });
   }, []);
 

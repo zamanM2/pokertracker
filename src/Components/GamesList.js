@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Accordion from "react-bootstrap/Accordion";
 import Button from "react-bootstrap/Button";
 import { FaPlus } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { getGameSessions } from "../Firebase/PokerApi";
 import { dateCompare, formatDate } from "../utils/utils";
 import "../css/blackBtn.css";
-import Accordion from "react-bootstrap/Accordion";
 
 const GamesList = () => {
   const [gameSessions, setGameSessions] = useState([]);
@@ -47,7 +47,7 @@ const GamesList = () => {
       <Row>
         <Accordion>
           {[...numberOfSeasons].map((season) => (
-            <Accordion.Item eventKey={season.toString()}>
+            <Accordion.Item eventKey={season}>
               <Accordion.Header>{`Season ${season}`}</Accordion.Header>
               <Accordion.Body>
                 {[...gameSessions]
