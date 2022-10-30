@@ -50,14 +50,16 @@ animation: pulse 2s infinite;
   }
 }
 
-.earningContainer{
-  background-color: white;
+html{
+  background-color: #FFDBA5;
 }
 
-.playerContainer{
-background-color: white;
+.parentContainer{
+  /*background-image: url("../public/backgroundImage.jpg");*/
+  background-color: #FFDBA5;
+  font-family: "Comic Sans MS", serif;
 }
 
-.gameContainer{
-background-color: white;
+.accordionBody{
+  background-color: #FFDBA5;
 }

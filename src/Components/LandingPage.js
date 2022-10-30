@@ -54,9 +54,9 @@ function LandingPage() {
   };
 
   return (
-    <Container>
+    <Container className="parentContainer">
       <Row className="text-center">
-        <h2>[A]rgoBros Poker Tracker</h2>
+        <h2 className="argoTitle">[A]rgoBros Poker Tracker</h2>
       </Row>
       <Row className="text-center">
         <Col>
@@ -87,10 +87,10 @@ function LandingPage() {
         />
       </Row>
       <Row style={{ marginTop: "10px" }}>
-        <Col className="playerContainer" xs={6}>
+        <Col xs={6}>
           <PlayerList users={users} onAddNewUser={handleAddNewUser} />
         </Col>
-        <Col className="gameContainer" xs={6}>
+        <Col xs={6}>
           <GamesList />
         </Col>
       </Row>

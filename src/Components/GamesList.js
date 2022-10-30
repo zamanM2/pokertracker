@@ -45,11 +45,11 @@ const GamesList = () => {
         </Col>
       </Row>
       <Row>
-        <Accordion>
+        <Accordion className="accordionBody">
           {[...numberOfSeasons].map((season) => (
             <Accordion.Item eventKey={season}>
-              <Accordion.Header>{`Season ${season}`}</Accordion.Header>
-              <Accordion.Body>
+              <Accordion.Header className="accordionBody">{`Season ${season}`}</Accordion.Header>
+              <Accordion.Body className="accordionBody">
                 {[...gameSessions]
                   .filter((game) => game.season === season)
                   .map((game) => (
