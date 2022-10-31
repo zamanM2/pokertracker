@@ -55,13 +55,17 @@ html{
 }
 
 .parentContainer{
-  /*background-image: url("../public/backgroundImage.jpg");*/
   background-color: #FFDBA5;
   font-family: "Comic Sans MS", serif;
 }
 
 .accordionBody{
   background-color: #FFDBA5;
+}
+
+.accordion-button:not(.collapsed) {
+  background-color: #FFA824 !important;
+  color: black !important;
 }
 
 .accordion-item .accordion-button {
