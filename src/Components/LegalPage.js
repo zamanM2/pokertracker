@@ -32,7 +32,7 @@ const LegalPage = () => {
         - Most money overall (1st) +3 points, (2nd) +2 points, (3rd) +1 point
       </p>
       <p>- Most money in one game session +2 points</p>
-      <p>- Longest green streak +1 point</p>
+      <p>- Longest win streak +1 point</p>
       <p>- Best +/- ratio +1 point</p>
       <p>
         ** In case of a tie, the person with the most overall season earnings is
