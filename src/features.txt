@@ -1,7 +1,7 @@
 - To Do List
 
     -SEASONS UPDATE
-       
+
         -Start season
         -End season
         -Season Graph
@@ -10,7 +10,7 @@
         -Crowning and Loser Icon
         -Prize pool component for end of season winner (Must have at least 9 games played)
         -Player profile should have season page / stats.
-    
+
     - Chat for each game session
     - Crown next to top earner in user list
     - Top Performer/ Worst Performer
@@ -34,11 +34,12 @@
 
 
 -Point System
+    -Most money overall (1st) +3, (2nd) +2, (3rd) +1
+    -Most money in one session +2
+    -Longest green streak +1
+    -Best +/- ratio +1
     -More than 9 games played in season
-    -Most money in one session
-    -Highest avg
     -# of times busting
-    -Best +/- ratio
     -Have to win at least 3 of the 5
 
 
