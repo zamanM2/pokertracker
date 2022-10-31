@@ -12,6 +12,7 @@ import {
   addNewUser,
   getLatestSeasonNumber,
 } from "../Firebase/PokerApi";
+import { Link } from "react-router-dom";
 
 function LandingPage() {
   const [users, setUsers] = useState([]);
@@ -94,6 +95,9 @@ function LandingPage() {
           <GamesList />
         </Col>
       </Row>
+      <div className="footer">
+        <Link to="legal">Legal</Link>
+      </div>
     </Container>
   );
 }
