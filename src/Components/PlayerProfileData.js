@@ -78,6 +78,21 @@ const PlayerProfileData = () => {
     return `${positiveGames} : ${negativeGames}`;
   };
 
+  const getPositiveNegativeSeasonRatio = () => {
+    let positiveGames = 0;
+    let negativeGames = 0;
+    for (let i = 0; i < gameHistory.length; i++) {
+      if (gameHistory[i].season === latestSeason) {
+        if (gameHistory[i].earnings > 0) {
+          positiveGames++;
+        } else if (gameHistory[i].earnings < 0) {
+          negativeGames++;
+        }
+      }
+    }
+    return `${positiveGames} : ${negativeGames}`;
+  };
+
   const computeAvgProfit = () => {
     let avg = userData.earnings / userData.gamesPlayed;
     avg = avg.toString();
@@ -231,10 +246,10 @@ const PlayerProfileData = () => {
           {isSeasonSelected ? computeSeasonGamesPlayed() : userData.gamesPlayed}
         </label>
         <label>
-          <label style={{ fontWeight: "bold" }}>
-            Positive - Negative :&nbsp;
-          </label>
-          <label>{getPositiveNegativeRatio()}</label>
+          <b> Positive - Negative :</b>&nbsp;
+          {isSeasonSelected
+            ? getPositiveNegativeSeasonRatio()
+            : getPositiveNegativeRatio()}
         </label>
         <label>
           <label style={{ fontWeight: "bold" }}>
