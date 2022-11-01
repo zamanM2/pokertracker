@@ -8,13 +8,21 @@ import { IoMdArrowBack } from "react-icons/io";
 import UserLineGraphs from "./PlayerLineGraph";
 import PlayerGameHistory from "./PlayerGameHistory";
 import "../css/blackBtn.css";
+import Col from "react-bootstrap/Col";
+import ButtonGroup from "react-bootstrap/ButtonGroup";
+import ToggleButton from "react-bootstrap/ToggleButton";
 
 const PlayerProfileData = () => {
   const [userData, setUserData] = useState({});
   const [gameHistory, setGameHistory] = useState([]);
+  const [isSeasonSelected, setIsSeasonSelected] = useState(true);
   let { id, name } = useParams();
   const navigate = useNavigate();
   const images = require.context("../images", true);
+  const radios = [
+    { name: `Season `, value: true },
+    { name: "Overall", value: false },
+  ];
 
   useEffect(() => {
     getUserData(id).then((snapshot) => {
@@ -148,13 +156,35 @@ const PlayerProfileData = () => {
           <img src={getPlayerImage()} alt="Photo" />
         </Row>
         <label>
-          <label style={{ fontWeight: "bold" }}>Name:&nbsp;</label>
-          <label>{userData.name}</label>
+          <b>Name:</b>&nbsp;{userData.name}
         </label>
         <label>
-          <label style={{ fontWeight: "bold" }}>Description:&nbsp;</label>
-          <label>{getDescription()}</label>
+          <b>Description:</b>
+          <br />
+          {getDescription()}
         </label>
+        <Row style={{ marginTop: "5px", marginLeft: "5px" }}>
+          <Col>
+            <ButtonGroup>
+              {radios.map((radio, idx) => (
+                <ToggleButton
+                  key={idx}
+                  id={`radio-${idx}`}
+                  type="radio"
+                  variant={idx % 2 ? "outline-dark" : "outline-dark"}
+                  name="radio"
+                  value={radio.value}
+                  checked={isSeasonSelected === radio.value}
+                  onClick={() => {
+                    setIsSeasonSelected(radio.value);
+                  }}
+                >
+                  {radio.name}
+                </ToggleButton>
+              ))}
+            </ButtonGroup>
+          </Col>
+        </Row>
         <label>
           <label style={{ fontWeight: "bold" }}>Total Earnings:&nbsp; </label>
           <label>{userData.earnings}</label>
