@@ -163,7 +163,9 @@ const PlayerProfileData = () => {
           <br />
           {getDescription()}
         </label>
-        <Row style={{ marginTop: "5px", marginLeft: "5px" }}>
+        <Row
+          style={{ marginTop: "5px", marginLeft: "5px", marginBottom: "5px" }}
+        >
           <Col>
             <ButtonGroup>
               {radios.map((radio, idx) => (
@@ -186,8 +188,8 @@ const PlayerProfileData = () => {
           </Col>
         </Row>
         <label>
-          <label style={{ fontWeight: "bold" }}>Total Earnings:&nbsp; </label>
-          <label>{userData.earnings}</label>
+          <b>Total Earnings:</b>&nbsp;
+          {isSeasonSelected ? userData.seasonEarnings : userData.earnings}
         </label>
         <label>
           <label style={{ fontWeight: "bold" }}>Buy Backs:&nbsp; </label>
