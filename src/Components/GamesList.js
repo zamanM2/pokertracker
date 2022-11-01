@@ -47,22 +47,22 @@ const GamesList = () => {
       <Row>
         <Accordion>
           {[...numberOfSeasons].map((season) => (
-            <Accordion.Item eventKey={season}>
+            <Accordion.Item key={season} eventKey={season}>
               <Accordion.Header>{`Season ${season}`}</Accordion.Header>
-              <Accordion.Body className="accordionBody">
+              <Accordion.Body key={season} className="accordionBody">
                 {[...gameSessions]
                   .filter((game) => game.season === season)
                   .map((game) => (
-                    <>
+                    <div key={season + game.date}>
                       <Link
                         style={{ marginBottom: "3px", color: "black" }}
-                        key={game.date}
+                        key={season + game.date}
                         to={`/season-${game.season}/${game.date}`}
                       >
                         {formatDate(game.date)}
                       </Link>
                       <br />
-                    </>
+                    </div>
                   ))}
               </Accordion.Body>
             </Accordion.Item>
