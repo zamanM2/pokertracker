@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
-import { getUserData, getGameHistory } from "../Firebase/PokerApi";
+import {
+  getUserData,
+  getGameHistory,
+  getLatestSeasonNumber,
+} from "../Firebase/PokerApi";
 import { useParams, useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import { IoMdArrowBack } from "react-icons/io";
@@ -16,6 +20,8 @@ const PlayerProfileData = () => {
   const [userData, setUserData] = useState({});
   const [gameHistory, setGameHistory] = useState([]);
   const [isSeasonSelected, setIsSeasonSelected] = useState(true);
+  const [latestSeason, setLatestSeason] = useState(0);
+
   let { id, name } = useParams();
   const navigate = useNavigate();
   const images = require.context("../images", true);
@@ -31,6 +37,10 @@ const PlayerProfileData = () => {
   }, []);
 
   useEffect(() => {
+    getLatestSeasonNumber().then((snapshot) => {
+      setLatestSeason(snapshot.val());
+    });
+
     getGameHistory().then((snapshot) => {
       const _gameHistory = [];
       const seasons = Object.keys(snapshot.val());
@@ -45,6 +55,7 @@ const PlayerProfileData = () => {
                 earnings: gamesData[date][userId].earnings,
                 buyBacks: gamesData[date][userId].buyBacks,
                 date: date,
+                season: i,
               });
             }
           }
@@ -79,6 +90,16 @@ const PlayerProfileData = () => {
     } catch (e) {
       return null;
     }
+  };
+
+  const computeSeasonBuyBacks = () => {
+    let numBuyBacks = 0;
+    gameHistory.forEach((game) => {
+      if (game.season === latestSeason) {
+        numBuyBacks += parseInt(game.buyBacks);
+      }
+    });
+    return numBuyBacks;
   };
 
   const getDescription = () => {
@@ -192,8 +213,8 @@ const PlayerProfileData = () => {
           {isSeasonSelected ? userData.seasonEarnings : userData.earnings}
         </label>
         <label>
-          <label style={{ fontWeight: "bold" }}>Buy Backs:&nbsp; </label>
-          <label>{userData.buyBacks}</label>
+          <b>Buy Backs:</b>&nbsp;
+          {isSeasonSelected ? computeSeasonBuyBacks() : userData.buyBacks}
         </label>
         <label>
           <label style={{ fontWeight: "bold" }}>Games Played:&nbsp; </label>
@@ -201,8 +222,7 @@ const PlayerProfileData = () => {
         </label>
         <label>
           <label style={{ fontWeight: "bold" }}>
-            {" "}
-            Positive - Negative :&nbsp;{" "}
+            Positive - Negative :&nbsp;
           </label>
           <label>{getPositiveNegativeRatio()}</label>
         </label>
