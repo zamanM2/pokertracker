@@ -94,7 +94,12 @@ const PlayerProfileData = () => {
   };
 
   const computeAvgProfit = () => {
-    let avg = userData.earnings / userData.gamesPlayed;
+    let avg = 0;
+    if (isSeasonSelected) {
+      avg = userData.seasonEarnings / computeSeasonGamesPlayed();
+    } else {
+      avg = userData.earnings / userData.gamesPlayed;
+    }
     avg = avg.toString();
     return avg.substr(0, 6);
   };
@@ -252,9 +257,7 @@ const PlayerProfileData = () => {
             : getPositiveNegativeRatio()}
         </label>
         <label>
-          <label style={{ fontWeight: "bold" }}>
-            Avg. profit per game: &nbsp;
-          </label>
+          <b> Avg. profit per game:</b> &nbsp;
           <label>{userData.gamesPlayed > 0 ? computeAvgProfit() : 0}</label>
         </label>
       </Row>
