@@ -102,6 +102,16 @@ const PlayerProfileData = () => {
     return numBuyBacks;
   };
 
+  const computeSeasonGamesPlayed = () => {
+    let numGamesPlayed = 0;
+    gameHistory.forEach((game) => {
+      if (game.season === latestSeason) {
+        numGamesPlayed += 1;
+      }
+    });
+    return numGamesPlayed;
+  };
+
   const getDescription = () => {
     switch (name) {
       case "Adnan":
@@ -217,8 +227,8 @@ const PlayerProfileData = () => {
           {isSeasonSelected ? computeSeasonBuyBacks() : userData.buyBacks}
         </label>
         <label>
-          <label style={{ fontWeight: "bold" }}>Games Played:&nbsp; </label>
-          <label>{userData.gamesPlayed}</label>
+          <b>Games Played:</b>&nbsp;
+          {isSeasonSelected ? computeSeasonGamesPlayed() : userData.gamesPlayed}
         </label>
         <label>
           <label style={{ fontWeight: "bold" }}>

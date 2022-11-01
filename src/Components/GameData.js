@@ -37,7 +37,6 @@ const GameData = () => {
       setGameData(_gameData);
     });
   }, []);
-
   useEffect(() => {
     async function getImage() {
       setGameImage(await getGameImage(date));
@@ -48,6 +47,7 @@ const GameData = () => {
   const handleChange = (e) => {
     if (e.target.files[0]) {
       setImageToUpload(e.target.files[0]);
+      
     }
   };
 
