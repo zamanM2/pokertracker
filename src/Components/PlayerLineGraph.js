@@ -82,12 +82,17 @@ const PlayerLineGraph = (props) => {
         earnings: totalEarnings,
         buyBacks: props.gameHistory[i].buyBacks,
         date: formatDate(props.gameHistory[i].date),
+        season: props.gameHistory[i].season,
       });
     }
     for (const game of _gameHistory) {
+      if (props.isSeasonSelected) {
+        if (game.season !== latestSeason) continue;
+      }
       data.labels.push(game.date);
       earningsData[0].data.push(Math.floor(game.earnings));
     }
+    data.labels.reverse();
     data.datasets = earningsData;
     updateState({});
   }, [props.gameHistory, props.isSeasonSelected]);

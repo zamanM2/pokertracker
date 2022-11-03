@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { formatDate, gameDateCompare } from "../utils/utils";
 
 const PlayerGameHistory = (props) => {
   const [gameHistory, setGameHistory] = useState([]);
-  let { id } = useParams();
 
   useEffect(() => {
     setGameHistory(props.gameHistory.sort(gameDateCompare));
