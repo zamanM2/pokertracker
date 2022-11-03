@@ -6,7 +6,7 @@ const PlayerGameHistory = (props) => {
   const [gameHistory, setGameHistory] = useState([]);
 
   useEffect(() => {
-    setGameHistory(props.gameHistory.sort(gameDateCompare));
+    setGameHistory([...props.gameHistory].sort(gameDateCompare));
   }, [props.gameHistory]);
 
   return (
