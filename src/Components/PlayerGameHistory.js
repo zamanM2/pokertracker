@@ -1,36 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { getGameHistory } from "../Firebase/PokerApi";
 import { useParams, Link } from "react-router-dom";
 import { formatDate, gameDateCompare } from "../utils/utils";
 
-const PlayerGameHistory = () => {
+const PlayerGameHistory = (props) => {
   const [gameHistory, setGameHistory] = useState([]);
   let { id } = useParams();
 
   useEffect(() => {
-    getGameHistory().then((snapshot) => {
-      const _gameHistory = [];
-      const seasons = Object.keys(snapshot.val());
-      for (let i = 0; i < seasons.length; i++) {
-        const gamesData = snapshot.val()[seasons[i]]; //all games in a season
-        const dates = Object.keys(gamesData);
-        for (const date of dates) {
-          const userIds = Object.keys(gamesData[date]);
-          for (const userId of userIds) {
-            if (userId === id) {
-              _gameHistory.push({
-                earnings: gamesData[date][userId].earnings,
-                buyBacks: gamesData[date][userId].buyBacks,
-                date: date,
-                season: `${"season-" + i}`,
-              });
-            }
-          }
-        }
-      }
-      setGameHistory(_gameHistory.sort(gameDateCompare));
-    });
-  }, []);
+    setGameHistory(props.gameHistory.sort(gameDateCompare));
+  }, [props.gameHistory]);
 
   return (
     <div>
@@ -48,7 +26,7 @@ const PlayerGameHistory = () => {
               <tr key={player.date}>
                 <td>
                   <Link
-                    to={`/${player.season}/${player.date}`}
+                    to={`/season-${player.season}/${player.date}`}
                     style={{ color: "black" }}
                   >
                     {formatDate(player.date)}
