@@ -26,7 +26,7 @@ const PlayerProfileData = () => {
   const navigate = useNavigate();
   const images = require.context("../images", true);
   const radios = [
-    { name: `Season `, value: true },
+    { name: `Season ${latestSeason} `, value: true },
     { name: "Overall", value: false },
   ];
 
@@ -268,7 +268,10 @@ const PlayerProfileData = () => {
         />
       </Row>
       <Row style={{ marginTop: "5px" }}>
-        <PlayerGameHistory gameHistory={gameHistory} />
+        <PlayerGameHistory
+          gameHistory={gameHistory}
+          latestSeason={latestSeason}
+        />
       </Row>
     </Container>
   );
