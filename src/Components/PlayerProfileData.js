@@ -9,8 +9,8 @@ import {
 import { useParams, useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import { IoMdArrowBack } from "react-icons/io";
-import UserLineGraphs from "./PlayerLineGraph";
 import PlayerGameHistory from "./PlayerGameHistory";
+import PlayerLineGraph from "./PlayerLineGraph";
 import "../css/blackBtn.css";
 import Col from "react-bootstrap/Col";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
@@ -262,7 +262,10 @@ const PlayerProfileData = () => {
         </label>
       </Row>
       <Row style={{ marginTop: "5px" }}>
-        <UserLineGraphs />
+        <PlayerLineGraph
+          gameHistory={gameHistory}
+          isSeasonSelected={isSeasonSelected}
+        />
       </Row>
       <Row style={{ marginTop: "5px" }}>
         <PlayerGameHistory />

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { getGameHistory } from "../Firebase/PokerApi";
 import { formatDate } from "../utils/utils";
 
 import {
@@ -13,7 +12,6 @@ import {
   Tooltip,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
-import { useParams } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 
 ChartJS.register(
@@ -60,48 +58,34 @@ const data = {
 
 const PlayerLineGraph = (props) => {
   const [, updateState] = useState();
-  let { id } = useParams();
 
   useEffect(() => {
-    getGameHistory().then((snapshot) => {
-      data.labels = [];
-      const earningsData = [
-        {
-          label: "Total Earnings over Time",
-          data: [], //y-axis
-          borderColor: "#4169E1",
-          backgroundColor: "#4169E1",
-        },
-      ];
-      const seasons = Object.keys(snapshot.val());
-      const _gameHistory = [];
-      let totalEarnings = 0;
-      for (let i = 0; i < seasons.length; i++) {
-        const gamesData = snapshot.val()[seasons[i]];
-        const dates = Object.keys(gamesData);
-        for (const date of dates) {
-          const userIds = Object.keys(gamesData[date]);
-          for (const userId of userIds) {
-            if (userId === id) {
-              totalEarnings += parseFloat(gamesData[date][userId].earnings);
-              _gameHistory.push({
-                earnings: totalEarnings,
-                buyBacks: gamesData[date][userId].buyBacks,
-                date: formatDate(date),
-              });
-            }
-          }
-        }
-      }
-
-      for (const game of _gameHistory) {
-        data.labels.push(game.date);
-        earningsData[0].data.push(Math.floor(game.earnings));
-      }
-      data.datasets = earningsData;
-    });
+    data.labels = [];
+    const earningsData = [
+      {
+        label: "Total Earnings over Time",
+        data: [], //y-axis
+        borderColor: "#4169E1",
+        backgroundColor: "#4169E1",
+      },
+    ];
+    const _gameHistory = [];
+    let totalEarnings = 0;
+    for (let i = 0; i < props.gameHistory.length; i++) {
+      totalEarnings += parseFloat(props.gameHistory[i].earnings);
+      _gameHistory.push({
+        earnings: totalEarnings,
+        buyBacks: props.gameHistory[i].buyBacks,
+        date: formatDate(props.gameHistory[i].date),
+      });
+    }
+    for (const game of _gameHistory) {
+      data.labels.push(game.date);
+      earningsData[0].data.push(Math.floor(game.earnings));
+    }
+    data.datasets = earningsData;
     updateState({});
-  }, []);
+  }, [props.gameHistory, props.isSeasonSelected]);
 
   return (
     <Container>
