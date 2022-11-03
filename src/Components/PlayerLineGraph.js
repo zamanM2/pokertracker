@@ -13,6 +13,7 @@ import {
 } from "chart.js";
 import { Line } from "react-chartjs-2";
 import Container from "react-bootstrap/Container";
+import { getLatestSeasonNumber, getUsers } from "../Firebase/PokerApi";
 
 ChartJS.register(
   CategoryScale,
@@ -58,6 +59,7 @@ const data = {
 
 const PlayerLineGraph = (props) => {
   const [, updateState] = useState();
+  const [latestSeason, setLatestSeason] = useState(0);
 
   useEffect(() => {
     data.labels = [];
@@ -72,6 +74,9 @@ const PlayerLineGraph = (props) => {
     const _gameHistory = [];
     let totalEarnings = 0;
     for (let i = 0; i < props.gameHistory.length; i++) {
+      if (props.isSeasonSelected) {
+        if (props.gameHistory[i].season !== latestSeason) continue;
+      }
       totalEarnings += parseFloat(props.gameHistory[i].earnings);
       _gameHistory.push({
         earnings: totalEarnings,
@@ -86,6 +91,12 @@ const PlayerLineGraph = (props) => {
     data.datasets = earningsData;
     updateState({});
   }, [props.gameHistory, props.isSeasonSelected]);
+
+  useEffect(() => {
+    getLatestSeasonNumber().then((snapshot) => {
+      setLatestSeason(snapshot.val());
+    });
+  }, []);
 
   return (
     <Container>
