@@ -26,22 +26,38 @@ const LegalPage = () => {
         pool. At the end of each game, each player will donate $1 to the prize
         pool.
       </p>
+      <h2>Bank Rules</h2>
+      <p>
+        Sakib will be bank every night. When sending and requesting money on
+        Venmo/Zelle, he'll add or subtract $1 from each player (depending on if
+        you owe or are owed $). This money will be added to the prize pool.
+      </p>
 
       <h2>Point System</h2>
-      <p>
-        - Most money overall (1st) +3 points, (2nd) +2 points, (3rd) +1 point
-      </p>
-      <p>- Most money in one game session +2 points</p>
-      <p>- Longest win streak +1 point</p>
-      <p>- Best +/- ratio +1 point</p>
-      <p>
+      <ul style={{ listStyleType: "square" }}>
+        <li>
+          Most Season earnings
+          <ul style={{ listStyleType: "square" }}>
+            <li>(1st) +3 points</li>
+            <li>(2nd) +2 points</li>
+            <li>(3rd) +1 points</li>
+          </ul>
+        </li>
+        <li>Most money in one game session +2 points</li>
+        <li>Longest win streak +1 point</li>
+        <li>Best +/- ratio +1 point</li>
+      </ul>
+      <div>
         ** In case of a tie, the person with the most overall season earnings is
         the winner
-      </p>
+      </div>
+      <br />
       <h2>Prizes for Season 1</h2>
-      <p>First Place: 50% of Prize pool and a 1st Place trophy</p>
-      <p>Second Place: 30% of Prize pool</p>
-      <p>Third Place: 20% of Prize pool</p>
+      <ul style={{ listStyleType: "square" }}>
+        <li>First Place: 50% of Prize pool and a 1st Place trophy</li>
+        <li>Second Place: 30% of Prize pool</li>
+        <li>Third Place: 20% of Prize pool</li>
+      </ul>
     </Container>
   );
 };

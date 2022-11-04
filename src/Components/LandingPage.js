@@ -44,7 +44,6 @@ function LandingPage() {
 
     getPrizePool().then((snapshot) => {
       setPrizePool(snapshot.val());
-      console.log(snapshot.val());
     });
   }, []);
 
