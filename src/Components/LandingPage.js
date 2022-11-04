@@ -99,7 +99,6 @@ function LandingPage() {
       </Row>
       <Row style={{ textAlign: "center" }}>
         <h3>
-          <img src={getPlayerImage()} alt="Photo" />
           <GiMoneyStack size={30} />
           {`Prize Pool: $${prizePool}`}
           <GiMoneyStack size={30} />
