@@ -96,6 +96,7 @@ const PlayerProfileData = () => {
   const computeAvgProfit = () => {
     let avg = 0;
     if (isSeasonSelected) {
+      if (computeSeasonGamesPlayed() === 0) return 0;
       avg = userData.seasonEarnings / computeSeasonGamesPlayed();
     } else {
       avg = userData.earnings / userData.gamesPlayed;
