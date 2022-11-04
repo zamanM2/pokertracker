@@ -18,6 +18,14 @@ export const getUserData = (userId) => {
   return get(child(dbRef, `/users/${userId}`));
 };
 
+export const getPrizePool = async () => {
+  return get(child(dbRef, `/metadata/prizePool`));
+};
+
+export const getLatestSeasonNumber = async () => {
+  return get(child(dbRef, `/metadata/currentSeason`));
+};
+
 export const addNewUser = async (newName) => {
   return push(child(dbRef, `/users/`), {
     buyBacks: 0,
@@ -27,10 +35,6 @@ export const addNewUser = async (newName) => {
     seasonEarnings: 0,
     name: `${newName}`,
   });
-};
-
-export const getLatestSeasonNumber = async () => {
-  return get(child(dbRef, `/metadata/currentSeason`));
 };
 
 export const endSeason = async (users) => {
@@ -52,10 +56,25 @@ export const endSeason = async (users) => {
       gamesPlayed: el.gamesPlayed,
     };
   });
+  updatePrizePool(0);
   return update(child(dbRef, `/users/`), resetSeasonData);
 };
 
+export const updatePrizePool = (newPrizePool) => {
+  const prizePool = {};
+  prizePool[`/metadata/prizePool`] = newPrizePool;
+  update(dbRef, prizePool);
+};
+
+export const addToPrizePool = async (amountToAdd) => {
+  const currentPrizePool = await get(child(dbRef, `/metadata/prizePool`));
+  const newPrizePool = {};
+  newPrizePool[`/metadata/prizePool`] = currentPrizePool.val() + amountToAdd;
+  update(dbRef, newPrizePool);
+};
+
 export const saveGameSession = async (date, usersInGame, dealer) => {
+  addToPrizePool(usersInGame.length);
   const sessionData = {};
   usersInGame.forEach((el) => {
     sessionData[el.id] = {

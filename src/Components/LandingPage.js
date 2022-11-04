@@ -7,10 +7,13 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import ToggleButton from "react-bootstrap/ToggleButton";
+import { GiMoneyStack } from "react-icons/gi";
+
 import {
   getUsers,
   addNewUser,
   getLatestSeasonNumber,
+  getPrizePool,
 } from "../Firebase/PokerApi";
 import { Link } from "react-router-dom";
 
@@ -18,6 +21,8 @@ function LandingPage() {
   const [users, setUsers] = useState([]);
   const [isSeasonSelected, setIsSeasonSelected] = useState(true);
   const [latestSeason, setLatestSeason] = useState(0);
+  const [prizePool, setPrizePool] = useState(0);
+
   const radios = [
     { name: `Season ${latestSeason}`, value: true },
     { name: "Overall", value: false },
@@ -35,6 +40,11 @@ function LandingPage() {
 
     getLatestSeasonNumber().then((snapshot) => {
       setLatestSeason(snapshot.val());
+    });
+
+    getPrizePool().then((snapshot) => {
+      setPrizePool(snapshot.val());
+      console.log(snapshot.val());
     });
   }, []);
 
@@ -86,6 +96,14 @@ function LandingPage() {
           isSeasonSelected={isSeasonSelected}
           users={users.filter((user) => user.isActive === true)}
         />
+      </Row>
+      <Row style={{ textAlign: "center" }}>
+        <h3>
+          <img src={getPlayerImage()} alt="Photo" />
+          <GiMoneyStack size={30} />
+          {`Prize Pool: $${prizePool}`}
+          <GiMoneyStack size={30} />
+        </h3>
       </Row>
       <Row style={{ marginTop: "10px" }}>
         <Col xs={6}>
