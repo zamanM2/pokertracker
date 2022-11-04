@@ -86,7 +86,10 @@ const PlayerLineGraph = (props) => {
       });
     }
     for (const game of _gameHistory) {
-      data.labels.push(game.date);
+      data.labels.push(
+        game.date.substr(0, game.date.length - 4) +
+          game.date.substr(game.date.length - 2, game.date.length)
+      );
       earningsData[0].data.push(Math.floor(game.earnings));
     }
     data.datasets = earningsData;

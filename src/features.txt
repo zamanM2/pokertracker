@@ -2,7 +2,6 @@
 
     -SEASONS UPDATE
         - Navigation Bar
-        - remove 20 from 2022 in player line graph
         - Season Stats page
 
     - Chat for each game session
