@@ -37,7 +37,7 @@ export const saveGameSession = async (date, usersInGame, dealer) => {
     };
   });
 
-  sessionData['dealer'] = dealer;
+  sessionData["dealer"] = dealer;
   const updateSession = {};
   updateSession[`/games/${date}`] = sessionData;
   update(dbRef, updateSession);
@@ -49,6 +49,7 @@ export const saveGameSession = async (date, usersInGame, dealer) => {
       gamesPlayed: el.gamesPlayed + 1,
       earnings: el.earnings + parseFloat(el.inputEarnings),
       buyBacks: el.buyBacks + parseInt(el.inputBuyBacks),
+      isActive: true,
     };
     return update(child(dbRef, `/users/`), updatesUsers);
   });
