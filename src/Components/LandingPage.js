@@ -8,7 +8,6 @@ import Col from "react-bootstrap/Col";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import ToggleButton from "react-bootstrap/ToggleButton";
 import { GiMoneyStack } from "react-icons/gi";
-
 import {
   getUsers,
   addNewUser,
@@ -16,6 +15,7 @@ import {
   getPrizePool,
 } from "../Firebase/PokerApi";
 import { Link } from "react-router-dom";
+import { formatDate } from "../utils/utils";
 
 function LandingPage() {
   const [users, setUsers] = useState([]);
@@ -102,6 +102,17 @@ function LandingPage() {
           {`Prize Pool: $${prizePool}`}
           <GiMoneyStack size={30} />
         </h3>
+      </Row>
+      <Row className="text-center">
+        <h5 className="argoTitle">
+          <Link
+            style={{ marginBottom: "3px", color: "black" }}
+            key={"dsafsdf"}
+            to={`/season/stats`}
+          >
+            <u>Season Stats</u>&#8594;
+          </Link>
+        </h5>
       </Row>
       <Row style={{ marginTop: "10px" }}>
         <Col xs={6}>

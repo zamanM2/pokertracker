@@ -6,6 +6,7 @@ import GameData from "./Components/GameData";
 import PlayerProfileData from "./Components/PlayerProfileData";
 import Login from "./Components/Login";
 import LegalPage from "./Components/LegalPage";
+import SeasonStats from "./Components/SeasonStats";
 import AuthProvider from "./Context/AuthContext";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -20,6 +21,7 @@ function App() {
           <Route path="/add-new-game" element={<AddNewGame />} />
           <Route path="/:season/:date" element={<GameData />} />
           <Route path="/profile/:name/:id" element={<PlayerProfileData />} />
+          <Route path="/season/stats" element={<SeasonStats />} />
           <Route path="/legal" element={<LegalPage />} />
         </Routes>
       </AuthProvider>

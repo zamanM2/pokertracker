@@ -62,7 +62,10 @@ const LegalPage = () => {
       </p>
       <h2>Prizes for the Season</h2>
       <ul style={{ listStyleType: "square" }}>
-        <li>First Place: 50% of Prize pool and a 1st Place trophy</li>
+        <li>
+          First Place: 50% of Prize pool, a 1st Place trophy, and a Peloton
+          Tumbler bottle
+        </li>
         <li>Second Place: 30% of Prize pool</li>
         <li>Third Place: 20% of Prize pool</li>
       </ul>
