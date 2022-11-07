@@ -1,7 +1,6 @@
 - To Do List
 
     -SEASONS UPDATE
-        - Navigation Bar
         - Season Stats page
 
     - Chat for each game session
