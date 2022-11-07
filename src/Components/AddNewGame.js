@@ -44,6 +44,7 @@ const AddNewGame = () => {
           inGame: false,
           inputEarnings: "",
           inputBuyBacks: "0",
+          inputAllIns: 0,
         });
       }
       setUsers(_users.sort(nameCompare));
@@ -115,7 +116,7 @@ const AddNewGame = () => {
   };
 
   return (
-    <Container className="parentContainer">
+    <div style={{ paddingLeft: "2px" }} className="parentContainer">
       <ToastContainer autoClose={3000} hideProgressBar />
       <Row className="text-center">
         <h1>Add New Game Session</h1>
@@ -158,11 +159,14 @@ const AddNewGame = () => {
         <Col xs={5}>
           <h6>Name</h6>
         </Col>
-        <Col>
-          <h6>Earnings</h6>
+        <Col style={{ textAlign: "center" }}>
+          <h6>$$</h6>
         </Col>
-        <Col>
-          <h6>Buy Backs</h6>
+        <Col style={{ textAlign: "center" }}>
+          <h6>BB</h6>
+        </Col>
+        <Col style={{ textAlign: "left" }}>
+          <h6>All-ins</h6>
         </Col>
       </Row>
       <Row>
@@ -183,7 +187,7 @@ const AddNewGame = () => {
                 </Button>
                 <label style={{ fontSize: "15px" }}>{element.name}</label>
               </Col>
-              <Col>
+              <Col xs={3}>
                 <Form.Control
                   name="inputEarnings"
                   value={element.inputEarnings}
@@ -191,10 +195,18 @@ const AddNewGame = () => {
                   onChange={(event) => handInputChange(event, element.id)}
                 />
               </Col>
-              <Col>
+              <Col xs={2}>
                 <Form.Control
                   name="inputBuyBacks"
                   value={element.inputBuyBacks}
+                  type="number"
+                  onChange={(event) => handInputChange(event, element.id)}
+                />
+              </Col>
+              <Col xs={2}>
+                <Form.Control
+                  name="inputAllIns"
+                  value={element.inputAllIns}
                   type="number"
                   onChange={(event) => handInputChange(event, element.id)}
                 />
@@ -255,7 +267,7 @@ const AddNewGame = () => {
           </Row>
         </Col>
       </Row>
-    </Container>
+    </div>
   );
 };
 

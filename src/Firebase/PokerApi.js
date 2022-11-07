@@ -74,7 +74,7 @@ export const addToPrizePool = async (amountToAdd) => {
 };
 
 export const saveGameSession = async (date, usersInGame, dealer) => {
-  addToPrizePool(usersInGame.length);
+  await addToPrizePool(usersInGame.length);
   const sessionData = {};
   usersInGame.forEach((el) => {
     sessionData[el.id] = {
@@ -99,6 +99,7 @@ export const saveGameSession = async (date, usersInGame, dealer) => {
       buyBacks: el.buyBacks + parseInt(el.inputBuyBacks),
       isActive: true,
       seasonEarnings: el.seasonEarnings + parseFloat(el.inputEarnings),
+      seasonAllIns: el.seasonAllIns + parseInt(el.inputAllIns),
     };
   });
   return update(child(dbRef, `/users/`), updatesUsers);

@@ -42,10 +42,11 @@ const LegalPage = () => {
         <li>Most money in one game session +2 points</li>
         <li>Longest win streak +1 point</li>
         <li>Best +/- ratio (%) +1 point</li>
+        <li>Every All-in you win at showdown gives you +0.10 points</li>
       </ul>
       <div>
-        ** In case of a tie, the person with the most overall season earnings is
-        the winner
+        ** In case of a tie at the end of the season, the person with the most
+        overall season earnings is the winner
       </div>
       <br />
       <h2>Game Fees</h2>
