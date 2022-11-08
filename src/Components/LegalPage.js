@@ -77,12 +77,11 @@ const LegalPage = () => {
       </p>
       <h2>Pineapple Rules</h2>
       <p>
-        {" "}
-        Pineapple can only be played with $1 starting bet. Max bet is $2 and
-        re-raise is 2x each time.
+        Pineapple can only be played with a $1 starting bet. Max bet is $2 and
+        each re-raise is 2x the current bet.
       </p>
       <label style={{ fontSize: 14 }}>
-        &copy; [A]rgoBros 2022-2023, All rights reserved.{" "}
+        &copy; [A]rgoBros 2022-2023, All rights reserved.
       </label>
     </Container>
   );
