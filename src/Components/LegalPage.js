@@ -81,7 +81,9 @@ const LegalPage = () => {
         Pineapple can only be played with $1 starting bet. Max bet is $2 and
         re-raise is 2x each time.
       </p>
-      <label> &copy; [A]rgoBros 2022-2023, All rights reserved. </label>
+      <label style={{ fontSize: 14 }}>
+        &copy; [A]rgoBros 2022-2023, All rights reserved.{" "}
+      </label>
     </Container>
   );
 };
