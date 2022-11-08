@@ -12,6 +12,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { IoMdArrowBack } from "react-icons/io";
 import "../css/blackBtn.css";
+import ConfirmModal from "./Modals/ConfirmModal";
 
 function nameCompare(a, b) {
   if (a.name > b.name) {
@@ -24,6 +25,7 @@ function nameCompare(a, b) {
 }
 
 const AddNewGame = () => {
+  const [showEndSeasonModal, setEndSeasonModal] = useState(false);
   const [users, setUsers] = useState([]);
   const [dealer, setDealer] = useState([]);
   const { currentUser } = useAuth();
@@ -113,6 +115,21 @@ const AddNewGame = () => {
     await endSeason(users).then(() => {
       toast.success("Season Ended!");
     });
+  };
+
+  const endSeasonModalInfo = {
+    title: "End Season?",
+    body: "Are you sure you want to end this season?",
+    visibility: showEndSeasonModal,
+    okBtn: () => {
+      endSeasonSession();
+    },
+    hideModal: () => {
+      setEndSeasonModal(false);
+    },
+    showModal: () => {
+      setEndSeasonModal(true);
+    },
   };
 
   return (
@@ -249,8 +266,12 @@ const AddNewGame = () => {
           </Row>
           {currentUser && (
             <Row style={{ marginBottom: "5px" }}>
+              <ConfirmModal info={endSeasonModalInfo} />
               <Col>
-                <Button className="blackBtn" onClick={endSeasonSession}>
+                <Button
+                  className="blackBtn"
+                  onClick={endSeasonModalInfo.showModal}
+                >
                   End Season
                 </Button>
               </Col>
