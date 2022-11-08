@@ -27,7 +27,7 @@ const LegalPage = () => {
       <p>
         Welcome to [A]rgoBros&copy; Seasons. Each season has 12 games. At the
         end of the season, winners are determined by the number of points
-        earned.
+        earned. You agree to the following rules , no exceptions are given:
       </p>
       <h2>Point System</h2>
       <ul style={{ listStyleType: "square" }}>
@@ -49,30 +49,39 @@ const LegalPage = () => {
         overall season earnings is the winner
       </div>
       <br />
+      <h2>Prizes for the Season</h2>
+      <ul style={{ listStyleType: "square" }}>
+        <li>
+          First Place: 60% of Prize pool, a 1st Place trophy, and a Peloton
+          Tumbler bottle
+        </li>
+        <li>Second Place: 30% of Prize pool</li>
+        <li>Third Place: 10% of Prize pool</li>
+      </ul>
+      <div>
+        ** A minimum of 8 games have to be played to be considered for prizes
+      </div>
+      <br />
       <h2>Game Fees</h2>
       <p>
         At the start of the Season, each player will donate $5 to the prize
         pool. At the end of each game, each player will donate $1 to the prize
         pool.
       </p>
-      <h2>Bank Rules</h2>
+      <h2>Bank/Dealer Rules</h2>
       <p>
         Sakib will be bank every night. When sending and requesting money on
-        Venmo/Zelle, he'll add or subtract $1 from each player (depending on if
-        you owe or are owed $). This money will be added to the prize pool.
+        Venmo/Zelle, he'll add or subtract $2 from each player (depending on if
+        you owe or are owed $). Half this money will be added to the prize pool,
+        the other half will be added to the dealer fee.
       </p>
-      <h2>Prizes for the Season</h2>
-      <ul style={{ listStyleType: "square" }}>
-        <li>
-          First Place: 50% of Prize pool, a 1st Place trophy, and a Peloton
-          Tumbler bottle
-        </li>
-        <li>Second Place: 30% of Prize pool</li>
-        <li>Third Place: 20% of Prize pool</li>
-      </ul>
-      <div>
-        ** A minimum of 8 games have to be played to be considered for prizes
-      </div>
+      <h2>Pineapple Rules</h2>
+      <p>
+        {" "}
+        Pineapple can only be played with $1 starting bet. Max bet is $2 and
+        re-raise is 2x each time.
+      </p>
+      <label> &copy; [A]rgoBros 2022-2023, All rights reserved. </label>
     </Container>
   );
 };
