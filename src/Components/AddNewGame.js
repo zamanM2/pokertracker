@@ -123,6 +123,7 @@ const AddNewGame = () => {
     visibility: showEndSeasonModal,
     okBtn: () => {
       endSeasonSession();
+      setEndSeasonModal(false);
     },
     hideModal: () => {
       setEndSeasonModal(false);
