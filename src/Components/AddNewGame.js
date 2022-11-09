@@ -4,7 +4,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import { getUsers, saveGameSession } from "../Firebase/PokerApi";
+import { getUsers, saveGameSession, endSeason } from "../Firebase/PokerApi";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../Context/AuthContext";
 import { getTodaysDate } from "../utils/utils";
@@ -12,6 +12,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { IoMdArrowBack } from "react-icons/io";
 import "../css/blackBtn.css";
+import ConfirmModal from "./Modals/ConfirmModal";
 
 function nameCompare(a, b) {
   if (a.name > b.name) {
@@ -24,6 +25,7 @@ function nameCompare(a, b) {
 }
 
 const AddNewGame = () => {
+  const [showEndSeasonModal, setEndSeasonModal] = useState(false);
   const [users, setUsers] = useState([]);
   const [dealer, setDealer] = useState([]);
   const { currentUser } = useAuth();
@@ -44,6 +46,7 @@ const AddNewGame = () => {
           inGame: false,
           inputEarnings: "",
           inputBuyBacks: "0",
+          inputAllIns: 0,
         });
       }
       setUsers(_users.sort(nameCompare));
@@ -73,11 +76,9 @@ const AddNewGame = () => {
     setUsers([...users]);
   };
 
-  const handleDealerChange = (event) =>{
-   setDealer(
-     event.target.value,
-   );
-  } 
+  const handleDealerChange = (event) => {
+    setDealer(event.target.value);
+  };
 
   const calculateBank = (event) => {
     event.preventDefault();
@@ -110,8 +111,30 @@ const AddNewGame = () => {
     toast.success("Session Saved");
   };
 
+  const endSeasonSession = async () => {
+    await endSeason(users).then(() => {
+      toast.success("Season Ended!");
+    });
+  };
+
+  const endSeasonModalInfo = {
+    title: "End Season?",
+    body: "Are you sure you want to end this season?",
+    visibility: showEndSeasonModal,
+    okBtn: () => {
+      endSeasonSession();
+      setEndSeasonModal(false);
+    },
+    hideModal: () => {
+      setEndSeasonModal(false);
+    },
+    showModal: () => {
+      setEndSeasonModal(true);
+    },
+  };
+
   return (
-    <Container>
+    <div style={{ paddingLeft: "2px" }} className="parentContainer">
       <ToastContainer autoClose={3000} hideProgressBar />
       <Row className="text-center">
         <h1>Add New Game Session</h1>
@@ -154,11 +177,14 @@ const AddNewGame = () => {
         <Col xs={5}>
           <h6>Name</h6>
         </Col>
-        <Col>
-          <h6>Earnings</h6>
+        <Col style={{ textAlign: "center" }}>
+          <h6>$$</h6>
         </Col>
-        <Col>
-          <h6>Buy Backs</h6>
+        <Col style={{ textAlign: "center" }}>
+          <h6>BB</h6>
+        </Col>
+        <Col style={{ textAlign: "left" }}>
+          <h6>All-ins</h6>
         </Col>
       </Row>
       <Row>
@@ -179,7 +205,7 @@ const AddNewGame = () => {
                 </Button>
                 <label style={{ fontSize: "15px" }}>{element.name}</label>
               </Col>
-              <Col>
+              <Col xs={3}>
                 <Form.Control
                   name="inputEarnings"
                   value={element.inputEarnings}
@@ -187,10 +213,18 @@ const AddNewGame = () => {
                   onChange={(event) => handInputChange(event, element.id)}
                 />
               </Col>
-              <Col>
+              <Col xs={2}>
                 <Form.Control
                   name="inputBuyBacks"
                   value={element.inputBuyBacks}
+                  type="number"
+                  onChange={(event) => handInputChange(event, element.id)}
+                />
+              </Col>
+              <Col xs={2}>
+                <Form.Control
+                  name="inputAllIns"
+                  value={element.inputAllIns}
                   type="number"
                   onChange={(event) => handInputChange(event, element.id)}
                 />
@@ -231,6 +265,19 @@ const AddNewGame = () => {
               </Button>
             </Col>
           </Row>
+          {currentUser && (
+            <Row style={{ marginBottom: "5px" }}>
+              <ConfirmModal info={endSeasonModalInfo} />
+              <Col>
+                <Button
+                  className="blackBtn"
+                  onClick={endSeasonModalInfo.showModal}
+                >
+                  End Season
+                </Button>
+              </Col>
+            </Row>
+          )}
         </Col>
         <Col>
           <Row>Bank is: {bankInfo.bankPlayer}</Row>
@@ -242,7 +289,7 @@ const AddNewGame = () => {
           </Row>
         </Col>
       </Row>
-    </Container>
+    </div>
   );
 };
 

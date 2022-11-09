@@ -11,9 +11,8 @@ import {
 import { useParams, useNavigate, Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import { IoMdArrowBack } from "react-icons/io";
-import { formatDate, earningsCompare } from "../utils/utils";
+import { formatDate, overallEarningsCompare } from "../utils/utils";
 import "../css/blackBtn.css";
-import { deleteApp } from "firebase/app";
 
 const GameData = () => {
   const [gameData, setGameData] = useState([]);
@@ -21,10 +20,11 @@ const GameData = () => {
   const [imageToUpload, setImageToUpload] = useState("");
   const [dealer, setDealer] = useState("");
   let { date } = useParams();
+  let { season } = useParams();
   const navigate = useNavigate();
 
   useEffect(() => {
-    getGameData(date).then((snapshot) => {
+    getGameData(season, date).then((snapshot) => {
       const keys = Object.keys(snapshot.val());
       const _gameData = [];
       for (const key of keys) {
@@ -37,7 +37,6 @@ const GameData = () => {
       setGameData(_gameData);
     });
   }, []);
-
   useEffect(() => {
     async function getImage() {
       setGameImage(await getGameImage(date));
@@ -48,6 +47,7 @@ const GameData = () => {
   const handleChange = (e) => {
     if (e.target.files[0]) {
       setImageToUpload(e.target.files[0]);
+      
     }
   };
 
@@ -57,7 +57,7 @@ const GameData = () => {
   };
 
   return (
-    <Container>
+    <Container className="parentContainer">
       <Row>
         <Col xs={1}>
           <Button
@@ -89,7 +89,7 @@ const GameData = () => {
           </tr>
         </thead>
         <tbody>
-          {gameData.sort(earningsCompare).map((player) => {
+          {gameData.sort(overallEarningsCompare).map((player) => {
             return (
               <tr key={player.name}>
                 <td>

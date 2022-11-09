@@ -33,7 +33,7 @@ const PlayerList = (props) => {
   };
 
   return (
-    <Container>
+    <Container style={{ paddingRight: "5px" }}>
       <AddNewPlayerModal info={addNewPlayerModalInfo} />
       <Row>
         <Col>

@@ -1,20 +1,34 @@
 import React, { useState, useEffect } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
-import { getUserData, getGameHistory } from "../Firebase/PokerApi";
+import {
+  getUserData,
+  getGameHistory,
+  getLatestSeasonNumber,
+} from "../Firebase/PokerApi";
 import { useParams, useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import { IoMdArrowBack } from "react-icons/io";
-import UserLineGraphs from "./PlayerLineGraph";
 import PlayerGameHistory from "./PlayerGameHistory";
+import PlayerLineGraph from "./PlayerLineGraph";
 import "../css/blackBtn.css";
+import Col from "react-bootstrap/Col";
+import ButtonGroup from "react-bootstrap/ButtonGroup";
+import ToggleButton from "react-bootstrap/ToggleButton";
 
 const PlayerProfileData = () => {
   const [userData, setUserData] = useState({});
   const [gameHistory, setGameHistory] = useState([]);
+  const [isSeasonSelected, setIsSeasonSelected] = useState(true);
+  const [latestSeason, setLatestSeason] = useState(0);
+
   let { id, name } = useParams();
   const navigate = useNavigate();
   const images = require.context("../images", true);
+  const radios = [
+    { name: `Season ${latestSeason} `, value: true },
+    { name: "Overall", value: false },
+  ];
 
   useEffect(() => {
     getUserData(id).then((snapshot) => {
@@ -23,19 +37,27 @@ const PlayerProfileData = () => {
   }, []);
 
   useEffect(() => {
+    getLatestSeasonNumber().then((snapshot) => {
+      setLatestSeason(snapshot.val());
+    });
+
     getGameHistory().then((snapshot) => {
-      const gamesData = snapshot.val();
       const _gameHistory = [];
-      const dates = Object.keys(gamesData);
-      for (const date of dates) {
-        const userIds = Object.keys(gamesData[date]);
-        for (const userId of userIds) {
-          if (userId === id) {
-            _gameHistory.push({
-              earnings: gamesData[date][userId].earnings,
-              buyBacks: gamesData[date][userId].buyBacks,
-              date: date,
-            });
+      const seasons = Object.keys(snapshot.val());
+      for (let i = 0; i < seasons.length; i++) {
+        let gamesData = snapshot.val()[seasons[i]]; //all games in a season
+        const dates = Object.keys(gamesData);
+        for (const date of dates) {
+          const userIds = Object.keys(gamesData[date]);
+          for (const userId of userIds) {
+            if (userId === id) {
+              _gameHistory.push({
+                earnings: gamesData[date][userId].earnings,
+                buyBacks: gamesData[date][userId].buyBacks,
+                date: date,
+                season: i,
+              });
+            }
           }
         }
       }
@@ -56,8 +78,29 @@ const PlayerProfileData = () => {
     return `${positiveGames} : ${negativeGames}`;
   };
 
+  const getPositiveNegativeSeasonRatio = () => {
+    let positiveGames = 0;
+    let negativeGames = 0;
+    for (let i = 0; i < gameHistory.length; i++) {
+      if (gameHistory[i].season === latestSeason) {
+        if (gameHistory[i].earnings > 0) {
+          positiveGames++;
+        } else if (gameHistory[i].earnings < 0) {
+          negativeGames++;
+        }
+      }
+    }
+    return `${positiveGames} : ${negativeGames}`;
+  };
+
   const computeAvgProfit = () => {
-    let avg = userData.earnings / userData.gamesPlayed;
+    let avg = 0;
+    if (isSeasonSelected) {
+      if (computeSeasonGamesPlayed() === 0) return 0;
+      avg = userData.seasonEarnings / computeSeasonGamesPlayed();
+    } else {
+      avg = userData.earnings / userData.gamesPlayed;
+    }
     avg = avg.toString();
     return avg.substr(0, 6);
   };
@@ -68,6 +111,26 @@ const PlayerProfileData = () => {
     } catch (e) {
       return null;
     }
+  };
+
+  const computeSeasonBuyBacks = () => {
+    let numBuyBacks = 0;
+    gameHistory.forEach((game) => {
+      if (game.season === latestSeason) {
+        numBuyBacks += parseInt(game.buyBacks);
+      }
+    });
+    return numBuyBacks;
+  };
+
+  const computeSeasonGamesPlayed = () => {
+    let numGamesPlayed = 0;
+    gameHistory.forEach((game) => {
+      if (game.season === latestSeason) {
+        numGamesPlayed += 1;
+      }
+    });
+    return numGamesPlayed;
   };
 
   const getDescription = () => {
@@ -111,7 +174,7 @@ const PlayerProfileData = () => {
   };
 
   return (
-    <Container>
+    <Container className="parentContainer">
       <Button
         className="blackBtn"
         style={{ marginTop: "5px" }}
@@ -145,44 +208,71 @@ const PlayerProfileData = () => {
           <img src={getPlayerImage()} alt="Photo" />
         </Row>
         <label>
-          <label style={{ fontWeight: "bold" }}>Name:&nbsp;</label>
-          <label>{userData.name}</label>
+          <b>Name:</b>&nbsp;{userData.name}
         </label>
         <label>
-          <label style={{ fontWeight: "bold" }}>Description:&nbsp;</label>
-          <label>{getDescription()}</label>
+          <b>Description:</b>
+          <br />
+          {getDescription()}
+        </label>
+        <Row
+          style={{ marginTop: "5px", marginLeft: "5px", marginBottom: "5px" }}
+        >
+          <Col>
+            <ButtonGroup>
+              {radios.map((radio, idx) => (
+                <ToggleButton
+                  key={idx}
+                  id={`radio-${idx}`}
+                  type="radio"
+                  variant={idx % 2 ? "outline-dark" : "outline-dark"}
+                  name="radio"
+                  value={radio.value}
+                  checked={isSeasonSelected === radio.value}
+                  onClick={() => {
+                    setIsSeasonSelected(radio.value);
+                  }}
+                >
+                  {radio.name}
+                </ToggleButton>
+              ))}
+            </ButtonGroup>
+          </Col>
+        </Row>
+        <label>
+          <b>Total Earnings:</b>&nbsp;
+          {isSeasonSelected ? userData.seasonEarnings : userData.earnings}
         </label>
         <label>
-          <label style={{ fontWeight: "bold" }}>Total Earnings:&nbsp; </label>
-          <label>{userData.earnings}</label>
+          <b>Buy Backs:</b>&nbsp;
+          {isSeasonSelected ? computeSeasonBuyBacks() : userData.buyBacks}
         </label>
         <label>
-          <label style={{ fontWeight: "bold" }}>Buy Backs:&nbsp; </label>
-          <label>{userData.buyBacks}</label>
+          <b>Games Played:</b>&nbsp;
+          {isSeasonSelected ? computeSeasonGamesPlayed() : userData.gamesPlayed}
         </label>
         <label>
-          <label style={{ fontWeight: "bold" }}>Games Played:&nbsp; </label>
-          <label>{userData.gamesPlayed}</label>
+          <b> Positive - Negative :</b>&nbsp;
+          {isSeasonSelected
+            ? getPositiveNegativeSeasonRatio()
+            : getPositiveNegativeRatio()}
         </label>
         <label>
-          <label style={{ fontWeight: "bold" }}>
-            {" "}
-            Positive - Negative :&nbsp;{" "}
-          </label>
-          <label>{getPositiveNegativeRatio()}</label>
-        </label>
-        <label>
-          <label style={{ fontWeight: "bold" }}>
-            Avg. profit per game: &nbsp;
-          </label>
+          <b> Avg. profit per game:</b> &nbsp;
           <label>{userData.gamesPlayed > 0 ? computeAvgProfit() : 0}</label>
         </label>
       </Row>
       <Row style={{ marginTop: "5px" }}>
-        <UserLineGraphs />
+        <PlayerLineGraph
+          gameHistory={gameHistory}
+          isSeasonSelected={isSeasonSelected}
+        />
       </Row>
       <Row style={{ marginTop: "5px" }}>
-        <PlayerGameHistory />
+        <PlayerGameHistory
+          gameHistory={gameHistory}
+          latestSeason={latestSeason}
+        />
       </Row>
     </Container>
   );

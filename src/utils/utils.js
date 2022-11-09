@@ -1,8 +1,8 @@
 export function dateCompare(a, b) {
-  if (a < b) {
+  if (a.date < b.date) {
     return 1;
   }
-  if (a > b) {
+  if (a.date > b.date) {
     return -1;
   }
   return 0;
@@ -28,11 +28,21 @@ export function nameCompare(a, b) {
   return 0;
 }
 
-export function earningsCompare(a, b) {
+export function overallEarningsCompare(a, b) {
   if (parseFloat(a.earnings) < parseFloat(b.earnings)) {
     return 1;
   }
   if (parseFloat(a.earnings) > parseFloat(b.earnings)) {
+    return -1;
+  }
+  return 0;
+}
+
+export function seasonEarningsCompare(a, b) {
+  if (parseFloat(a.seasonEarnings) < parseFloat(b.seasonEarnings)) {
+    return 1;
+  }
+  if (parseFloat(a.seasonEarnings) > parseFloat(b.seasonEarnings)) {
     return -1;
   }
   return 0;

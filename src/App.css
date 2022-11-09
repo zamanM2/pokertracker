@@ -50,14 +50,33 @@ animation: pulse 2s infinite;
   }
 }
 
-.earningContainer{
-  background-color: white;
+html{
+  background-color: #FFDBA5;
 }
 
-.playerContainer{
-background-color: white;
+.parentContainer{
+  background-color: #FFDBA5;
+  font-family: "Comic Sans MS", serif;
 }
 
-.gameContainer{
-background-color: white;
+.accordionBody{
+  background-color: #FFDBA5;
+}
+
+.accordion-button:not(.collapsed) {
+  background-color: #FFA824 !important;
+  color: black !important;
+}
+
+.accordion-item .accordion-button {
+  background-color: #FFCB7D;
+}
+
+.footer{
+  font-size: x-small;
+  margin-top: 1rem;
+  padding: 1rem;
+  bottom: 0;
+  left: 0;
+  width: 100%;
 }

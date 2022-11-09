@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Accordion from "react-bootstrap/Accordion";
 import Button from "react-bootstrap/Button";
 import { FaPlus } from "react-icons/fa";
 import { Link } from "react-router-dom";
@@ -11,16 +12,26 @@ import "../css/blackBtn.css";
 
 const GamesList = () => {
   const [gameSessions, setGameSessions] = useState([]);
+  const [numberOfSeasons, setNumberOfSeasons] = useState([]);
 
   useEffect(() => {
+    //populate state with an array of objects {date, season}
     getGameSessions().then((snapshot) => {
-      const keys = Object.keys(snapshot.val());
-      setGameSessions(keys);
+      const seasons = Object.keys(snapshot.val()); //seasons
+      setNumberOfSeasons([...Array(seasons.length).keys()].reverse());
+      let _gameSessions = [];
+      for (let i = 0; i < seasons.length; i++) {
+        let dates = Object.keys(snapshot.val()[seasons[i]]);
+        for (let j = 0; j < dates.length; j++) {
+          _gameSessions.push({ date: dates[j], season: i });
+        }
+      }
+      setGameSessions(_gameSessions.sort(dateCompare));
     });
   }, []);
 
   return (
-    <Container>
+    <Container style={{ paddingRight: "5px", backgroundColor: "#FFDBA5" }}>
       <Row>
         <Col>
           <h2>
@@ -34,15 +45,29 @@ const GamesList = () => {
         </Col>
       </Row>
       <Row>
-        {[...gameSessions].sort(dateCompare).map((date) => (
-          <Link
-            style={{ marginBottom: "3px", color: "black" }}
-            key={date}
-            to={`/gamedata/${date}`}
-          >
-            {formatDate(date)}
-          </Link>
-        ))}
+        <Accordion>
+          {[...numberOfSeasons].map((season) => (
+            <Accordion.Item key={season} eventKey={season}>
+              <Accordion.Header>{`Season ${season}`}</Accordion.Header>
+              <Accordion.Body key={season} className="accordionBody">
+                {[...gameSessions]
+                  .filter((game) => game.season === season)
+                  .map((game) => (
+                    <div key={season + game.date}>
+                      <Link
+                        style={{ marginBottom: "3px", color: "black" }}
+                        key={season + game.date}
+                        to={`/season-${game.season}/${game.date}`}
+                      >
+                        {formatDate(game.date)}
+                      </Link>
+                      <br />
+                    </div>
+                  ))}
+              </Accordion.Body>
+            </Accordion.Item>
+          ))}
+        </Accordion>
       </Row>
     </Container>
   );

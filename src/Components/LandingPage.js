@@ -5,11 +5,27 @@ import GamesList from "./GamesList";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { getUsers, addNewUser } from "../Firebase/PokerApi";
-import { earningsCompare } from "../utils/utils";
+import ButtonGroup from "react-bootstrap/ButtonGroup";
+import ToggleButton from "react-bootstrap/ToggleButton";
+import { GiMoneyStack } from "react-icons/gi";
+import {
+  getUsers,
+  addNewUser,
+  getLatestSeasonNumber,
+  getPrizePool,
+} from "../Firebase/PokerApi";
+import { Link } from "react-router-dom";
 
 function LandingPage() {
   const [users, setUsers] = useState([]);
+  const [isSeasonSelected, setIsSeasonSelected] = useState(true);
+  const [latestSeason, setLatestSeason] = useState(0);
+  const [prizePool, setPrizePool] = useState(0);
+
+  const radios = [
+    { name: `Season ${latestSeason}`, value: true },
+    { name: "Overall", value: false },
+  ];
 
   useEffect(() => {
     getUsers().then((snapshot) => {
@@ -18,7 +34,15 @@ function LandingPage() {
       for (const element of keys) {
         _users.push({ ...snapshot.val()[element], id: element });
       }
-      setUsers(_users.sort(earningsCompare));
+      setUsers(_users);
+    });
+
+    getLatestSeasonNumber().then((snapshot) => {
+      setLatestSeason(snapshot.val());
+    });
+
+    getPrizePool().then((snapshot) => {
+      setPrizePool(snapshot.val());
     });
   }, []);
 
@@ -39,21 +63,66 @@ function LandingPage() {
   };
 
   return (
-    <Container>
+    <Container className="parentContainer">
       <Row className="text-center">
-        <h2>[A]rgoBros Poker Tracker</h2>
+        <h2 className="argoTitle">[A]rgoBros Poker Tracker</h2>
+      </Row>
+      <Row className="text-center">
+        <Col>
+          <ButtonGroup>
+            {radios.map((radio, idx) => (
+              <ToggleButton
+                key={idx}
+                id={`radio-${idx}`}
+                type="radio"
+                variant={idx % 2 ? "outline-dark" : "outline-dark"}
+                name="radio"
+                value={radio.value}
+                checked={isSeasonSelected === radio.value}
+                onClick={() => {
+                  setIsSeasonSelected(radio.value);
+                }}
+              >
+                {radio.name}
+              </ToggleButton>
+            ))}
+          </ButtonGroup>
+        </Col>
       </Row>
       <Row style={{ height: "250px" }}>
-        <EarningsGraph users={users.filter((user) => user.isActive == true)} />
+        <EarningsGraph
+          isSeasonSelected={isSeasonSelected}
+          users={users.filter((user) => user.isActive === true)}
+        />
+      </Row>
+      <Row style={{ textAlign: "center" }}>
+        <h3>
+          <GiMoneyStack size={30} />
+          {`Prize Pool: $${prizePool}`}
+          <GiMoneyStack size={30} />
+        </h3>
+      </Row>
+      <Row className="text-center">
+        <h5 className="argoTitle">
+          <Link
+            style={{ marginBottom: "3px", color: "black" }}
+            to={`/season/stats`}
+          >
+            <u>Season Stats</u>&#8594;
+          </Link>
+        </h5>
       </Row>
       <Row style={{ marginTop: "10px" }}>
-        <Col className="playerContainer" xs={6}>
+        <Col xs={6}>
           <PlayerList users={users} onAddNewUser={handleAddNewUser} />
         </Col>
-        <Col className="gameContainer" xs={6}>
+        <Col xs={6}>
           <GamesList />
         </Col>
       </Row>
+      <div className="footer">
+        <Link to="legal">Legal</Link>
+      </div>
     </Container>
   );
 }
