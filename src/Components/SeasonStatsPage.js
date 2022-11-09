@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "react-bootstrap/Button";
 import { IoMdArrowBack } from "react-icons/io";
-import { FaWrench } from "react-icons/fa";
+import { MdConstruction } from "react-icons/md";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import "../css/blackBtn.css";
@@ -22,9 +22,11 @@ const LegalPage = () => {
       >
         <IoMdArrowBack />
       </Button>
-      Coming Soon...
+      <Row style={{ fontSize: 24, textAlign: "center", marginBottom: "20px" }}>
+        <label>Coming Soon...</label>
+      </Row>
       <Row>
-        <FaWrench size={100} />
+        <MdConstruction size={150} />
       </Row>
     </Container>
   );
