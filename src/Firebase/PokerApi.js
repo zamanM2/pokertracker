@@ -33,6 +33,7 @@ export const addNewUser = async (newName) => {
     gamesPlayed: 0,
     isActive: true,
     seasonEarnings: 0,
+    seasonAllIns: 0,
     name: `${newName}`,
   });
 };

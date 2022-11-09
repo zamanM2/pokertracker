@@ -15,7 +15,6 @@ import {
   getPrizePool,
 } from "../Firebase/PokerApi";
 import { Link } from "react-router-dom";
-import { formatDate } from "../utils/utils";
 
 function LandingPage() {
   const [users, setUsers] = useState([]);
@@ -107,7 +106,6 @@ function LandingPage() {
         <h5 className="argoTitle">
           <Link
             style={{ marginBottom: "3px", color: "black" }}
-            key={"dsafsdf"}
             to={`/season/stats`}
           >
             <u>Season Stats</u>&#8594;
