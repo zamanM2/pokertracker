@@ -11,7 +11,7 @@ const LegalPage = () => {
   return (
     <Container
       className="parentContainer"
-      style={{ fontFamily: "Comic Sans MS" }}
+      style={{ fontFamily: "Arial, sans-serif" }}
     >
       <Button
         className="blackBtn"
