@@ -63,7 +63,7 @@ function LandingPage() {
   };
 
   return (
-    <Container className="parentContainer">
+    <Container className="parentContainer" style={{ padding: "2px" }}>
       <Row className="text-center">
         <h2 className="argoTitle">[A]rgoBros Poker Tracker</h2>
       </Row>
@@ -89,7 +89,7 @@ function LandingPage() {
           </ButtonGroup>
         </Col>
       </Row>
-      <Row style={{ height: "250px" }}>
+      <Row style={{ height: "250px", padding: "0px" }}>
         <EarningsGraph
           isSeasonSelected={isSeasonSelected}
           users={users.filter((user) => user.isActive === true)}
