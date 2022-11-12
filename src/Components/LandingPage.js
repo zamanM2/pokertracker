@@ -116,7 +116,7 @@ function LandingPage() {
         <Col xs={6}>
           <PlayerList users={users} onAddNewUser={handleAddNewUser} />
         </Col>
-        <Col xs={6}>
+        <Col xs={6} style={{ paddingRight: "20px" }}>
           <GamesList />
         </Col>
       </Row>
