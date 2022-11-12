@@ -48,15 +48,11 @@ const GameData = () => {
     getImage();
   }, []);
 
-  // useEffect(() =>{
-  //   getGameCaption(key).then((snapshot) =>{
-  //     const key = Object.keys(snapshot.val());
-  //     const gameCaption = " ";
-
-  //   }
-  //   ) 
-  // }
-  // )
+  useEffect(() => {
+    getGameCaption(season + "-" + date).then((snapshot) => {
+      setCaption(snapshot.val());
+    });
+  }, [caption]);
 
   const handleChange = (e) => {
     if (e.target.files[0]) {
