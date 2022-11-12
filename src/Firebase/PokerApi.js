@@ -107,6 +107,10 @@ export const saveGameSession = async (date, usersInGame, dealer) => {
   return update(child(dbRef, `/users/`), updatesUsers);
 };
 
+export const getGameCaption = async (key) => {
+  return get(child(dbRef, `/metadata/gameCaption/${key}`));
+};
+
 export const getGameHistory = async () => {
   return get(child(dbRef, `/seasons/`));
 };

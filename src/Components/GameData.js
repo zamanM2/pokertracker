@@ -4,6 +4,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import {
+  getGameCaption,
   getGameData,
   getGameImage,
   uploadGameImage,
@@ -13,12 +14,15 @@ import Button from "react-bootstrap/Button";
 import { IoMdArrowBack } from "react-icons/io";
 import { formatDate, overallEarningsCompare } from "../utils/utils";
 import "../css/blackBtn.css";
+import { async } from "@firebase/util";
 
 const GameData = () => {
   const [gameData, setGameData] = useState([]);
   const [gameImage, setGameImage] = useState("");
   const [imageToUpload, setImageToUpload] = useState("");
   const [dealer, setDealer] = useState("");
+  const [caption, setCaption] = useState("");
+  const [inputCaption, setInputCaption] = useState("");
   let { date } = useParams();
   let { season } = useParams();
   const navigate = useNavigate();
@@ -44,16 +48,29 @@ const GameData = () => {
     getImage();
   }, []);
 
+  // useEffect(() =>{
+  //   getGameCaption(key).then((snapshot) =>{
+  //     const key = Object.keys(snapshot.val());
+  //     const gameCaption = " ";
+
+  //   }
+  //   ) 
+  // }
+  // )
+
   const handleChange = (e) => {
     if (e.target.files[0]) {
       setImageToUpload(e.target.files[0]);
-      
     }
   };
 
   const handleUpload = () => {
     if (imageToUpload === "") return;
     uploadGameImage(date, imageToUpload, setGameImage);
+  };
+
+  const handInputCaptionChange = (event) => {
+    setInputCaption(event.target.value);
   };
 
   return (
@@ -113,17 +130,10 @@ const GameData = () => {
           })}
         </tbody>
       </table>
-      {dealer !== "" && (
-        <h4
-          style={{
-            marginBottom: "5px",
-            marginTop: "7px",
-            marginLeft: "20px",
-          }}
-        >
-          Dealer: {dealer}
-        </h4>
-      )}
+      {dealer !== "" && <h4>Dealer: {dealer}</h4>}
+      <label>
+        <h4>Caption: {caption}</h4>
+      </label>
       <img
         style={{ width: "100%", height: "100%", marginBottom: "8px" }}
         src={gameImage}
@@ -139,6 +149,19 @@ const GameData = () => {
             style={{ backgroundColor: "#A0A0A0", borderColor: "#A8A8A8" }}
           >
             Upload
+          </Button>
+        </Col>
+      </Row>
+      <Row>
+        <Col xs={7}>
+          <Form.Control type="input" onChange={handInputCaptionChange} />
+        </Col>
+        <Col>
+          <Button
+            onClick={handleUpload}
+            style={{ backgroundColor: "#A0A0A0", borderColor: "#A8A8A8" }}
+          >
+            Submit Caption
           </Button>
         </Col>
       </Row>
