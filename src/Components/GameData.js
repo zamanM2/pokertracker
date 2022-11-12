@@ -8,13 +8,13 @@ import {
   getGameData,
   getGameImage,
   uploadGameImage,
+  setGameCaption,
 } from "../Firebase/PokerApi";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import { IoMdArrowBack } from "react-icons/io";
 import { formatDate, overallEarningsCompare } from "../utils/utils";
 import "../css/blackBtn.css";
-import { async } from "@firebase/util";
 
 const GameData = () => {
   const [gameData, setGameData] = useState([]);
@@ -52,12 +52,18 @@ const GameData = () => {
     getGameCaption(season + "-" + date).then((snapshot) => {
       setCaption(snapshot.val());
     });
-  }, [caption]);
+  }, []);
 
   const handleChange = (e) => {
     if (e.target.files[0]) {
       setImageToUpload(e.target.files[0]);
     }
+  };
+
+  const handleSetGameCaption = () => {
+    setGameCaption(season + "-" + date, inputCaption).then(() =>
+      setCaption(inputCaption)
+    );
   };
 
   const handleUpload = () => {
@@ -154,7 +160,7 @@ const GameData = () => {
         </Col>
         <Col>
           <Button
-            onClick={handleUpload}
+            onClick={handleSetGameCaption}
             style={{ backgroundColor: "#A0A0A0", borderColor: "#A8A8A8" }}
           >
             Submit Caption

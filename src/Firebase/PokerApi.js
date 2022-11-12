@@ -111,6 +111,13 @@ export const getGameCaption = async (key) => {
   return get(child(dbRef, `/metadata/gameCaption/${key}`));
 };
 
+export const setGameCaption = async (key, caption) => {
+  const gameCaption = {};
+  gameCaption[`/metadata/gameCaption/${key}`] = caption;
+  update(dbRef, gameCaption);
+  return get(child(dbRef, `/metadata/gameCaption/${key}`));
+};
+
 export const getGameHistory = async () => {
   return get(child(dbRef, `/seasons/`));
 };
