@@ -154,7 +154,7 @@ const GameData = () => {
           </Button>
         </Col>
       </Row>
-      <Row>
+      <Row style={{ marginBottom: "15px" }}>
         <Col xs={7}>
           <Form.Control type="input" onChange={handInputCaptionChange} />
         </Col>
