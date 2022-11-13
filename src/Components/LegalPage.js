@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import { IoMdArrowBack } from "react-icons/io";
 import Container from "react-bootstrap/Container";
@@ -7,6 +7,10 @@ import { useNavigate } from "react-router-dom";
 
 const LegalPage = () => {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <Container
