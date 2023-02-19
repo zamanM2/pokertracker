@@ -7,7 +7,7 @@ import Row from "react-bootstrap/Row";
 import "../css/blackBtn.css";
 import { useNavigate } from "react-router-dom";
 
-const LegalPage = () => {
+const SeasonStatsPage = () => {
   const navigate = useNavigate();
 
   return (
@@ -32,4 +32,4 @@ const LegalPage = () => {
   );
 };
 
-export default LegalPage;
+export default SeasonStatsPage;
