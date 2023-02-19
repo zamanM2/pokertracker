@@ -97,6 +97,7 @@ export const saveGameSession = async (date, usersInGame, dealer) => {
     updatesUsers[el.id] = {
       name: el.name,
       gamesPlayed: el.gamesPlayed + 1,
+      seasonGamesPlayed: el.seasonGamesPlayed + 1,
       earnings: el.earnings + parseFloat(el.inputEarnings),
       buyBacks: el.buyBacks + parseInt(el.inputBuyBacks),
       isActive: true,
