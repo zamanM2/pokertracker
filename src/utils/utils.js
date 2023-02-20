@@ -48,6 +48,16 @@ export function seasonEarningsCompare(a, b) {
   return 0;
 }
 
+export function pointsCompare(a, b) {
+  if (parseFloat(a.points) < parseFloat(b.points)) {
+    return 1;
+  }
+  if (parseFloat(a.points) > parseFloat(b.points)) {
+    return -1;
+  }
+  return 0;
+}
+
 export const getTodaysDate = () => {
   let todaysDate = new Date();
   const offset = todaysDate.getTimezoneOffset();

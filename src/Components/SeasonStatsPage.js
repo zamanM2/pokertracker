@@ -7,6 +7,7 @@ import Row from "react-bootstrap/Row";
 import "../css/blackBtn.css";
 import { useNavigate } from "react-router-dom";
 import { getUsers } from "../Firebase/PokerApi";
+import { seasonEarningsCompare, pointsCompare } from "../utils/utils";
 
 const SeasonStatsPage = () => {
   const navigate = useNavigate();
@@ -22,13 +23,30 @@ const SeasonStatsPage = () => {
             name: snapshot.val()[userId].name,
             seasonEarnings: snapshot.val()[userId].seasonEarnings,
             seasonAllIns: snapshot.val()[userId].seasonAllIns,
+            points: snapshot.val()[userId].seasonAllIns * 0.1,
           });
         }
       }
-      console.log(_userStats);
+      computeSeasonEarningsPoints(_userStats);
+      computeMostMoneyinOneGameSessionPoints();
+      _userStats.sort(pointsCompare);
       setUserStats(_userStats);
     });
   }, []);
+
+  const computeSeasonEarningsPoints = (stats) => {
+    stats.sort(seasonEarningsCompare);
+    stats[0].points = stats[0].points + 3;
+    stats[1].points = stats[1].points + 2;
+    stats[2].points = stats[2].points + 1;
+  };
+
+  const computeMostMoneyinOneGameSessionPoints = () => {
+    // get all games in the season
+    // iterate through all games in season
+    // save amount/player with most money in one game session
+    // iterate through players until you find the player and add 2 points
+  };
 
   return (
     <Container
