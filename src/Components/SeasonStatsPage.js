@@ -30,6 +30,7 @@ const SeasonStatsPage = () => {
       computeSeasonEarningsPoints(_userStats);
       computeMostMoneyInOneGameSessionPoints(_userStats);
       computeLongestWinStreakPoints(_userStats);
+      computeBestWinRatioPoints(_userStats);
       _userStats.sort(pointsCompare);
       setUserStats(_userStats);
     });
@@ -111,6 +112,59 @@ const SeasonStatsPage = () => {
         ) {
           winner.name = name;
           winner.longest = Math.max(streak.longest, streak.current);
+        }
+      }
+      return winner.name;
+    });
+
+    for (let i = 0; i < stats.length; i++) {
+      if (stats[i].name === winner) {
+        stats[i].points += 1;
+      }
+    }
+  };
+
+  const computeBestWinRatioPoints = async (stats) => {
+    const winner = await getGameHistory().then((snapshot) => {
+      const winRatio = new Map();
+      const seasons = Object.keys(snapshot.val());
+      let gamesData = snapshot.val()[seasons[seasons.length - 1]]; //all games in latest season
+      const dates = Object.keys(gamesData);
+      for (const date of dates) {
+        // iterate through all games
+        const userIds = Object.keys(gamesData[date]); // users in a game
+        for (const userId of userIds) {
+          let earnings = gamesData[date][userId].earnings;
+          let name = gamesData[date][userId].name;
+          if (winRatio.get(name) === undefined) {
+            //first time putting into map
+            if (parseFloat(earnings) > 0) {
+              winRatio.set(name, { wins: 1, losses: 0 });
+            } else if (parseFloat(earnings) < 0) {
+              winRatio.set(name, { wins: 0, losses: 1 });
+            }
+          } else {
+            // not first time putting into map
+            if (parseFloat(earnings) > 0) {
+              winRatio.set(name, {
+                wins: winRatio.get(name).wins + 1,
+                losses: winRatio.get(name).losses,
+              });
+            } else if (parseFloat(earnings) < 0) {
+              winRatio.set(name, {
+                wins: winRatio.get(name).wins,
+                losses: winRatio.get(name).losses + 1,
+              });
+            }
+          }
+        }
+      }
+      let winner = { name: "N/a", winPercent: 0 };
+      for (let [name, record] of winRatio) {
+        let currentPercent = record.wins / (record.wins + record.losses);
+        if (currentPercent > winner.winPercent) {
+          winner.name = name;
+          winner.winPercent = currentPercent;
         }
       }
       return winner.name;
