@@ -6,14 +6,31 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import "../css/blackBtn.css";
 import { useNavigate } from "react-router-dom";
-import { getGameHistory, getUsers } from "../Firebase/PokerApi";
+import { getGameHistory, getPrizePool, getUsers } from "../Firebase/PokerApi";
 import { seasonEarningsCompare, pointsCompare } from "../utils/utils";
 import Col from "react-bootstrap/Col";
-import { saveSeasonStats, getLatestSeasonNumber } from "../Firebase/PokerApi";
+import {
+  saveSeasonStats,
+  getSeasonStatsData,
+  getLatestSeasonNumber,
+} from "../Firebase/PokerApi";
 import { toast, ToastContainer } from "react-toastify";
 
 const SeasonStatsPage = () => {
   const navigate = useNavigate();
+  const [stats, setStats] = useState([]);
+
+  useEffect(() => {
+    getSeasonStatsData(1).then((snapshot) => {
+      const _stats = [];
+      const keys = Object.keys(snapshot.val());
+      for (const userName of keys) {
+        _stats.push(snapshot.val()[userName]);
+      }
+      _stats.sort(pointsCompare);
+      setStats(_stats);
+    });
+  }, []);
 
   const handleSaveSeasonStats = async () => {
     const statsMap = new Map();

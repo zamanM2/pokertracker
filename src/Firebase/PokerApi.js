@@ -151,3 +151,7 @@ export const saveSeasonStats = (stats, season) => {
   data[`/seasonStats/season-${season}`] = Object.fromEntries(stats);
   return update(dbRef, data);
 };
+
+export const getSeasonStatsData = (seasonNumber) => {
+  return get(child(dbRef, `/seasonStats/season-${seasonNumber}/`));
+};
