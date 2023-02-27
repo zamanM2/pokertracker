@@ -8,6 +8,8 @@ import "../css/blackBtn.css";
 import { useNavigate } from "react-router-dom";
 import { getGameHistory, getUsers } from "../Firebase/PokerApi";
 import { seasonEarningsCompare, pointsCompare } from "../utils/utils";
+import Col from "react-bootstrap/Col";
+import { saveSeasonStats, getLatestSeasonNumber } from "../Firebase/PokerApi";
 
 const SeasonStatsPage = () => {
   const navigate = useNavigate();
@@ -35,6 +37,17 @@ const SeasonStatsPage = () => {
       setUserStats(_userStats);
     });
   }, []);
+
+  const handleSaveSeasonStats = async () => {
+    const statsMap = new Map();
+    for (let i = 0; i < userStats.length; i++) {
+      statsMap.set(userStats[i].name, userStats[i]);
+    }
+    const latestSeason = await getLatestSeasonNumber().then((snapshot) => {
+      return snapshot.val();
+    });
+    saveSeasonStats(statsMap, latestSeason);
+  };
 
   const computeSeasonEarningsPoints = (stats) => {
     stats.sort(seasonEarningsCompare);
@@ -193,6 +206,13 @@ const SeasonStatsPage = () => {
       </Row>
       <Row>
         <MdConstruction size={150} />
+      </Row>
+      <Row style={{ marginBottom: "5px" }}>
+        <Col>
+          <Button className="blackBtn" onClick={handleSaveSeasonStats}>
+            Save Season Stats
+          </Button>
+        </Col>
       </Row>
     </Container>
   );

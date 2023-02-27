@@ -145,3 +145,9 @@ export const uploadGameImage = async (date, file, setImage) => {
     }
   );
 };
+
+export const saveSeasonStats = (stats, season) => {
+  const data = {};
+  data[`/seasonStats/season-${season}`] = Object.fromEntries(stats);
+  update(dbRef, data);
+};
