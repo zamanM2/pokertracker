@@ -10,18 +10,32 @@ import { getGameHistory, getUsers } from "../Firebase/PokerApi";
 import { seasonEarningsCompare, pointsCompare } from "../utils/utils";
 import Col from "react-bootstrap/Col";
 import { saveSeasonStats, getLatestSeasonNumber } from "../Firebase/PokerApi";
+import { toast, ToastContainer } from "react-toastify";
 
 const SeasonStatsPage = () => {
   const navigate = useNavigate();
-  const [userStats, setUserStats] = useState([]);
 
-  useEffect(() => {
-    getUsers().then((snapshot) => {
+  const handleSaveSeasonStats = async () => {
+    const statsMap = new Map();
+    const userStats = await calculateCurrentSeasonStats();
+    for (let i = 0; i < userStats.length; i++) {
+      statsMap.set(userStats[i].name, userStats[i]);
+    }
+    const latestSeason = await getLatestSeasonNumber().then((snapshot) => {
+      return snapshot.val();
+    });
+    await saveSeasonStats(statsMap, latestSeason).then(() => {
+      toast.success("Season Stats Saved");
+    });
+  };
+
+  const calculateCurrentSeasonStats = async () => {
+    return await getUsers().then((snapshot) => {
       const keys = Object.keys(snapshot.val());
-      const _userStats = [];
+      const userStats = [];
       for (const userId of keys) {
         if (snapshot.val()[userId].seasonGamesPlayed >= 7) {
-          _userStats.push({
+          userStats.push({
             name: snapshot.val()[userId].name,
             seasonEarnings: snapshot.val()[userId].seasonEarnings,
             seasonAllIns: snapshot.val()[userId].seasonAllIns,
@@ -29,24 +43,13 @@ const SeasonStatsPage = () => {
           });
         }
       }
-      computeSeasonEarningsPoints(_userStats);
-      computeMostMoneyInOneGameSessionPoints(_userStats);
-      computeLongestWinStreakPoints(_userStats);
-      computeBestWinRatioPoints(_userStats);
-      _userStats.sort(pointsCompare);
-      setUserStats(_userStats);
+      computeSeasonEarningsPoints(userStats);
+      computeMostMoneyInOneGameSessionPoints(userStats);
+      computeLongestWinStreakPoints(userStats);
+      computeBestWinRatioPoints(userStats);
+      userStats.sort(pointsCompare);
+      return userStats;
     });
-  }, []);
-
-  const handleSaveSeasonStats = async () => {
-    const statsMap = new Map();
-    for (let i = 0; i < userStats.length; i++) {
-      statsMap.set(userStats[i].name, userStats[i]);
-    }
-    const latestSeason = await getLatestSeasonNumber().then((snapshot) => {
-      return snapshot.val();
-    });
-    saveSeasonStats(statsMap, latestSeason);
   };
 
   const computeSeasonEarningsPoints = (stats) => {
@@ -194,6 +197,7 @@ const SeasonStatsPage = () => {
       className="parentContainer"
       style={{ fontFamily: "Arial, sans-serif" }}
     >
+      <ToastContainer autoClose={3000} hideProgressBar />
       <Button
         className="blackBtn"
         style={{ marginTop: "5px", marginRight: "10px" }}
