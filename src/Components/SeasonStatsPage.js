@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import { IoMdArrowBack } from "react-icons/io";
-import { MdConstruction } from "react-icons/md";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
+import UserSeasonStats from "./UserSeasonStats";
 import "../css/blackBtn.css";
 import { useNavigate } from "react-router-dom";
 import { getGameHistory, getPrizePool, getUsers } from "../Firebase/PokerApi";
@@ -222,12 +222,14 @@ const SeasonStatsPage = () => {
       >
         <IoMdArrowBack />
       </Button>
-      <Row style={{ fontSize: 24, textAlign: "center", marginBottom: "20px" }}>
-        <label>Coming Soon...</label>
+      <Row
+        style={{ textAlign: "center", fontWeight: "bold", fontSize: "30px" }}
+      >
+        <label>Season 1 Results</label>
       </Row>
-      <Row>
-        <MdConstruction size={150} />
-      </Row>
+      <UserSeasonStats player={stats[0]} place={1} />
+      <UserSeasonStats player={stats[1]} place={2} />
+      <UserSeasonStats player={stats[2]} place={3} />
       <Row style={{ marginBottom: "5px" }}>
         <Col>
           <Button className="blackBtn" onClick={handleSaveSeasonStats}>
