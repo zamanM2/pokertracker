@@ -26,7 +26,6 @@ const SeasonStatsPage = () => {
       if (snapshot.size === 0) {
         setDisplayStats(false);
       } else {
-        setDisplayStats(true);
         const _stats = [];
         const keys = Object.keys(snapshot.val());
         for (const userName of keys) {
@@ -34,6 +33,7 @@ const SeasonStatsPage = () => {
         }
         _stats.sort(pointsCompare);
         setStats(_stats);
+        setDisplayStats(true);
       }
     });
   }, [displayStats]);
