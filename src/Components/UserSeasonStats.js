@@ -49,6 +49,11 @@ const UserSeasonStats = ({ player, place }) => {
         <label>
           <b>Points:</b> {player?.points}
         </label>
+        {player?.awards !== "" && (
+          <label>
+            <b>Awards:</b> {player?.awards}
+          </label>
+        )}
       </Row>
     </>
   );

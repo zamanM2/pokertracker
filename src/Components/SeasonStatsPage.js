@@ -6,7 +6,8 @@ import Row from "react-bootstrap/Row";
 import UserSeasonStats from "./UserSeasonStats";
 import "../css/blackBtn.css";
 import { useNavigate } from "react-router-dom";
-import { getGameHistory, getPrizePool, getUsers } from "../Firebase/PokerApi";
+import { getGameHistory, getUsers } from "../Firebase/PokerApi";
+import { MdConstruction } from "react-icons/md";
 import { seasonEarningsCompare, pointsCompare } from "../utils/utils";
 import Col from "react-bootstrap/Col";
 import {
@@ -14,23 +15,28 @@ import {
   getSeasonStatsData,
   getLatestSeasonNumber,
 } from "../Firebase/PokerApi";
-import { toast, ToastContainer } from "react-toastify";
 
 const SeasonStatsPage = () => {
   const navigate = useNavigate();
   const [stats, setStats] = useState([]);
+  const [displayStats, setDisplayStats] = useState(false);
 
   useEffect(() => {
     getSeasonStatsData(1).then((snapshot) => {
-      const _stats = [];
-      const keys = Object.keys(snapshot.val());
-      for (const userName of keys) {
-        _stats.push(snapshot.val()[userName]);
+      if (snapshot.size === 0) {
+        setDisplayStats(false);
+      } else {
+        setDisplayStats(true);
+        const _stats = [];
+        const keys = Object.keys(snapshot.val());
+        for (const userName of keys) {
+          _stats.push(snapshot.val()[userName]);
+        }
+        _stats.sort(pointsCompare);
+        setStats(_stats);
       }
-      _stats.sort(pointsCompare);
-      setStats(_stats);
     });
-  }, []);
+  }, [displayStats]);
 
   const handleSaveSeasonStats = async () => {
     const statsMap = new Map();
@@ -42,7 +48,7 @@ const SeasonStatsPage = () => {
       return snapshot.val();
     });
     await saveSeasonStats(statsMap, latestSeason).then(() => {
-      toast.success("Season Stats Saved");
+      setDisplayStats(true);
     });
   };
 
@@ -57,6 +63,7 @@ const SeasonStatsPage = () => {
             seasonEarnings: snapshot.val()[userId].seasonEarnings,
             seasonAllIns: snapshot.val()[userId].seasonAllIns,
             points: snapshot.val()[userId].seasonAllIns * 0.1,
+            awards: "",
           });
         }
       }
@@ -91,11 +98,16 @@ const SeasonStatsPage = () => {
           }
         }
       }
-      return highest.name;
+      return highest;
     });
     for (let i = 0; i < stats.length; i++) {
-      if (stats[i].name === winner) {
+      if (stats[i].name === winner.name) {
         stats[i].points += 2;
+        if (stats[i].awards === "") {
+          stats[i].awards += `Most $ won in 1 Game ($${winner.earnings})`;
+        } else {
+          stats[i].awards += ", Most $ won in 1 Game";
+        }
       }
     }
   };
@@ -147,12 +159,17 @@ const SeasonStatsPage = () => {
           winner.longest = Math.max(streak.longest, streak.current);
         }
       }
-      return winner.name;
+      return winner;
     });
 
     for (let i = 0; i < stats.length; i++) {
-      if (stats[i].name === winner) {
+      if (stats[i].name === winner.name) {
         stats[i].points += 1;
+        if (stats[i].awards === "") {
+          stats[i].awards += `Longest Win Streak (${winner.longest} Games)`;
+        } else {
+          stats[i].awards += `, Longest Win Streak (${winner.longest} Games)`;
+        }
       }
     }
   };
@@ -200,11 +217,16 @@ const SeasonStatsPage = () => {
           winner.winPercent = currentPercent;
         }
       }
-      return winner.name;
+      return winner;
     });
     for (let i = 0; i < stats.length; i++) {
-      if (stats[i].name === winner) {
+      if (stats[i].name === winner.name) {
         stats[i].points += 1;
+        if (stats[i].awards === "") {
+          stats[i].awards += `Best Win Ratio (${winner.winPercent * 100}%)`;
+        } else {
+          stats[i].awards += `, \nBest Win Ratio (${winner.winPercent * 100}%)`;
+        }
       }
     }
   };
@@ -214,7 +236,6 @@ const SeasonStatsPage = () => {
       className="parentContainer"
       style={{ fontFamily: "Arial, sans-serif" }}
     >
-      <ToastContainer autoClose={3000} hideProgressBar />
       <Button
         className="blackBtn"
         style={{ marginTop: "5px", marginRight: "10px" }}
@@ -222,14 +243,35 @@ const SeasonStatsPage = () => {
       >
         <IoMdArrowBack />
       </Button>
-      <Row
-        style={{ textAlign: "center", fontWeight: "bold", fontSize: "30px" }}
-      >
-        <label>Season 1 Results</label>
-      </Row>
-      <UserSeasonStats player={stats[0]} place={1} />
-      <UserSeasonStats player={stats[1]} place={2} />
-      <UserSeasonStats player={stats[2]} place={3} />
+
+      {displayStats ? (
+        <>
+          <Row
+            style={{
+              textAlign: "center",
+              fontWeight: "bold",
+              fontSize: "30px",
+            }}
+          >
+            <label>Season 1 Results</label>
+          </Row>
+          <UserSeasonStats player={stats[0]} place={1} />
+          <UserSeasonStats player={stats[1]} place={2} />
+          <UserSeasonStats player={stats[2]} place={3} />
+        </>
+      ) : (
+        <>
+          <Row
+            style={{ fontSize: 24, textAlign: "center", marginBottom: "20px" }}
+          >
+            <label>Coming Soon...</label>
+          </Row>
+          <Row>
+            <MdConstruction size={150} />
+          </Row>
+        </>
+      )}
+
       <Row style={{ marginBottom: "5px" }}>
         <Col>
           <Button className="blackBtn" onClick={handleSaveSeasonStats}>

@@ -56,6 +56,7 @@ export const endSeason = async (users) => {
       isActive: el.isActive,
       gamesPlayed: el.gamesPlayed,
       seasonAllIns: 0,
+      seasonGamesPlayed: 0,
     };
   });
   updatePrizePool(0);
