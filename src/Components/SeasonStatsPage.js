@@ -15,11 +15,13 @@ import {
   getSeasonStatsData,
   getLatestSeasonNumber,
 } from "../Firebase/PokerApi";
+import { useAuth } from "../Context/AuthContext";
 
 const SeasonStatsPage = () => {
   const navigate = useNavigate();
   const [stats, setStats] = useState([]);
   const [displayStats, setDisplayStats] = useState(false);
+  const { currentUser } = useAuth();
 
   useEffect(() => {
     getSeasonStatsData(1).then((snapshot) => {
@@ -271,14 +273,15 @@ const SeasonStatsPage = () => {
           </Row>
         </>
       )}
-
-      <Row style={{ marginBottom: "5px" }}>
-        <Col>
-          <Button className="blackBtn" onClick={handleSaveSeasonStats}>
-            Save Season Stats
-          </Button>
-        </Col>
-      </Row>
+      {currentUser && (
+        <Row style={{ marginBottom: "5px" }}>
+          <Col>
+            <Button className="blackBtn" onClick={handleSaveSeasonStats}>
+              Save Season Stats
+            </Button>
+          </Col>
+        </Row>
+      )}
     </Container>
   );
 };
