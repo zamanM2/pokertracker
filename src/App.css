@@ -51,25 +51,25 @@ animation: pulse 2s infinite;
 }
 
 html{
-  background-color: #FFDBA5;
+  background-color: #DAE2B6;
 }
 
 .parentContainer{
-  background-color: #FFDBA5;
+  background-color: #DAE2B6;
   font-family: "Arial", sans-serif;
 }
 
 .accordionBody{
-  background-color: #FFDBA5;
+  background-color: #DAE2B6;
 }
 
 .accordion-button:not(.collapsed) {
-  background-color: #FFA824 !important;
+  background-color: #8FBC8F !important;
   color: black !important;
 }
 
 .accordion-item .accordion-button {
-  background-color: #FFCB7D;
+  background-color: #C9DC87;
 }
 
 .footer{

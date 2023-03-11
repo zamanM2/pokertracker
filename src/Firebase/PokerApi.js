@@ -72,7 +72,8 @@ export const updatePrizePool = (newPrizePool) => {
 export const addToPrizePool = async (amountToAdd) => {
   const currentPrizePool = await get(child(dbRef, `/metadata/prizePool`));
   const newPrizePool = {};
-  newPrizePool[`/metadata/prizePool`] = currentPrizePool.val() + amountToAdd;
+  newPrizePool[`/metadata/prizePool`] =
+    currentPrizePool.val() + amountToAdd * 2;
   update(dbRef, newPrizePool);
 };
 

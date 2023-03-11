@@ -31,7 +31,7 @@ const GamesList = () => {
   }, []);
 
   return (
-    <Container style={{ paddingRight: "5px", backgroundColor: "#FFDBA5" }}>
+    <Container style={{ paddingRight: "5px", backgroundColor: "#DAE2B6" }}>
       <Row>
         <Col>
           <h2>

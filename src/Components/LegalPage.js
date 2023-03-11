@@ -75,9 +75,9 @@ const LegalPage = () => {
       <h2>Bank/Dealer Rules</h2>
       <p>
         Sakib will be bank every night. When sending and requesting money on
-        Venmo/Zelle, he'll add or subtract $2 from each player (depending on if
-        you owe or are owed $). Half this money will be added to the prize pool,
-        the other half will be added to the dealer fee.
+        Venmo/Zelle, he'll add or subtract $3 from each player (depending on if
+        you owe or are owed $). $2 of this money will be added to the prize
+        pool, the other $1 will be added to the dealer fee.
       </p>
       <h2>Pineapple Rules</h2>
       <p>
