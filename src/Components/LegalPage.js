@@ -31,7 +31,7 @@ const LegalPage = () => {
       <p>
         Welcome to [A]rgoBros&copy; Seasons. Each season has 12 games. At the
         end of the season, winners are determined by the number of points
-        earned. You agree to the following rules , no exceptions are given:
+        earned. You agree to the following rules, no exceptions are given:
       </p>
       <h2>Point System</h2>
       <ul style={{ listStyleType: "square" }}>
@@ -43,21 +43,12 @@ const LegalPage = () => {
             <li>(3rd) +1 points</li>
           </ul>
         </li>
-        <li>Most money in one game session +2 points</li>
-        <li>Longest win streak +1 point</li>
-        <li>Best +/- ratio (%) +1 point</li>
-        <li>Every All-in you win at showdown gives you +0.10 points</li>
       </ul>
-      <div>
-        ** In case of a tie at the end of the season, the person with the most
-        overall season earnings is the winner
-      </div>
-      <br />
       <h2>Prizes for the Season</h2>
       <ul style={{ listStyleType: "square" }}>
         <li>
-          First Place: 60% of Prize pool, a 1st Place trophy, and a Peloton
-          Tumbler bottle
+          First Place: 60% of Prize pool, a 1st Place trophy, and a Mystery
+          Prize
         </li>
         <li>Second Place: 30% of Prize pool</li>
         <li>Third Place: 10% of Prize pool</li>
@@ -69,7 +60,7 @@ const LegalPage = () => {
       <h2>Game Fees</h2>
       <p>
         At the start of the Season, each player will donate $5 to the prize
-        pool. At the end of each game, each player will donate $1 to the prize
+        pool. At the end of each game, each player will donate $2 to the prize
         pool.
       </p>
       <h2>Bank/Dealer Rules</h2>
