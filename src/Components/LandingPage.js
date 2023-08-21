@@ -106,7 +106,7 @@ function LandingPage() {
         <h5 className="argoTitle">
           <Link
             style={{ marginBottom: "3px", color: "black" }}
-            to={`/season/stats`}
+            to={`/season-stats`}
           >
             <u>Season Stats</u>&#8594;
           </Link>

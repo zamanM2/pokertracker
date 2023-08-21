@@ -5,7 +5,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import UserSeasonStats from "./UserSeasonStats";
 import "../css/blackBtn.css";
-import { useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { getGameHistory, getUsers } from "../Firebase/PokerApi";
 import { MdConstruction } from "react-icons/md";
 import { seasonEarningsCompare, pointsCompare } from "../utils/utils";
@@ -21,10 +21,11 @@ const SeasonStatsPage = () => {
   const navigate = useNavigate();
   const [stats, setStats] = useState([]);
   const [displayStats, setDisplayStats] = useState(false);
+  let { id } = useParams();
   const { currentUser } = useAuth();
 
   useEffect(() => {
-    getSeasonStatsData(1).then((snapshot) => {
+    getSeasonStatsData(id).then((snapshot) => {
       if (snapshot.size === 0) {
         setDisplayStats(false);
       } else {
