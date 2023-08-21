@@ -71,9 +71,9 @@ const SeasonStatsPage = () => {
         }
       }
       computeSeasonEarningsPoints(userStats);
-      computeMostMoneyInOneGameSessionPoints(userStats);
-      computeLongestWinStreakPoints(userStats);
-      computeBestWinRatioPoints(userStats);
+      // computeMostMoneyInOneGameSessionPoints(userStats);
+      // computeLongestWinStreakPoints(userStats);
+      // computeBestWinRatioPoints(userStats);
       userStats.sort(pointsCompare);
       return userStats;
     });
@@ -256,7 +256,7 @@ const SeasonStatsPage = () => {
               fontSize: "30px",
             }}
           >
-            <label>Season 1 Results</label>
+            <label>Season {id} Results</label>
           </Row>
           <UserSeasonStats player={stats[0]} place={1} />
           <UserSeasonStats player={stats[1]} place={2} />
