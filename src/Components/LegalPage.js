@@ -47,8 +47,7 @@ const LegalPage = () => {
       <h2>Prizes for the Season</h2>
       <ul style={{ listStyleType: "square" }}>
         <li>
-          First Place: 60% of Prize pool, a 1st Place trophy, and a Mystery
-          Prize
+          First Place: 60% of Prize pool, a 1st Place trophy
         </li>
         <li>Second Place: 30% of Prize pool</li>
         <li>Third Place: 10% of Prize pool</li>
