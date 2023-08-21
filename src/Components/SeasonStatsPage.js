@@ -64,7 +64,7 @@ const SeasonStatsPage = () => {
           userStats.push({
             name: snapshot.val()[userId].name,
             seasonEarnings: snapshot.val()[userId].seasonEarnings,
-            seasonAllIns: snapshot.val()[userId].seasonAllIns,
+            //seasonAllIns: snapshot.val()[userId].seasonAllIns,
             points: snapshot.val()[userId].seasonAllIns * 0.1,
             awards: "",
           });
@@ -274,7 +274,7 @@ const SeasonStatsPage = () => {
           </Row>
         </>
       )}
-      {currentUser && (
+      {(currentUser && !displayStats) && (
         <Row style={{ marginBottom: "5px" }}>
           <Col>
             <Button className="blackBtn" onClick={handleSaveSeasonStats}>

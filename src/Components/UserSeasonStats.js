@@ -43,9 +43,11 @@ const UserSeasonStats = ({ player, place }) => {
         <label>
           <b>Season Earnings:</b> {player?.seasonEarnings}
         </label>
-        <label>
-          <b>Season All-ins:</b> {player?.seasonAllIns}
-        </label>
+        {player?.seasonAllIns !== undefined && (
+          <label>
+            <b>Season All-ins:</b> {player?.seasonAllIns}
+          </label>
+        )}
         <label>
           <b>Points:</b> {player?.points}
         </label>
