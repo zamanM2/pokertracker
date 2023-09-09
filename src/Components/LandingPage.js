@@ -98,7 +98,7 @@ function LandingPage() {
       <Row style={{ textAlign: "center" }}>
         <h3>
           <GiMoneyStack size={30} />
-          {`Prize Pool: ---`}
+          {`Prize Pool: --`}
           <GiMoneyStack size={30} />
         </h3>
       </Row>
