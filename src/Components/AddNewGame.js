@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
@@ -174,17 +173,14 @@ const AddNewGame = () => {
         </h3>
       </Row>
       <Row>
-        <Col xs={5}>
+        <Col xs={6}>
           <h6>Name</h6>
         </Col>
-        <Col style={{ textAlign: "center" }}>
+        <Col xs={3} style={{ textAlign: "left" }}>
           <h6>$$</h6>
         </Col>
-        <Col style={{ textAlign: "center" }}>
+        <Col xs={3} style={{ textAlign: "left" }}>
           <h6>BB</h6>
-        </Col>
-        <Col style={{ textAlign: "left" }}>
-          <h6>All-ins</h6>
         </Col>
       </Row>
       <Row>
@@ -192,7 +188,7 @@ const AddNewGame = () => {
           .filter((el) => el.inGame === true)
           .map((element) => (
             <Row key={element.id}>
-              <Col xs={5}>
+              <Col xs={6}>
                 <Button
                   onClick={() => removeUserFromGame(element.id)}
                   style={{
@@ -213,18 +209,10 @@ const AddNewGame = () => {
                   onChange={(event) => handInputChange(event, element.id)}
                 />
               </Col>
-              <Col xs={2}>
+              <Col xs={3}>
                 <Form.Control
                   name="inputBuyBacks"
                   value={element.inputBuyBacks}
-                  type="number"
-                  onChange={(event) => handInputChange(event, element.id)}
-                />
-              </Col>
-              <Col xs={2}>
-                <Form.Control
-                  name="inputAllIns"
-                  value={element.inputAllIns}
                   type="number"
                   onChange={(event) => handInputChange(event, element.id)}
                 />
